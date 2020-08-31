@@ -4,6 +4,10 @@ This very page is serve to be a table of contents. And [this Project Board](http
 
 ## Git
 
+### Usage
+
+content goes here
+
 ### Placeholder Title 1
 
 Here goes another placeholder text.
