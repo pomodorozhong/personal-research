@@ -28,10 +28,14 @@ Back to [research index](./README.md)
 
 - [Built a Self-Maintaining Personal Wiki (Wenjie Xu)](https://blog.wenjiexu.site/en/posts/llm-personal-wiki/) — skills-based workflow in production
 - [Obsidian + AI plugin comparison (Code Culture)](https://codeculture.store/blogs/developer-culture/obsidian-ai-plugin-comparison-2025) — Smart Connections vs Copilot vs Claude Code
-- [Obsidian Local AI 2026 (Local AI Master)](https://localaimaster.com/blog/local-ai-obsidian-integration) — Ollama setup guide
 - [Karpathy LLM Wiki: compile knowledge (Z Engineer)](https://zengineer.blog/blog/tech/karpathy-llm-wiki-compile-knowledge-en/) — compiler analogy and scale limits
 - [Obsidian Was Never the Problem (Drink Your OJ)](https://drinkyouroj.substack.com/p/obsidian-was-never-the-problem) — PKM tool vs agent maintenance bottleneck
 
 ## Search tooling
 
 - [qmd](https://github.com/tobi/qmd) — local hybrid search for markdown (BM25 + vector + LLM rerank, MCP server)
+
+## Local models
+
+- [Local models in the harness](./local_models.md) — Ollama stack, model selection, hybrid architectures
+- [Obsidian Local AI 2026 (Local AI Master)](https://localaimaster.com/blog/local-ai-obsidian-integration) — Ollama + Obsidian plugin setup

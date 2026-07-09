@@ -129,7 +129,7 @@ Enable community plugins: **Settings → Community plugins → Turn on community
 
 ### Smart Connections + local Ollama (privacy-first, optional)
 
-If you want semantic search without cloud APIs:
+See [local models in the harness](./local_models.md) for the full local stack. Quick start:
 
 1. Install [Ollama](https://ollama.com/)
 2. Pull models: `ollama pull nomic-embed-text` and `ollama pull llama3.2`
@@ -362,6 +362,7 @@ Symlink or periodically promote curated pages from agent vault to personal vault
 ## Related
 
 - [Research index](./README.md)
+- [Local models in the harness](./local_models.md)
 - [LLM Wiki pattern](./llm_wiki_pattern.md)
 - [POC README](./poc/README.md) — uv setup and run instructions
 - [Harness POC notebook](./poc/harness_poc.ipynb)

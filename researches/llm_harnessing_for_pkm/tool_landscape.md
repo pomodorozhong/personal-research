@@ -32,6 +32,7 @@ flowchart TD
 
 ## Related
 
+- [Local models in the harness](./local_models.md)
 - [Traditional PKM + LLM](./traditional_pkm_and_llm.md)
 - [Decision framework](./decision_framework.md)
 - [Obsidian setup guide](./obsidian_setup_guide.md)

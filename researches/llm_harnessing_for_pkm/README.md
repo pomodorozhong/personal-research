@@ -15,6 +15,7 @@ The working thesis: Karpathy's **compiled wiki pattern** (synthesis at ingest ti
 | Foundations & mental model | [foundations.md](./foundations.md) |
 | LLM Wiki / compiled knowledge pattern | [llm_wiki_pattern.md](./llm_wiki_pattern.md) |
 | Agent harness architecture | [agent_harness_architecture.md](./agent_harness_architecture.md) |
+| Local models in the harness | [local_models.md](./local_models.md) |
 | Traditional PKM + LLM (plugins) | [traditional_pkm_and_llm.md](./traditional_pkm_and_llm.md) |
 | MCP memory systems | [mcp_memory_systems.md](./mcp_memory_systems.md) |
 | Decision framework (ingest vs query time) | [decision_framework.md](./decision_framework.md) |
@@ -41,6 +42,7 @@ The working thesis: Karpathy's **compiled wiki pattern** (synthesis at ingest ti
 ### Roadmap B — Tool evaluation
 
 -   [x] Obsidian plugin stack (Smart Connections, Copilot) → [traditional_pkm_and_llm.md](./traditional_pkm_and_llm.md)
+-   [x] Local model usage in harness stack → [local_models.md](./local_models.md)
 -   [x] Agent skill frameworks (logseq-wiki, agent-based-km) → [agent_harness_architecture.md](./agent_harness_architecture.md)
 -   [x] MCP memory servers (Slipbox, agent-knowledge) → [mcp_memory_systems.md](./mcp_memory_systems.md)
 
