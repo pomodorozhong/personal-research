@@ -27,7 +27,19 @@ uv sync
 uv run jupyter notebook harness_poc.ipynb
 ```
 
-Run all cells top to bottom. The notebook creates `sample_vault/`, ingests a raw article via LLM, indexes embeddings, queries semantically, and lints the wiki.
+Run all cells top to bottom. The notebook copies fixture sources from `fixtures/raw/` into `sample_vault/raw/`, ingests each via LLM, indexes embeddings, queries semantically, and lints the wiki.
+
+## Fixture data
+
+Sample raw sources live in [`fixtures/raw/`](fixtures/raw/):
+
+| File | Topic |
+| --- | --- |
+| `rag-vs-compiled-wiki.md` | RAG vs ingest-time compiled wiki |
+| `karpathy-llm-wiki-pattern.md` | Three-layer LLM Wiki architecture |
+| `ollama-local-inference.md` | Local Ollama for private PKM |
+
+Add your own `.md` files to `fixtures/raw/` to test additional ingests.
 
 ## What the notebook implements
 
