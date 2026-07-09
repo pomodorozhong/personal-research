@@ -2,6 +2,11 @@
 
 This page serves as a table of contents for research on using LLM agents to harness Personal Knowledge Management (PKM). Consider creating a [GitHub Issue](https://github.com/pomodorozhong/personal-research/issues) and Project board to track progress, mirroring the [git_and_github research](../git_and_github/README.md) workflow.
 
+## Guides & demos
+
+- [Obsidian setup guide](./obsidian_setup_guide.md) — step-by-step vault + agent configuration
+- [Harness POC notebook](./poc/harness_poc.ipynb) — Jupyter demo of ingest, query, and lint (no LLM required)
+
 ## Roadmaps
 
 ### Roadmap A — Conceptual foundations
@@ -18,8 +23,8 @@ This page serves as a table of contents for research on using LLM agents to harn
 
 ### Roadmap C — Practical harness design
 
--   [ ] Schema file design (`AGENTS.md` conventions)
--   [ ] Ingest / query / lint workflow specification
+-   [x] Schema file design (`AGENTS.md` conventions) — see [Obsidian setup guide](./obsidian_setup_guide.md)
+-   [x] Ingest / query / lint workflow specification — see [Harness POC](./poc/harness_poc.ipynb)
 -   [ ] Scaling triggers (when to add qmd/search)
 
 ### Roadmap D — Application to personal-research repo
