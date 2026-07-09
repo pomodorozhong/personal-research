@@ -30,7 +30,7 @@ The working thesis: Karpathy's **compiled wiki pattern** (synthesis at ingest ti
 | Guide | Document |
 | --- | --- |
 | Obsidian setup (step-by-step) | [obsidian_setup_guide.md](./obsidian_setup_guide.md) |
-| Harness POC (Jupyter + uv) | [poc/harness_poc.ipynb](./poc/harness_poc.ipynb) · [poc/README.md](./poc/README.md) |
+| Harness POC (Jupyter + uv) | [poc/harness_poc.ipynb](./poc/harness_poc.ipynb) · [poc/README.md](./poc/README.md) — Ollama ingest, embed, query |
 
 ## Roadmaps
 

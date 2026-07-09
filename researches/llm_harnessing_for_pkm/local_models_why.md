@@ -46,7 +46,7 @@ Effectiveness here means: **does the approach produce usable, trustworthy PKM ou
 | **Multi-doc synthesis query** | — | ★★☆☆☆ | ★★★☆☆ | ★★★★★ | Weakest local tier; cloud or 14B+ recommended |
 | **Ingest (1 source → wiki)** | — | ★★★☆☆ | ★★★★☆ | ★★★★★ | 7B usable with supervision; misses subtle cross-refs |
 | **Ingest (multi-file agent edit)** | — | ★★☆☆☆ | ★★★☆☆ | ★★★★★ | Local IDE agents weak at 10–15 file passes |
-| **Lint (dead links, orphans)** | ★★★★★ | — | — | — | [harness.py](./poc/harness.py) — no model needed |
+| **Lint (dead links, orphans)** | ★★★★★ | — | — | — | Deterministic checks in [harness POC](./poc/harness_poc.ipynb) |
 | **Lint (contradictions, stale claims)** | — | ★★☆☆☆ | ★★★☆☆ | ★★★★☆ | Requires reasoning over multiple pages |
 | **Knowledge compounding** | ★★★★★ | ★★★★☆ | ★★★★☆ | ★★★★★ | Compiled wiki pattern; model tier affects page quality |
 
@@ -195,7 +195,7 @@ Illustrative: 15 ingests + 80 queries/month, compiled wiki workflow.
 
 1. **Always local: embeddings** — zero marginal cost; biggest retrieval bang for buck
 2. **Index-first query** — avoid LLM calls when grep/index suffices
-3. **Deterministic lint first** — [harness.py](./poc/harness.py) catches structural issues without tokens
+3. **Deterministic lint first** — structural checks in [harness POC](./poc/harness_poc.ipynb) without extra LLM tokens
 4. **Cloud only for ingest** — reserve paid tokens for multi-file compilation, not search
 5. **Batch embed overnight** — don't re-embed on every session
 6. **Smaller model for lint/chat, larger for ingest** — swap Ollama models per task

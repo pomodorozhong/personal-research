@@ -51,7 +51,7 @@ flowchart TB
 | **Lint (semantic checks)** | Partial | Dead links/orphans: no model; contradiction detection: chat model helps |
 | **Vault semantic search** | Yes (embeddings) | `nomic-embed-text`, `mxbai-embed-large` via Ollama |
 | **Hybrid search at scale** | Yes (embed + optional rerank) | [qmd](https://github.com/tobi/qmd) with local models |
-| **Deterministic POC** | No | [harness.py](./poc/harness.py) — stdlib only |
+| **Deterministic lint** | No | Regex/index checks in [harness POC](./poc/harness_poc.ipynb) |
 
 **Key insight:** A large fraction of the harness (folder layout, `index.md`, `log.md`, link lint, BM25) runs without any model. Local models matter most for **ingest synthesis** and **semantic retrieval** when the wiki outgrows index navigation.
 
@@ -117,7 +117,7 @@ Best for: Karpathy-style ingest / query / lint over `raw/` and `wiki/`.
 1. **Obsidian** — browse wiki, graph view, clip sources to `raw/`
 2. **Ollama** — local synthesis for ingest/query prompts
 3. **Copilot or Continue** — run ingest/query against vault with local model
-4. **Deterministic scripts** — [harness.py](./poc/harness.py) or qmd for index/search without cloud
+4. **Deterministic lint** — [harness POC](./poc/harness_poc.ipynb) for index/link checks without cloud
 
 For full agent file editing (touch 10–15 pages per ingest), cloud agents (Claude Code, Cursor) are still common; a **hybrid** setup uses local models for search/chat and cloud for heavy multi-file ingest. See [why doc — hybrid patterns](./local_models_why.md#hybrid-patterns-ranked-effectiveness--cost).
 

@@ -1,10 +1,18 @@
 # LLM PKM Harness POC
 
-Minimal proof of concept for the compiled-wiki harness pattern: vault structure, ingest, query, and lint — no LLM API required.
+End-to-end proof of concept for the compiled-wiki harness pattern using **real Ollama LLM and embedding calls** — ingest extraction, semantic retrieval, and answer synthesis.
+
+All implementation lives in [`harness_poc.ipynb`](./harness_poc.ipynb) (no separate Python module).
 
 ## Prerequisites
 
-- [uv](https://docs.astral.sh/uv/) installed
+1. [Ollama](https://ollama.com/) installed and running (`ollama serve`)
+2. Models pulled:
+
+```bash
+ollama pull nomic-embed-text   # embeddings
+ollama pull qwen2.5:7b         # chat / ingest extraction (or llama3.2)
+```
 
 ## Setup
 
@@ -13,33 +21,21 @@ cd researches/llm_harnessing_for_pkm/poc
 uv sync
 ```
 
-This creates `.venv/` and installs Jupyter + ipykernel from the lockfile.
-
-## Run the notebook
+## Run
 
 ```bash
 uv run jupyter notebook harness_poc.ipynb
 ```
 
-Or register the kernel once, then open the notebook in VS Code / Cursor:
+Run all cells top to bottom. The notebook creates `sample_vault/`, ingests a raw article via LLM, indexes embeddings, queries semantically, and lints the wiki.
 
-```bash
-uv run python -m ipykernel install --user --name llm-pkm-harness-poc
-```
+## What the notebook implements
 
-## Run harness module directly
-
-```bash
-uv run python -c "from harness import WikiVault; print('OK')"
-```
-
-## Files
-
-| File | Purpose |
+| Step | Mechanism |
 | --- | --- |
-| `harness.py` | Stdlib harness module (index, ingest, query, lint) |
-| `harness_poc.ipynb` | Interactive walkthrough |
-| `pyproject.toml` | Project metadata and dependencies (uv) |
-| `uv.lock` | Locked dependency versions |
+| **Ingest** | Ollama chat → JSON extraction → wiki pages + `index.md` + `log.md` |
+| **Embed** | Ollama `nomic-embed-text` → cached vectors in `.embeddings.json` |
+| **Query** | Cosine similarity over embeddings → Ollama chat synthesis with citations |
+| **Lint** | Deterministic wikilink / index checks (no model) |
 
-See also: [Research index](../README.md) | [Obsidian setup guide](../obsidian_setup_guide.md) | [LLM Wiki pattern](../llm_wiki_pattern.md)
+See also: [Research index](../README.md) | [How to use local models](../local_models_how.md)
