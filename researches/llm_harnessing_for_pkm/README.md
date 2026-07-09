@@ -43,6 +43,7 @@ The working thesis: Karpathy's **compiled wiki pattern** (synthesis at ingest ti
 
 -   [x] Obsidian plugin stack (Smart Connections, Copilot) → [traditional_pkm_and_llm.md](./traditional_pkm_and_llm.md)
 -   [x] Local model usage in harness stack → [local_models.md](./local_models.md)
+-   [x] Local model effectiveness & cost analysis → [local_models.md](./local_models.md#effectiveness-by-harness-operation)
 -   [x] Agent skill frameworks (logseq-wiki, agent-based-km) → [agent_harness_architecture.md](./agent_harness_architecture.md)
 -   [x] MCP memory servers (Slipbox, agent-knowledge) → [mcp_memory_systems.md](./mcp_memory_systems.md)
 
