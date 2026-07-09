@@ -4,15 +4,7 @@ Objective statistics on tabletop role-playing game (TTRPG) player preferences, m
 
 ## Data sources
 
-All datasets live in `data/` with provenance tracked in `data/sources.csv`. Primary sources:
-
-| Source | What it covers |
-|--------|----------------|
-| [Skalchemist 2025 RPG Crowdfunding Report](https://skalchemist.cloud/mediawiki/index.php/2025_Year_End_RPG-related_Crowdfunding_Report) | Yearly RPG crowdfunding totals (2013–2025), platform share, non-5E system popularity |
-| [Kickstarter 2024 Games Report](https://updates.kickstarter.com/kickstarter-biggest-platform-for-games/) | Tabletop games funding, success rates, top campaigns |
-| [TTRPG Spider Nov 2025 Retrospective](https://ttrpg-spider.blogspot.com/2025/12/november-2025-ttrpg-crowdfunding.html) | Year-over-year November crowdfunding (Kickstarter, Backerkit, D&D 5E, AI-assisted) |
-| [RPG Drop Market Analysis 2024](https://www.rpgdrop.com/worldwide-ttrpg-market-in-2024-industry-analysis/) | Global market size, player counts, ICv2 hobby-store rankings |
-| [WotC 2024 presentation (via TechRaptor)](https://techraptor.net/tabletop/news/wizards-of-coast-vp-reveals-dungeons-dragons-2024-sales-and-digital-usage) | D&D Beyond engagement metrics |
+All datasets live in `data/`. Per-file provenance (source URLs, notes) is documented in **[data/README.md](data/README.md)**.
 
 ## Setup (uv)
 
