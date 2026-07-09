@@ -1,5 +1,7 @@
 # Step-by-Step: LLM PKM Harness in Obsidian
 
+Back to [research index](./README.md)
+
 This guide walks through setting up the Karpathy-style compiled wiki pattern in Obsidian, with an LLM agent (Claude Code or Cursor) as the maintainer.
 
 **Time:** ~30–45 minutes for initial setup  
@@ -359,6 +361,7 @@ Symlink or periodically promote curated pages from agent vault to personal vault
 
 ## Related
 
+- [Research index](./README.md)
+- [LLM Wiki pattern](./llm_wiki_pattern.md)
 - [POC README](./poc/README.md) — uv setup and run instructions
 - [Harness POC notebook](./poc/harness_poc.ipynb)
-- [Main research README](./README.md)

@@ -42,4 +42,4 @@ uv run python -c "from harness import WikiVault; print('OK')"
 | `pyproject.toml` | Project metadata and dependencies (uv) |
 | `uv.lock` | Locked dependency versions |
 
-See also: [Obsidian setup guide](../obsidian_setup_guide.md) | [Main research](../README.md)
+See also: [Research index](../README.md) | [Obsidian setup guide](../obsidian_setup_guide.md) | [LLM Wiki pattern](../llm_wiki_pattern.md)
