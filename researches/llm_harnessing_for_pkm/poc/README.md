@@ -31,13 +31,13 @@ Run all cells top to bottom. The notebook copies fixture sources from `fixtures/
 
 ## Fixture data
 
-Sample raw sources live in [`fixtures/raw/`](fixtures/raw/):
+Sample raw sources live in [`fixtures/raw/`](fixtures/raw/) — **D&D trivia**, kept separate from PKM research topics:
 
 | File | Topic |
 | --- | --- |
-| `rag-vs-compiled-wiki.md` | RAG vs ingest-time compiled wiki |
-| `karpathy-llm-wiki-pattern.md` | Three-layer LLM Wiki architecture |
-| `ollama-local-inference.md` | Local Ollama for private PKM |
+| `chromatic-dragons.md` | The five chromatic dragon types |
+| `cantrips-and-spell-slots.md` | Cantrips vs spell slots in 5e |
+| `famous-taverns.md` | Iconic taverns across settings |
 
 Add your own `.md` files to `fixtures/raw/` to test additional ingests.
 
