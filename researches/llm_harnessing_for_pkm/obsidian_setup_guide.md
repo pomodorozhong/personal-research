@@ -359,6 +359,6 @@ Symlink or periodically promote curated pages from agent vault to personal vault
 
 ## Related
 
-- [Obsidian setup guide](./obsidian_setup_guide.md)
+- [POC README](./poc/README.md) — uv setup and run instructions
 - [Harness POC notebook](./poc/harness_poc.ipynb)
 - [Main research README](./README.md)

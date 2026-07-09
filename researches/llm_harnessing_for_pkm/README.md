@@ -5,7 +5,7 @@ This page serves as a table of contents for research on using LLM agents to harn
 ## Guides & demos
 
 - [Obsidian setup guide](./obsidian_setup_guide.md) — step-by-step vault + agent configuration
-- [Harness POC notebook](./poc/harness_poc.ipynb) — Jupyter demo of ingest, query, and lint (no LLM required)
+- [Harness POC notebook](./poc/harness_poc.ipynb) — Jupyter demo of ingest, query, and lint ([uv](./poc/README.md) managed)
 
 ## Roadmaps
 

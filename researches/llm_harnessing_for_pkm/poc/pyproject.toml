@@ -1,0 +1,10 @@
+[project]
+name = "llm-pkm-harness-poc"
+version = "0.1.0"
+description = "Proof of concept for LLM PKM harness (ingest, query, lint)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ipykernel>=6.29",
+    "jupyter>=1.0",
+]
