@@ -61,7 +61,8 @@ Mitigations:
 
 ## Related
 
-- [Local models in the harness](./local_models.md)
+- [Why use local models](./local_models_why.md)
+- [How to use local models](./local_models_how.md)
 - [LLM Wiki pattern](./llm_wiki_pattern.md)
 - [Obsidian setup guide](./obsidian_setup_guide.md)
 - [Harness POC](./poc/harness_poc.ipynb)

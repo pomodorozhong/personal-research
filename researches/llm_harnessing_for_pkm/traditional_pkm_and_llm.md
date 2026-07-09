@@ -14,7 +14,7 @@ For users who keep **human-written notes** and add AI on top, the 2026 Obsidian 
 | [Text Generator](https://github.com/nhaouari/obsidian-textgenerator-plugin) | Template-driven generation | No | Ollama, multi-provider | Open source, BYOK |
 | [Companion](https://github.com/rizerphe/obsidian-companion) | Ghost text autocompletion | No | Ollama, OpenAI | Open source, BYOK |
 
-**Recommended combo for most users:** Smart Connections (embedding/search layer) + Copilot (chat layer), both pointed at a local [Ollama](https://ollama.com/) backend for privacy. See [local models in the harness](./local_models.md) for full stack guidance.
+**Recommended combo for most users:** Smart Connections (embedding/search layer) + Copilot (chat layer), both pointed at a local [Ollama](https://ollama.com/) backend for privacy. See [how to use local models](./local_models_how.md) for setup and [why](./local_models_why.md) for tradeoffs.
 
 - Embeddings: `nomic-embed-text` or `mxbai-embed-large`
 - Chat: `llama3.2` or similar via `http://localhost:11434/v1`
@@ -40,7 +40,8 @@ These are not mutually exclusive. You can maintain human-written daily notes in 
 
 ## Related
 
-- [Local models in the harness](./local_models.md)
+- [Why use local models](./local_models_why.md)
+- [How to use local models](./local_models_how.md)
 - [Obsidian setup guide](./obsidian_setup_guide.md)
 - [LLM Wiki pattern](./llm_wiki_pattern.md)
 - [Tool landscape comparison](./tool_landscape.md)

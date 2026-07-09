@@ -32,7 +32,8 @@ flowchart TD
 
 ## Related
 
-- [Local models in the harness](./local_models.md) — effectiveness, cost analysis, comparisons
+- [Local models — why](./local_models_why.md) — effectiveness, cost analysis, comparisons
+- [Local models — how](./local_models_how.md) — setup and integration
 - [Traditional PKM + LLM](./traditional_pkm_and_llm.md)
 - [Decision framework](./decision_framework.md)
 - [Obsidian setup guide](./obsidian_setup_guide.md)

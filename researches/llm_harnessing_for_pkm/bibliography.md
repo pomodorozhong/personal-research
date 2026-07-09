@@ -37,5 +37,6 @@ Back to [research index](./README.md)
 
 ## Local models
 
-- [Local models in the harness](./local_models.md) — Ollama stack, model selection, hybrid architectures
+- [Why use local models](./local_models_why.md) — effectiveness, cost, comparisons
+- [How to use local models](./local_models_how.md) — Ollama stack, integration, configuration
 - [Obsidian Local AI 2026 (Local AI Master)](https://localaimaster.com/blog/local-ai-obsidian-integration) — Ollama + Obsidian plugin setup

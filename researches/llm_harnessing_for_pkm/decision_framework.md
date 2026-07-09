@@ -13,7 +13,7 @@ Based on [Ranjan Kumar's analysis](https://ranjankumar.in/llm-wiki-synthesis-tim
 | Human role | Curator + questioner | Author of notes |
 | Auditability | High (readable markdown, git history) | Lower (vector store is opaque) |
 | Privacy | Local markdown + local agent | Depends on plugin/API choices |
-| Cost at scale | Fixed (hardware); see [local models](./local_models.md) | Per-token; see cost analysis |
+| Cost at scale | Fixed (hardware); see [local models — why](./local_models_why.md) | Per-token; see cost analysis |
 | Maintenance | Agent lint loop | Re-index on change |
 | Output durability | Persistent wiki pages | Ephemeral chat responses |
 
