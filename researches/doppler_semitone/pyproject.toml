@@ -1,0 +1,11 @@
+[project]
+name = "doppler-semitone"
+version = "0.1.0"
+description = "Doppler effect: source speed needed for a one-semitone pitch shift"
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel>=7.3.0",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.11.0",
+    "numpy>=2.5.1",
+]
