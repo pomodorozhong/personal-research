@@ -14,7 +14,55 @@
 - Prefer GGUF/MLX quants whose **on-disk size is ≤ ~8 GB**; keep context **4K–8K** unless you’ve measured headroom.
 - If a file is **>11 GB**, expect swap and sluggish single-digit tok/s — treat those as “does not run” for daily use.
 
-Everything larger discussed on LocalLLaMA in this period (GLM-5.2, MiniMax-M3, LongCat-2.0, Inkling, Hy3, Leanstral-119B, Puzzle-75B, Laguna XS/M, Ornith-35B, North Mini Code, Qwen3.6-27B, etc.) is **out of scope here**.
+---
+
+## Comparison vs Gemma 4 12B Unified (encoder-free)
+
+**Baseline:** [google/gemma-4-12B](https://huggingface.co/google/gemma-4-12B) — the **12B Unified** variant. It has **no separate vision/audio encoders** (unlike Gemma 4 E2B/E4B/31B). Image patches and audio map through lightweight projections into one decoder-only transformer. ~**11.95B** params, **256K** context, **Apache 2.0**, text + image + audio (+ video frames).
+
+Google positions it as laptop-ready: Q4 weights ~**6.7 GB**, recommended **16 GB** unified/VRAM. On an M2 16 GB that is workable for **short–medium context**, not a full 256K window.
+
+### Specs side-by-side
+
+| | **Gemma 4 12B Unified** | **Ornith-1.0-9B** | **Qwen ~9B** (3.5/3.6 small) | **Agents-A1-4B** | **Amalia 9B** |
+| --- | --- | --- | --- | ---: | --- |
+| **Params** | 11.95B dense | ~9B dense | ~9B | ~4B | 9B |
+| **Modalities** | Text + image + audio (+ video) | Text | Text (+ image on some VL builds) | Text | Text |
+| **Encoders** | **None** (unified) | n/a | usually separate / none for text | n/a | n/a |
+| **Context (native)** | 256K | 256K | ~262K class | long-horizon oriented | typical 9B |
+| **License** | Apache 2.0 | MIT | Apache 2.0 (Qwen) | check card | check card |
+| **Q4 footprint** | ~**6.7 GB** | ~**5.6 GB** | ~**5–6 GB** | ~**2.5–3.5 GB** | ~**5–6 GB** |
+| **16 GB M2 fit** | Yes, keep context modest | Comfortable | Comfortable | Very comfortable | Comfortable |
+| **CUDA?** | No — Metal/MLX | Metal/MLX | Metal/MLX | Metal/MLX | Metal/MLX |
+| **Tok/s (order of mag.)** | Community ~**30–50** on M2/M3 at Q4 (varies) | Often similar or a bit faster than 12B at same quant | Usually **fastest** of the 9–12B set | Fastest here | Typical 9B |
+
+### Quality (published / vendor tables — not identical harnesses)
+
+Agentic coding numbers below are from Ornith’s model card (same table includes Gemma4-12B). Reasoning numbers for Gemma are Google’s official card.
+
+| Task | Gemma 4 12B Unified | Ornith-1.0-9B | Qwen3.5-9B |
+| --- | ---: | ---: | ---: |
+| **SWE-bench Verified** | 44.2 | **69.4** | 53.2 |
+| **SWE-bench Pro** | 27.6 | **42.9** | 31.3 |
+| **Terminal-Bench 2.1** | 21.0 | **43.1** | 21.3 |
+| **NL2Repo** | 10.3 | **27.2** | 16.2 |
+| **MMLU Pro** (Gemma card) | **77.2%** | — | — |
+| **GPQA Diamond** (Gemma card) | **78.8%** | — | — |
+| **AIME 2026** (Gemma card) | **77.5%** | — | — |
+| **LiveCodeBench v6** (Gemma card) | **72.0%** | — | — |
+| **MMMU Pro** (vision) | **69.1%** | n/a | weaker / no audio |
+
+### Who wins what on your M2
+
+| Goal | Pick | Why |
+| --- | --- | --- |
+| **Screenshots / PDFs / voice in one model** | **Gemma 4 12B Unified** | Only mid-size option here with native text+image+audio and **no encoder tax** |
+| **Repo coding / terminal agents** | **Ornith-1.0-9B** | Large gap on SWE / Terminal-Bench vs Gemma 12B |
+| **Fast general chat, max headroom** | **Qwen ~9B** or **Agents-A1-4B** | Smaller/faster; more RAM left for IDE + context |
+| **Portuguese / local-language national model** | **Amalia 9B** | Niche fit; don’t expect Ornith-level coding |
+| **Best single default if you want one file** | **Gemma 4 12B** *or* **Ornith-9B** | Gemma if multimodal daily; Ornith if you code locally |
+
+**Practical M2 note:** Gemma’s “fits in 16 GB” is true for weights at Q4, but multimodal prompts + thinking mode + long context eat the same shared pool. For coding-only sessions, Ornith Q4 leaves more breathing room than Gemma Q4.
 
 ---
 
@@ -22,32 +70,48 @@ Everything larger discussed on LocalLLaMA in this period (GLM-5.2, MiniMax-M3, L
 
 | Role | Model | Quant | Footprint | Notes |
 | --- | --- | --- | --- | --- |
-| **Default coder / chat** | **Ornith-1.0-9B** | Q4_K_M or MLX MXFP4 | ~**5.6 GB** | Best overall pick from this window for 16 GB |
-| **Higher quality same size** | Ornith-1.0-9B | Q5–Q6 or MXFP8 | ~**6.5–9.5 GB** | Leave less room for long context |
-| **Docs / OCR** | Unlimited-OCR 3.3B or OvisOCR2 0.8B | Q4 / FP16 | ~**1–4 GB** | Specialist, not a chat model |
-| **Tiny agent / tools** | Agents-A1-4B | Q4 | ~**2.5–3.5 GB** | Horizon-scaling small agent model |
-
-Suggested pull (Ollama-style): Ornith 9B Q4, then add an OCR model if you parse PDFs/scans locally.
+| **Multimodal daily driver** | **Gemma 4 12B Unified** | Q4 | ~**6.7 GB** | Encoder-free; text/image/audio |
+| **Coding daily driver** | **Ornith-1.0-9B** | Q4_K_M / MLX MXFP4 | ~**5.6 GB** | Best coding scores in this set |
+| **Lean generalist** | Qwen ~9B | Q4–Q5 | ~**5–6 GB** | Speed / headroom |
+| **Tiny agent** | Agents-A1-4B | Q4 | ~**2.5–3.5 GB** | Long-horizon small model |
+| **Docs / OCR specialist** | Unlimited-OCR 3.3B or OvisOCR2 0.8B | Q4 | ~**1–4 GB** | Not a chat replacement (Gemma already does OCR OK) |
 
 ---
 
-## Chat & coding (fits comfortably)
+## Chat & coding models
 
-### Ornith-1.0-9B (DeepReinforce) — top pick
+### Gemma 4 12B Unified (Google) — encoder-free multimodal baseline
 
-Released ~2026-06-25 as part of the Ornith-1.0 family (the 35B MoE does **not** fit; use the **9B dense** only).
+| | |
+| --- | --- |
+| **When** | ~2026-06-03 (~970 upvotes on LocalLLaMA) |
+| **Size** | **11.95B** dense |
+| **Architecture** | Decoder-only; **no** ~150–550M vision encoder and **no** ~300M audio encoder (unlike other Gemma 4 sizes) |
+| **Modalities** | Text, image, audio; video via frames |
+| **License** | Apache 2.0 |
+| **CUDA?** | No — use Metal / MLX / llama.cpp |
+| **Memory** | Q4 ~**6.7 GB** weights; Google recommends **16 GB** machine. Stay ≤8K–16K context on M2 |
+| **Throughput** | Community reports often **~30–50 tok/s** on M2/M3 class at Q4 (highly build-dependent) |
+| **Strengths** | Reasoning (GPQA/AIME), native multimodal, tool calling, thinking mode |
+| **Weaknesses vs peers** | Trails Ornith/Qwen hard on agentic coding benches; heavier than 9B for text-only work |
+
+HF: [google/gemma-4-12B](https://huggingface.co/google/gemma-4-12B) · instruct: `google/gemma-4-12B-it`
+
+---
+
+### Ornith-1.0-9B (DeepReinforce) — coding pick
+
+Released ~2026-06-25. Use the **9B dense** only (35B MoE does **not** fit).
 
 | | |
 | --- | --- |
 | **Size** | ~9B dense |
 | **License** | MIT |
-| **CUDA?** | No — use **Metal (llama.cpp)** or **MLX** |
-| **Memory** | Q4_K_M ~**5.6 GB** · Q5 ~**6.5 GB** · Q6 ~**7.4 GB** · Q8 ~**9.5 GB** (tight) · BF16 ~18 GB (**no**) |
-| **Context** | Native up to 256K, but on 16 GB stay at **≤8K** for Q4–Q6; Q8 prefer **≤4–8K** |
-| **Throughput** | Bandwidth-bound. Community MLX/oMLX on faster Silicon often **~45–60 tok/s** short context; expect **noticeably less on M2** (often mid/high tens at best for Q4, lower as context grows) |
-| **Why LocalLLaMA cared** | Agentic coding focus with a size that actually lands on laptops |
-
-**How:** Ollama `ornith` / community `…/ornith-9b:Q4_K_M`, LM Studio GGUF, or MLX MXFP4 for native Apple Silicon.
+| **CUDA?** | No — Metal / MLX |
+| **Memory** | Q4_K_M ~**5.6 GB** · Q5 ~**6.5** · Q6 ~**7.4** · Q8 ~**9.5** (tight) |
+| **Context** | Keep **≤8K** on 16 GB for comfort |
+| **Throughput** | Mid/high tens tok/s plausible at Q4 on Apple Silicon; M2 slower than M4 |
+| **vs Gemma 12B** | Much stronger SWE/Terminal-Bench; **no** native audio/vision |
 
 ---
 
@@ -56,11 +120,8 @@ Released ~2026-06-25 as part of the Ornith-1.0 family (the 35B MoE does **not** 
 | | |
 | --- | --- |
 | **When** | ~2026-07-03 |
-| **Size** | 9B |
-| **CUDA?** | No — Metal/MLX/llama.cpp |
-| **Memory** | Same class as other 9B: Q4 ~**5–6 GB**, Q5/Q6 ~**6–8 GB** |
-| **Throughput** | Typical 7–9B Apple Silicon band (tens of tok/s at short context) |
-| **Why it mattered** | National open LLM; practical general chat on a laptop |
+| **Memory** | Q4 ~**5–6 GB** |
+| **vs Gemma 12B** | Smaller, text-focused national model; not a multimodal or coding leader |
 
 ---
 
@@ -68,83 +129,33 @@ Released ~2026-06-25 as part of the Ornith-1.0 family (the 35B MoE does **not** 
 
 | | |
 | --- | --- |
-| **When** | Late June / mid-July threads (+ GGUFs) |
-| **Size** | **4B** (horizon-scaling / agent-oriented; discussed beside Qwen3.7-4B lineage) |
-| **CUDA?** | No |
-| **Memory** | Q4 roughly **~2.5–3.5 GB** — very safe on 16 GB |
-| **Throughput** | Usually faster than 9B on the same Mac (often well into tens of tok/s) |
-| **Why it mattered** | Small model aimed at longer-horizon agent loops without a huge footprint |
+| **Size** | ~4B |
+| **Memory** | Q4 ~**2.5–3.5 GB** |
+| **vs Gemma 12B** | Far less general capability; wins on footprint and latency for simple agent loops |
 
-HF search: [InternScience Agents-A1](https://huggingface.co/InternScience/models?search=a1-4b)
+HF: [InternScience A1-4B search](https://huggingface.co/InternScience/models?search=a1-4b)
 
 ---
 
-### Gemma 4 small variants (Google) — careful
+### Qwen ~9B class
 
-Full **gemma-4-12B / 31B** discussion was huge on LocalLLaMA, but on **16 GB** only the **small end** is honest:
+Qwen3.6-**27B** is out of scope. Small Qwen (≈7–9B) still fits.
 
-| Variant | Fit on 16 GB M2? |
+| | |
 | --- | --- |
-| Gemma 4 **E2B / E4B** (if using those sizes) | Yes at Q4/Q5 |
-| **gemma-4-12B** Q4 | Borderline — weights alone can use most of Metal’s ~10.5 GB; use **short context only** or skip |
-| 26B-A4B / 31B / DiffusionGemma large | **No** for daily use |
-
-Prefer vision/audio demos on E2B/E4B or wait until you have more RAM. Multimodal KV grows fast.
+| **Memory** | Q4–Q6 ~**4.5–8 GB** |
+| **vs Gemma 12B** | Leaner/faster for text; weaker native audio/video story; coding usually between Gemma 12B and Ornith 9B on agent benches (Qwen3.5-9B SWE-Verified **53.2** vs Gemma **44.2** vs Ornith **69.4**) |
 
 ---
 
-### Qwen “small” stack (still the common generalist)
+## Specialists (not full LLM substitutes)
 
-Qwen3.6-**27B** was the mid-size star this period — **too big** here. What still works:
-
-| | |
-| --- | --- |
-| **Fits** | Qwen ~**7–9B** (and similar MoE-tiny / 4B agents) at Q4–Q6 |
-| **Memory** | ~**4.5–8 GB** depending on quant |
-| **Throughput** | Often **usable interactive** on M2 at Q4; MTP helps where the GGUF includes an MTP head and your llama.cpp is new enough |
-| **CUDA?** | No |
-
-Keep 27B/35B-A3B for a future 32GB+ machine.
-
----
-
-## Specialists (easy wins on 16 GB)
-
-### Unlimited-OCR 3.3B
-
-| | |
-| --- | --- |
-| **When / buzz** | ~2026-06-24 (~990 upvotes) |
-| **Job** | Multilingual one-shot OCR / document parsing |
-| **Memory** | Few GB (Q4/Q5 comfortable) |
-| **CUDA?** | No |
-| **Throughput** | Image→text, not chat tok/s — fine on M2 for page/doc batches |
-
-### OvisOCR2 0.8B
-
-| | |
-| --- | --- |
-| **When** | ~2026-07-15 |
-| **Job** | Tiny end-to-end doc VLM (OmniDocBench-class claims) |
-| **Memory** | Often **&lt;2 GB** |
-| **CUDA?** | No for local llama.cpp/MLX paths; some recipes mention vLLM (Linux/CUDA) — on Mac prefer Apple-native runtimes if available |
-| **Why it mattered** | Strong OCR quality at a size a MacBook barely notices |
-
-### Inflect-Nano (~4.6M) & Gepard 0.6B TTS
-
-| Model | Job | Fit |
+| Model | Job | vs Gemma 12B |
 | --- | --- | --- |
-| **Inflect-Nano** | Ultra-tiny TTS | CPU-easy; trivial on M2 |
-| **Gepard 0.6B** | Streaming TTS (~20× realtime / ~50 ms TTFA claimed in threads) | Tiny; check whether your Mac runtime supports the stack (some demos are vLLM-centric) |
-
-### Local Image → 3D (&lt;2 GB RAM, &lt;20s)
-
-| | |
-| --- | --- |
-| **When** | ~2026-07-12 (~820 upvotes) |
-| **Job** | Image-to-3D on Apple Silicon / iPhone class hardware |
-| **Memory** | **&lt;2 GB** claimed |
-| **CUDA?** | No — Apple Silicon was the point of the demo |
+| **Unlimited-OCR 3.3B** | Doc OCR | Narrower but dedicated; Gemma already has solid OmniDocBench-class vision OCR |
+| **OvisOCR2 0.8B** | Tiny doc VLM | Use when you want OCR only and maximum RAM left over |
+| **Inflect-Nano / Gepard TTS** | Speech out | Gemma does speech-*in*; these are TTS |
+| **Local Image→3D (&lt;2 GB)** | 3D generation | Different task entirely |
 
 ---
 
@@ -152,34 +163,20 @@ Keep 27B/35B-A3B for a future 32GB+ machine.
 
 | On-disk size | Verdict |
 | --- | --- |
-| ≤ 6 GB | Comfortable (Q4 7–9B, most specialists) |
-| 6–9 GB | OK with **4K–8K** context; close other apps |
-| 9–11 GB | Fragile; Q8 9B territory — short context only |
-| &gt; 11 GB | Skip for daily use on this machine |
+| ≤ 6 GB | Comfortable |
+| 6–9 GB | OK with **4K–8K** context (Gemma Q4 lives here) |
+| 9–11 GB | Fragile |
+| &gt; 11 GB | Skip for daily use |
 
-**Preferred stack on your Mac**
-1. **Ollama** or **LM Studio** for GGUF (Metal)
-2. **MLX / mlx-lm** when there’s an MLX quant (often best tok/s on Apple Silicon)
-3. Avoid CUDA-only formats (NVFP4 server recipes, multi-GPU vLLM guides)
-
-**Context discipline:** every doubling of context grows KV cache. On 16 GB, long “256K native” windows are marketing, not a plan.
-
----
-
-## What LocalLLaMA hyped that you should ignore (for now)
-
-| Model | Why it doesn’t fit 16 GB M2 |
-| --- | --- |
-| Ornith-1.0-**35B**, North Mini Code, Laguna XS 2.1 | ~20 GB Q4 |
-| Qwen3.6-**27B**, Leanstral-119B, Puzzle-75B | Mid/large — needs 24–80 GB class |
-| Hy3, GigaChat3.5, MiniMax-M3, GLM-5.2, LongCat-2.0, Inkling | Hundreds of GB to multi-TB |
+**Preferred stack:** Ollama / LM Studio (Metal) or **MLX** when available. Avoid CUDA-only NVFP4 server recipes.
 
 ---
 
 ## Method / caveats
 
-- Shortlist comes from the same r/LocalLLaMA May–Jul 2026 survey, then cut to models whose published GGUF/MLX footprints fit **~8–11 GB usable** on a 16 GB M2.
-- Reddit.com blocked direct scrapes here; archive paging helper: [`fetch_localllama_posts.py`](./fetch_localllama_posts.py)
+- Shortlist = r/LocalLLaMA May–Jul 2026 releases that fit ~**8–11 GB** usable on a 16 GB M2, with **Gemma 4 12B Unified** as the comparison baseline.
+- Coding table numbers are from Ornith’s published comparison (harness details on their card); Gemma reasoning/vision numbers are from Google’s model card — **not** one unified eval.
+- Archive fetch helper: [`fetch_localllama_posts.py`](./fetch_localllama_posts.py)
 
 ```bash
 python3 fetch_localllama_posts.py \
@@ -187,6 +184,3 @@ python3 fetch_localllama_posts.py \
   --new-model-only --min-score 100 \
   --out posts.jsonl
 ```
-
-- Tok/s figures are order-of-magnitude and stack-specific; M2 is slower than M3/M4 at the same quant.
-- “Fits” means interactive use without living in swap — not “technically loads with 1 tok/s.”
