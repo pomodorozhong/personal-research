@@ -7,7 +7,7 @@ Notes and shortlists for local models (Metal / MLX / llama.cpp / Ollama / audio 
 | Report | Window | Focus |
 | --- | --- | --- |
 | [report-2026-07-17.md](./report-2026-07-17.md) | mid-May → mid-July 2026 | LLMs that fit a 16 GB M2 MacBook Pro, vs Gemma 4 12B Unified |
-| [report-2026-07-27-music.md](./report-2026-07-27-music.md) | as of 2026-07-27 | Local **music generation**: clip vs song, streaming, VRAM, Mac fit, vs LLMs |
+| [report-2026-07-27-music.md](./report-2026-07-27-music.md) | as of 2026-07-27 | Local **music generation**: clip vs song, streaming, VRAM, Mac fit, vs LLMs; cites r/LocalLLaMA & r/StableDiffusion |
 
 ## Scripts
 
