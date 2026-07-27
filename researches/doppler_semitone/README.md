@@ -33,17 +33,17 @@ The notebook starts with the Doppler formula, then pitch discrimination (~5 cent
 
 ## Physics (stationary observer, moving source)
 
-\[
+$$
 f' = f \cdot \frac{v}{v \mp v_s}
-\]
+$$
 
-A pitch interval of \(c\) cents is the frequency ratio \( r = 2^{c/1200} \). Solving for source speed \( v_s \) gives different values for approach vs. recession because the Doppler map is asymmetric.
+A pitch interval of $c$ cents is the frequency ratio $r = 2^{c/1200}$. Solving for source speed $v_s$ gives different values for approach vs. recession because the Doppler map is asymmetric.
 
 ## Sources
 
 | Constant / rule | Value used | Link |
 |-----------------|------------|------|
-| Doppler (moving source) | \(f' = f\,v/(v\mp v_s)\) | [HyperPhysics](https://hyperphysics.gsu.edu/hbase/Sound/dopp.html), [Wikipedia](https://en.wikipedia.org/wiki/Doppler_effect) |
+| Doppler (moving source) | $f' = f\,v/(v\mp v_s)$ | [HyperPhysics](https://hyperphysics.gsu.edu/hbase/Sound/dopp.html), [Wikipedia](https://en.wikipedia.org/wiki/Doppler_effect) |
 | Speed of sound (dry air) | ~331.3√(1+T/273.15) m/s; ~343 m/s at 20 °C | [HyperPhysics](https://hyperphysics.gsu.edu/hbase/Sound/souspe.html), [OpenStax](https://openstax.org/books/university-physics-volume-1/pages/17-2-speed-of-sound) |
 | Cent / semitone | 100 cents = 1 semitone | [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/Music/cents.html), [Wikipedia](https://en.wikipedia.org/wiki/Cent_(music)) |
 | Pitch JND | ~5 cents | [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/Music/cents.html), [Wikipedia — JND](https://en.wikipedia.org/wiki/Just-noticeable_difference) |
