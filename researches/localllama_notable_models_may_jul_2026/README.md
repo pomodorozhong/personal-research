@@ -282,5 +282,14 @@ CUDA/Metal both used; diffusion path needs runtime support beyond vanilla AR GGU
 ## Method / caveats
 
 - Reddit.com blocked direct scrapes from this environment; posts were retrieved via the Arctic Shift archive API for `r/LocalLLaMA`, then requirements were verified against HF model cards, vendor blogs, vLLM recipes, and high-engagement LocalLLaMA self-posts.
+- The paging/fetch helper used for this note is saved as [`fetch_localllama_posts.py`](./fetch_localllama_posts.py):
+
+```bash
+python3 fetch_localllama_posts.py \
+  --after 2026-05-16 --before 2026-07-17 \
+  --new-model-only --min-score 100 \
+  --out posts.jsonl
+```
+
 - Tok/s figures are **hardware- and stack-specific**. Prefer them as order-of-magnitude guides.
 - “New” here means **heavily discussed in-window**; some lineages (Qwen3.6, Gemma 4 base) started earlier but had material mid-period releases (NVFP4, QAT, DiffusionGemma, MTP).
