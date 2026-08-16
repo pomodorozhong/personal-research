@@ -33,33 +33,33 @@ Of everything named in the video, only **IndexTTS 2.5** is a practical new daily
 
 ## Runnability table (all models mentioned)
 
-Chapter order follows the video.
+Chapter order follows the video. Timestamps are the official YouTube chapters; SwitchYard is in the Nemotron Lightning chapter.
 
-| # | Model / item | Kind | Open weights? | Fits 16 GB M2? | Notes |
-| ---: | --- | --- | --- | --- | --- |
-| 1 | **JoyAI-Video-Edit** | 16B autoregressive video editor | Yes (Apache 2.0) | ❌ | DiT ~**32.5 GB**; 30 FPS @ 720p measured on a **single B200**, not a laptop |
-| 2 | **Tencent SCoPE** | Camera-path control for Wan2.2 I2V | Yes (Apache 2.0) | ❌ | Self-contained Wan2.2-I2V-A14B stack ~**67 GB**; CUDA + PyTorch 2.9 |
-| 3 | **DeepSeek-V4-Pro-0813** | MoE LLM (1.6T / 49B active) | Yes (MIT; ~893 GB shards) | ❌ | Needs multi-accelerator nodes; DSpark + DeepSeek Harness are cluster/API stories |
-| 3b | **DeepSeek Harness** | Agentic orchestrator | Yes (dev preview) | n/a | Software, not weights; still needs a huge backend model |
-| 4 | **Grok 4.6** | Frontier LLM | No | ❌ | Cursor / API / Grok Build only |
-| 5 | **Qwen3.8-Max / 2.4T-A95B** | MoE LLM (2.4T / 95B active) | Yes (weights) / hosted Max extras | ❌ | BF16 ~**4.5 TB**; NVFP4 still ~**1.3 TB** and 8× B300-class |
-| 6 | **MiDashengLM-Gen** | Unified speech/music/SFX generator | Yes (Apache 2.0) | ⚠️ | Qwen3-1.7B + flow-matching DiT; video claims **&lt;12 GB**; official `infer.py` is **`.cuda()`** |
-| 7 | **LTX-2.5** | 22B audio-video DiT | Yes (LTX-2 community license) | ❌ | Distilled INT8 transformer **21.5 GB** *plus* Gemma 4 12B text encoder + VAEs; 16 GB NVIDIA floor with offload, not 16 GB unified |
-| 8 | **Google sign-language → text** | On-device ASR for sign | No public weights | ❌ | Gboard / Live Transcribe on **Pixel 11** |
-| 9 | **GPT-5.6 Sol ultra-fast** | Hosted LLM (Cerebras) | No | ❌ | Private preview; ~750 tok/s is a datacenter SKU |
-| 10 | **Qwen3.8-27B** | Dense 27B VLM | Yes (Apache 2.0) | ⚠️ IQ2 only | BF16 **56 GB** · FP8 **30 GB** · Q4_K_M **~17 GB** · IQ2 **~9 GB** |
-| 11 | **GLM-5.3** | MoE coding/cyber LLM | Promised ~2026-08-28 | ❌ today | Same ~**744B / 40B active** base as 5.2 — never a 16 GB target even when weights land |
-| 12 | **Gemini 3.7 Flash** | Hosted multimodal LLM | No | ❌ | AI Studio / Gemini app (Pro/Ultra) |
-| 13 | **MiniMax Music 3** | Full-song generator (≤5 min) | Yes (Music3 community license) | ⚠️ | Official SGLang wants **2 CUDA GPUs**; Diffusers offload can squeeze **8 GB NVIDIA**; INT8 DiT ~**2.5 GB** + INT8 text encoder ~**9.2 GB** already fills this Mac |
-| 14 | **IndexTTS 2.5** | Zero-shot voice clone TTS | Yes (Bilibili IndexTTS license) | ✅ | Official PyTorch wants NVIDIA ~6 GB; **MLX int8 ~5 GB**, RTF &lt;1 on Apple Silicon |
-| 15 | **MAGI-2 Preview** | 114B MoE audio-video | Yes (Apache 2.0) | ❌ | Preview transformer **228 GB**; full zoo **~307 GB**; **8× Hopper** for 1080p |
-| 16 | **Cactus Needle 2** | 45M tool-calling edge LLM | Yes (Apache 2.0) | ✅ | **14 MB** binary, **~28 MB RAM**; not a general assistant |
-| 17 | **WorldClaw** | Agentic 3D world builder | Code/paper; not a single checkpoint | ❌ | Orchestrates Claude + Hunyuan3D + SAM3 in Blender; hours on multi-GPU |
-| 18 | **Dyna 2** | Robotics world-action model | Research | ❌ | Trained on ~1M hours of egocentric video; not a Mac chat/weights drop |
-| 19 | **Nemotron 3.5 Lightning** | 30B MoE (3B active) | Yes (OpenMDW) | ❌ | Smallest Unsloth GGUF still **~19 GB**; official NVFP4 ~**22 GB**; H100-class story |
-| 19b | **NeMo SwitchYard** | LLM router / proxy | Yes (Apache 2.0, Rust) | n/a | Routes *to* models; does not replace them |
-| 20 | **Matrix** | 8.3B persona-agent sim | Research system | ❌ | Population simulation, not a downloadable laptop LLM |
-| 21 | **Muse Glimmer 30B** | Dense 30B + ViT | Yes (Apache 2.0) | ⚠️ IQ2 only | Official Q4_K_M **16.8 GB** (24 GB card). Unsloth IQ2_XXS **~10.0 GiB** is fragile here; vendor tables trail Qwen 3.6/3.8 |
+| # | Model / item | Video | Kind | Open weights? | Fits 16 GB M2? | Notes |
+| ---: | --- | --- | --- | --- | --- | --- |
+| 1 | **JoyAI-Video-Edit** | [0:47](https://www.youtube.com/watch?v=62HSUsS0ypo&t=47s) | 16B autoregressive video editor | Yes (Apache 2.0) | ❌ | DiT ~**32.5 GB**; 30 FPS @ 720p measured on a **single B200**, not a laptop |
+| 2 | **Tencent SCoPE** | [2:28](https://www.youtube.com/watch?v=62HSUsS0ypo&t=148s) | Camera-path control for Wan2.2 I2V | Yes (Apache 2.0) | ❌ | Self-contained Wan2.2-I2V-A14B stack ~**67 GB**; CUDA + PyTorch 2.9 |
+| 3 | **DeepSeek-V4-Pro-0813** | [3:32](https://www.youtube.com/watch?v=62HSUsS0ypo&t=212s) | MoE LLM (1.6T / 49B active) | Yes (MIT; ~893 GB shards) | ❌ | Needs multi-accelerator nodes; DSpark + DeepSeek Harness are cluster/API stories |
+| 3b | **DeepSeek Harness** | [5:28](https://www.youtube.com/watch?v=62HSUsS0ypo&t=328s) | Agentic orchestrator | Yes (dev preview) | n/a | Software, not weights; still needs a huge backend model |
+| 4 | **Grok 4.6** | [6:24](https://www.youtube.com/watch?v=62HSUsS0ypo&t=384s) | Frontier LLM | No | ❌ | Cursor / API / Grok Build only |
+| 5 | **Qwen3.8-Max / 2.4T-A95B** | [8:11](https://www.youtube.com/watch?v=62HSUsS0ypo&t=491s) | MoE LLM (2.4T / 95B active) | Yes (weights) / hosted Max extras | ❌ | BF16 ~**4.5 TB**; NVFP4 still ~**1.3 TB** and 8× B300-class |
+| 6 | **MiDashengLM-Gen** | [9:43](https://www.youtube.com/watch?v=62HSUsS0ypo&t=583s) | Unified speech/music/SFX generator | Yes (Apache 2.0) | ⚠️ | Qwen3-1.7B + flow-matching DiT; video claims **&lt;12 GB**; official `infer.py` is **`.cuda()`** |
+| 7 | **LTX-2.5** | [14:04](https://www.youtube.com/watch?v=62HSUsS0ypo&t=844s) | 22B audio-video DiT | Yes (LTX-2 community license) | ❌ | Distilled INT8 transformer **21.5 GB** *plus* Gemma 4 12B text encoder + VAEs; 16 GB NVIDIA floor with offload, not 16 GB unified |
+| 8 | **Google sign-language → text** | [20:38](https://www.youtube.com/watch?v=62HSUsS0ypo&t=1238s) | On-device ASR for sign | No public weights | ❌ | Gboard / Live Transcribe on **Pixel 11** |
+| 9 | **GPT-5.6 Sol ultra-fast** | [21:53](https://www.youtube.com/watch?v=62HSUsS0ypo&t=1313s) | Hosted LLM (Cerebras) | No | ❌ | Private preview; ~750 tok/s is a datacenter SKU |
+| 10 | **Qwen3.8-27B** | [23:28](https://www.youtube.com/watch?v=62HSUsS0ypo&t=1408s) | Dense 27B VLM | Yes (Apache 2.0) | ⚠️ IQ2 only | BF16 **56 GB** · FP8 **30 GB** · Q4_K_M **~17 GB** · IQ2 **~9 GB** |
+| 11 | **GLM-5.3** | [25:44](https://www.youtube.com/watch?v=62HSUsS0ypo&t=1544s) | MoE coding/cyber LLM | Promised ~2026-08-28 | ❌ today | Same ~**744B / 40B active** base as 5.2 — never a 16 GB target even when weights land |
+| 12 | **Gemini 3.7 Flash** | [28:20](https://www.youtube.com/watch?v=62HSUsS0ypo&t=1700s) | Hosted multimodal LLM | No | ❌ | AI Studio / Gemini app (Pro/Ultra) |
+| 13 | **MiniMax Music 3** | [31:03](https://www.youtube.com/watch?v=62HSUsS0ypo&t=1863s) | Full-song generator (≤5 min) | Yes (Music3 community license) | ⚠️ | Official SGLang wants **2 CUDA GPUs**; Diffusers offload can squeeze **8 GB NVIDIA**; INT8 DiT ~**2.5 GB** + INT8 text encoder ~**9.2 GB** already fills this Mac |
+| 14 | **IndexTTS 2.5** | [32:13](https://www.youtube.com/watch?v=62HSUsS0ypo&t=1933s) | Zero-shot voice clone TTS | Yes (Bilibili IndexTTS license) | ✅ | Official PyTorch wants NVIDIA ~6 GB; **MLX int8 ~5 GB**, RTF &lt;1 on Apple Silicon |
+| 15 | **MAGI-2 Preview** | [34:42](https://www.youtube.com/watch?v=62HSUsS0ypo&t=2082s) | 114B MoE audio-video | Yes (Apache 2.0) | ❌ | Preview transformer **228 GB**; full zoo **~307 GB**; **8× Hopper** for 1080p |
+| 16 | **Cactus Needle 2** | [35:45](https://www.youtube.com/watch?v=62HSUsS0ypo&t=2145s) | 45M tool-calling edge LLM | Yes (Apache 2.0) | ✅ | **14 MB** binary, **~28 MB RAM**; not a general assistant |
+| 17 | **WorldClaw** | [37:32](https://www.youtube.com/watch?v=62HSUsS0ypo&t=2252s) | Agentic 3D world builder | Code/paper; not a single checkpoint | ❌ | Orchestrates Claude + Hunyuan3D + SAM3 in Blender; hours on multi-GPU |
+| 18 | **Dyna 2** | [38:42](https://www.youtube.com/watch?v=62HSUsS0ypo&t=2322s) | Robotics world-action model | Research | ❌ | Trained on ~1M hours of egocentric video; not a Mac chat/weights drop |
+| 19 | **Nemotron 3.5 Lightning** | [40:05](https://www.youtube.com/watch?v=62HSUsS0ypo&t=2405s) | 30B MoE (3B active) | Yes (OpenMDW) | ❌ | Smallest Unsloth GGUF still **~19 GB**; official NVFP4 ~**22 GB**; H100-class story |
+| 19b | **NeMo SwitchYard** | [40:05](https://www.youtube.com/watch?v=62HSUsS0ypo&t=2405s) | LLM router / proxy | Yes (Apache 2.0, Rust) | n/a | Routes *to* models; does not replace them |
+| 20 | **Matrix** | [42:05](https://www.youtube.com/watch?v=62HSUsS0ypo&t=2525s) | 8.3B persona-agent sim | Research system | ❌ | Population simulation, not a downloadable laptop LLM |
+| 21 | **Muse Glimmer 30B** | [44:00](https://www.youtube.com/watch?v=62HSUsS0ypo&t=2640s) | Dense 30B + ViT | Yes (Apache 2.0) | ⚠️ IQ2 only | Official Q4_K_M **16.8 GB** (24 GB card). Unsloth IQ2_XXS **~10.0 GiB** is fragile here; vendor tables trail Qwen 3.6/3.8 |
 
 **Legend:** ✅ daily use · ⚠️ possible but painful / experimental · ❌ no
 
