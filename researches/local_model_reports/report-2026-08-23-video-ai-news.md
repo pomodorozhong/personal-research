@@ -32,31 +32,35 @@ Of everything named in the video, **Audio8-TTS 0.1B** is the practical new picku
 
 ## Runnability table (all models mentioned)
 
-Approximate video order. Robotics demos are grouped at the end.
+Chapter order follows the video. Timestamps are the official YouTube chapters.
 
-| # | Model / item | Kind | Open weights? | Fits 16 GB M2? | Notes |
-| ---: | --- | --- | --- | --- | --- |
-| 1 | **Evoke (AlayaLab)** | 14B interactive world model | Yes (Apache 2.0) | ❌ | Final stage ~**57 GB**; realtime recipe is **1× H200**. CUDA + custom diffusers fork |
-| 2 | **4D Anyone** | Monocular video → 4D Gaussian character | Yes (multi-license assets) | ❌ | Video quoted ~**12 GB** core; full tree pulls Wan VAE + UMT5 + GVHMR. Mid/high NVIDIA story |
-| 3 | **SenseNova U 1.5 8B-MoT** | Unified image gen / edit / VQA (native 4K) | Yes (Apache 2.0) | ⚠️ | Video ~**50 GB** full install. BF16 wants ~**40 GB** class; GGUF + `vram_mode` targets **10–12 GB NVIDIA**. MPS unproven / slow |
-| 4 | **Bernini v2** (ByteDance) | Omnimodal video editor | Yes | ❌ | Video quoted **~180 GB** model alone + VAE/encoders. Dead-on-arrival for laptops |
-| 5 | **Ornith 1.5 9B** | Dense agentic coding VLM | Yes (MIT) | ✅ | BF16 ~**18–19 GB** no; **Q4 ~5.6–5.9 GB** / **Q5–Q6 ~6.5–8.5 GB** yes. Same class as Ornith 1.0 on this Mac |
-| 5b | **Ornith 1.5 35B-A3B** | MoE coding (3B active) | Yes (MIT) | ❌ | Q4 weights ~**21–22 GB**; catalogue mins often **24 GB GPU / 48 GB RAM** |
-| 5c | **Ornith 1.5 397B** | Flagship MoE | Yes (MIT) | ❌ | Video ~**794 GB**; multi-accelerator |
-| 6 | **Audio8-TTS Preview 0.1B** | Zero-shot voice-clone TTS | Yes | ✅ | Total pack ~**1.7 GB**; ~0.17B + codec. ONNX path measured ~**1 GiB** online on **M2** |
-| 6b | **Audio8-TTS Preview 0.6B** | Larger sibling (same family) | Yes (Apache 2.0) | ✅ | HF tree ~**2.6 GB**; **MLX bf16** via `mlx-audio` ≥0.4.7. Prefer if quality > tiny footprint |
-| 7 | **Geo Weaver** | Long-video → coherent 3D | Paper only | ❌ | No weights at recording time |
-| 8 | **Qwen VideoEdit** | Frame-wise edit via Qwen ImageEdit + Wan | Yes (code) | ❌ | Video ~**41 GB** total; high-end GPU. MiniMax H3 already ❌ here |
-| 9 | **DeepSeek V4 Flash Vision Experimental** | Multimodal coding LLM | API | ❌ | Video: **API only**. Text V4 Flash is also not a 16 GB target |
-| 10 | **Happy Shrimp** | Music generator (Happy Horse lab) | Web / free tier | ❌ | Not a local weights drop. Keep ACE-Step from music report |
-| 11 | **Comfy MCP** | Agentic ComfyUI connector | Yes (code) | n/a | Useful only if you already run Comfy + GPU models — you don’t on this Mac |
-| 12 | **Gen 1.5** | Robot foundation / one-shot imitation | Research | ❌ | Needs a robot body + sensors |
-| 13 | **Nvidia AO** | Agentic harness for Arc-AGI-3 | Research / harness | n/a | Wraps **Claude Opus-class** cloud models; not local weights |
-| — | **PX Cap Pro, Arc Shell MXD1, Unitree Superman, Galbot, TienGong, Adapt tennis, Elf Schwan 2.0, Chi horse…** | Robotics hardware / demos | n/a | ❌ | Not downloadable Mac models |
+| # | Model / item | Video | Kind | Open weights? | Fits 16 GB M2? | Notes |
+| ---: | --- | --- | --- | --- | --- | --- |
+| 1 | **Evoke (AlayaLab)** | [0:55](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=55s) | 14B interactive world model | Yes (Apache 2.0) | ❌ | Final stage ~**57 GB**; realtime recipe is **1× H200**. CUDA + custom diffusers fork |
+| 2 | **4D Anyone** | [3:02](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=182s) | Monocular video → 4D Gaussian character | Yes (multi-license assets) | ❌ | Video quoted ~**12 GB** core; full tree pulls Wan VAE + UMT5 + GVHMR. Mid/high NVIDIA story |
+| 3 | **SenseNova U 1.5 8B-MoT** | [4:24](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=264s) | Unified image gen / edit / VQA (native 4K) | Yes (Apache 2.0) | ⚠️ | Video ~**50 GB** full install. BF16 wants ~**40 GB** class; GGUF + `vram_mode` targets **10–12 GB NVIDIA**. MPS unproven / slow |
+| 4 | **Bernini v2** (ByteDance) | [6:22](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=382s) | Omnimodal video editor | Yes | ❌ | Video quoted **~180 GB** model alone + VAE/encoders. Dead-on-arrival for laptops |
+| 5 | **Ornith 1.5 9B** | [7:27](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=447s) | Dense agentic coding VLM | Yes (MIT) | ✅ | BF16 ~**18–19 GB** no; **Q4 ~5.6–5.9 GB** / **Q5–Q6 ~6.5–8.5 GB** yes. Same class as Ornith 1.0 on this Mac |
+| 5b | **Ornith 1.5 35B-A3B** | [7:27](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=447s) | MoE coding (3B active) | Yes (MIT) | ❌ | Q4 weights ~**21–22 GB**; catalogue mins often **24 GB GPU / 48 GB RAM** |
+| 5c | **Ornith 1.5 397B** | [7:27](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=447s) | Flagship MoE | Yes (MIT) | ❌ | Video ~**794 GB**; multi-accelerator |
+| 6 | **Audio8-TTS Preview 0.1B** | [9:43](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=583s) | Zero-shot voice-clone TTS | Yes | ✅ | Total pack ~**1.7 GB**; ~0.17B + codec. ONNX path measured ~**1 GiB** online on **M2** |
+| 6b | **Audio8-TTS Preview 0.6B** | [9:43](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=583s) | Larger sibling (same family) | Yes (Apache 2.0) | ✅ | HF tree ~**2.6 GB**; **MLX bf16** via `mlx-audio` ≥0.4.7. Prefer if quality > tiny footprint |
+| 7 | **Geo Weaver** | [13:30](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=810s) | Long-video → coherent 3D | Paper only | ❌ | No weights at recording time |
+| 8 | **Qwen VideoEdit** | [14:38](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=878s) | Frame-wise edit via Qwen ImageEdit + Wan | Yes (code) | ❌ | Video ~**41 GB** total; high-end GPU. MiniMax H3 already ❌ here |
+| 9 | **DeepSeek V4 Flash Vision Experimental** | [23:22](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1402s) | Multimodal coding LLM | API | ❌ | Video: **API only**. Text V4 Flash is also not a 16 GB target |
+| 10 | **Happy Shrimp** | [24:12](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1452s) | Music generator (Happy Horse lab) | Web / free tier | ❌ | Not a local weights drop. Keep ACE-Step from music report |
+| 11 | **Comfy MCP** | [27:03](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1623s) | Agentic ComfyUI connector | Yes (code) | n/a | Useful only if you already run Comfy + GPU models — you don’t on this Mac |
+| 12 | **Gen 1.5** | [28:02](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1682s) | Robot foundation / one-shot imitation | Research | ❌ | Needs a robot body + sensors |
+| 13 | **Nvidia AO** | [29:52](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1792s) | Agentic harness for Arc-AGI-3 | Research / harness | n/a | Wraps **Claude Opus-class** cloud models; not local weights |
+| — | **PX Cap Pro** (Paxini glove) | [15:40](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=940s) | Robotics hardware | n/a | ❌ | Data-collection glove, not a Mac model |
+| — | **Arc Shell MXD1** | [16:44](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1004s) | Transforming robot | n/a | ❌ | Hardware demo |
+| — | **World Robot Conference demos** (Annie, UBTECH, Elf Schwan 2.0) | [17:43](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1063s) | Humanoid demos | n/a | ❌ | Conference footage |
+| — | **Qiji / Chi horse** (DAX AI) | [19:13](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1153s) | Robot horse | n/a | ❌ | Hardware / product |
+| — | **Humanoid games / Unitree Superman / sprinters / tennis robots** | [20:07](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1207s) | Robot sports demos | n/a | ❌ | Includes [Superman](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1235s), [sprinting](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1273s), [tennis](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=1329s) |
 
 **Legend:** ✅ daily use · ⚠️ possible but painful / experimental · ❌ no
 
-Sponsor in the video (**HubSpot Codex prompts**) is a cloud/docs product, not a local model.
+Sponsor chapter (**HubSpot Codex prompts**, [12:10](https://www.youtube.com/watch?v=rQ4yX5qNYdY&t=730s)) is a cloud/docs product, not a local model.
 
 ---
 
