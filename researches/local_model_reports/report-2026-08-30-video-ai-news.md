@@ -2,7 +2,7 @@
 
 **Compiled:** 2026-08-30  
 **Source video:** [Ox Alpha reveal, realtime Minimax, Qwen Next, Hy4, robot olympics: AI NEWS](https://www.youtube.com/watch?v=4wjHNgMLeyY) (AI Search)  
-**Hardware target:** Apple **M2 MacBook Pro, 16 GB unified memory** (same machine as [report-2026-07-17](./report-2026-07-17.md), [report-2026-07-27-music](./report-2026-07-27-music.md), [report-2026-08-02-video-ai-news](./report-2026-08-02-video-ai-news.md), [report-2026-08-16-video-ai-news](./report-2026-08-16-video-ai-news.md), [report-2026-08-23-video-ai-news](./report-2026-08-23-video-ai-news.md), and [report-2026-08-25-ltx-2.5](./report-2026-08-25-ltx-2.5.md))  
+**Hardware target:** Apple **M2 MacBook Pro, 16 GB unified memory**  
 **Stack assumption:** Metal / MLX / llama.cpp / Ollama / PyTorch-MPS — **no CUDA**
 
 ## Your real memory budget (unchanged)
