@@ -3,18 +3,8 @@
 **Compiled:** 2026-08-30  
 **Source video:** [Ox Alpha reveal, realtime Minimax, Qwen Next, Hy4, robot olympics: AI NEWS](https://www.youtube.com/watch?v=4wjHNgMLeyY) (AI Search)  
 **Hardware target:** Apple **M2 MacBook Pro, 16 GB unified memory**  
-**Stack assumption:** Metal / MLX / llama.cpp / Ollama / PyTorch-MPS — **no CUDA**
-
-## Your real memory budget (unchanged)
-
-16 GB unified ≠ 16 GB for the model.
-
-- macOS + browser + IDE typically leave **~8–11 GB** usable for weights + KV / activations.
-- Metal’s default GPU working set on ≤32–64 GB Macs is often ~**10.5 GB**.
-- Prefer artifacts whose **on-disk size is ≤ ~8 GB**; keep context short unless measured.
-- If a file is **>11 GB**, treat as “does not run” for daily use.
-
----
+**Stack assumption:** Metal / MLX / llama.cpp / Ollama / PyTorch-MPS — **no CUDA**  
+**Memory budget:** [Your real memory budget](./memory-budget.md)
 
 ## TL;DR
 
@@ -228,7 +218,7 @@ Want S1 / AI Cube / robot games?
 ## Method / caveats
 
 - Inventory = every named software model/tool in the video transcript, plus robotics/hardware called out as non-applicable. ASR names in the auto-captions (Quen, Miniax, Hi4) are mapped to **Qwen**, **MiniMax**, **Hy4**.
-- Hardware bar matches prior reports in this folder (16 GB M2 usable ~**8–11 GB**; files **>11 GB** = not daily use).
+- Hardware bar: [memory-budget.md](./memory-budget.md).
 - File sizes from Hugging Face / Unsloth / Atomic Chat / PipeNetwork / vendor docs / video narration as of **2026-08-30**. Packs differ by a few hundred MB. GLM-5.3 BF16 is cited as **~756 GB** in the video vs **~744B** in Unsloth’s 5.2-same-base writeup — same class either way.
 - llama.cpp support for `glm5next` / `qwen4exp` / `hyv4` was still **PR / fork** territory at compile time. That does not change the RAM math.
 - Tok/s, RTF, and vendor speedups (14× FastH3, 5 s Block3D) are **published / video figures**, not re-benchmarked on this M2.

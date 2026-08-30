@@ -2,6 +2,8 @@
 
 Notes and shortlists for local models (Metal / MLX / llama.cpp / Ollama / audio pipelines), aimed at machines without a discrete GPU.
 
+Shared hardware note: [Your real memory budget](./memory-budget.md).
+
 ## Reports
 
 | Report | Window | Focus |
