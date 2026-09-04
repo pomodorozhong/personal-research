@@ -65,6 +65,11 @@ function sample(item, x, y, w, h, { label }) {
   let [r, g, b] = hslToRgb(item.hue + u * 18, sat, light);
 
   if (label && w >= 200) {
+    const cell = 16;
+    if (x < cell * 5 && y < cell * 5) {
+      const on = (Math.floor(x / cell) + Math.floor(y / cell)) % 2 === 0;
+      return on ? [255, 255, 255, 255] : [20, 20, 20, 255];
+    }
     const glyph = stamp(item.title, u, v);
     if (glyph) {
       r = Math.round(r * 0.15 + 255 * 0.85);
@@ -180,6 +185,7 @@ for (const item of ITEMS) {
   await writeFile(join(OUT, fullRel), full);
   catalog.push({
     id,
+    fullId: fileId(`${item.slug}:full`),
     slug: item.slug,
     title: item.title,
     width: FULL.w,

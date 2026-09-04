@@ -28,7 +28,11 @@ export function useLazyMedia({ api, images, delayMs, eagerThumbs }: Opts) {
     let cancelled = false;
     let raf = 0;
 
-    const byId = new Map(images.map((img) => [img.id, img]));
+    const byFileId = new Map<string, MediaItem>();
+    for (const img of images) {
+      byFileId.set(img.id, img);
+      byFileId.set(img.fullId, img);
+    }
 
     const mark = (id: string, phase: MediaPhase, bytes: number) => {
       setLoads((prev) => {
@@ -49,11 +53,12 @@ export function useLazyMedia({ api, images, delayMs, eagerThumbs }: Opts) {
         if (delayMs > 0) await sleep(delayMs);
         if (cancelled) return;
         const path = next === "thumb" ? img.thumb : img.full;
+        const fileId = (next === "thumb" ? img.id : img.fullId) as FileId;
         const { dataURL, bytes } = await fetchAsDataURL(`/${path}`);
         if (cancelled) return;
         api.addFiles([
           {
-            id: img.id as FileId,
+            id: fileId,
             dataURL,
             mimeType: "image/png",
             created: Date.now(),
@@ -62,10 +67,11 @@ export function useLazyMedia({ api, images, delayMs, eagerThumbs }: Opts) {
           },
         ]);
         const elements = api.getSceneElements().map((el) => {
-          if (el.type !== "image" || el.fileId !== img.id) return el;
-          return newElementWith(el, { status: "saved" });
+          if (el.type !== "image" || (el.fileId !== img.id && el.fileId !== img.fullId)) return el;
+          return newElementWith(el, { status: "saved", fileId });
         });
         api.updateScene({ elements });
+        api.refresh();
         const prevBytes = loadsRef.current[img.id]?.bytes ?? 0;
         mark(img.id, next, next === "full" ? prevBytes + bytes : bytes);
       } catch (err) {
@@ -80,7 +86,7 @@ export function useLazyMedia({ api, images, delayMs, eagerThumbs }: Opts) {
       const appState = api.getAppState();
       for (const el of api.getSceneElements()) {
         if (el.type !== "image" || !el.fileId) continue;
-        const img = byId.get(el.fileId);
+        const img = byFileId.get(el.fileId);
         if (!img) continue;
         const visible = imageInViewport(el, appState);
         const phase = loadsRef.current[img.id]?.phase ?? "skeleton";

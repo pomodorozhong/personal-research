@@ -27,4 +27,4 @@ Pan the board. The legend chips go gray → amber → green. DevTools → Networ
 - Scene JSON: image elements + `fileId`, `status: "pending"`, **omit** `files` (or only embed thumbs).
 - Catalog: `{ id, thumb, full, width, height }`.
 - On `onScrollChange` / `getVisibleSceneBounds`: if intersecting, `fetch` → `FileReader` data URL → `api.addFiles` + `newElementWith(el, { status: "saved" })`.
-- Bump `BinaryFileData.version` when replacing thumb with full so the image cache notices.
+- Bump `BinaryFileData.version` **and** use a new `fileId` for the full raster. Excalidraw caches `HTMLImageElement` by file id; replacing the dataURL in place often keeps the blurry thumb until a pan.

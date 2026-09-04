@@ -1,5 +1,6 @@
 export type MediaItem = {
   id: string;
+  fullId: string;
   slug: string;
   title: string;
   width: number;

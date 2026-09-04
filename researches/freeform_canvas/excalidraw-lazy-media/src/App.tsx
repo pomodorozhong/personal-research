@@ -34,8 +34,7 @@ export function App() {
         <div>
           <strong>Excalidraw lazy media</strong>
           <p>
-            Scene JSON has <em>no</em> binaries. Visible images: skeleton → 24×14 thumb → 800×450 PNG.
-            Pan to load the rest. Watch the Network tab.
+            Pan the board. Visible tiles go skeleton → blurry thumb → sharp (checker in the corner). Full PNGs stay off-screen until you pan.
           </p>
         </div>
         <label>

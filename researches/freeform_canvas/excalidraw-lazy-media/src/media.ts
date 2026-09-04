@@ -6,7 +6,7 @@ import type { ExcalidrawImageElement } from "@excalidraw/excalidraw/element/type
 export function imageInViewport(
   el: Pick<ExcalidrawImageElement, "x" | "y" | "width" | "height">,
   appState: AppState,
-  padPx = 280,
+  padPx = 80,
 ): boolean {
   const zoom = typeof appState.zoom === "number" ? appState.zoom : appState.zoom.value;
   const pad = padPx / zoom;
