@@ -1,0 +1,26 @@
+{
+  "name": "excalidraw-lazy-media",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "generate-media": "node scripts/generate-media.mjs",
+    "predev": "node scripts/generate-media.mjs",
+    "prebuild": "node scripts/generate-media.mjs",
+    "dev": "vite --host 0.0.0.0 --port 5174",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 5174"
+  },
+  "dependencies": {
+    "@excalidraw/excalidraw": "^0.18.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "typescript": "^5.9.2",
+    "vite": "^8.2.2"
+  }
+}

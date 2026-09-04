@@ -23,6 +23,16 @@ Open http://localhost:5173 — home page is the table, nav is one demo per libra
 
 Follow-up spec: [file-hosted Excalidraw boards on GitHub Pages](GITHUB_PAGES_HOST.md) (`.../freeform/#/moodboard`).
 
+Lazy-media experiment (skeleton → thumb → full, viewport fetch):
+
+```bash
+cd researches/freeform_canvas/excalidraw-lazy-media
+npm install
+npm run dev
+```
+
+http://localhost:5174 — pan the board; chips go gray → amber → green. See [`excalidraw-lazy-media/README.md`](excalidraw-lazy-media/README.md).
+
 ---
 
 ## How to read this
