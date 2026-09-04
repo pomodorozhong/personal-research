@@ -30,10 +30,17 @@ export function PixiDemo() {
     const host = hostRef.current;
     if (!host) return;
     let destroyed = false;
+    let inited = false;
     const app = new Application();
     const world = new Container();
     worldRef.current = world;
     const wheelOpts: AddEventListenerOptions = { passive: false };
+
+    const destroyApp = () => {
+      if (!inited) return;
+      inited = false;
+      app.destroy(true);
+    };
 
     const makeDraggable = (g: Graphics) => {
       g.on("pointerdown", (e: FederatedPointerEvent) => {
@@ -79,8 +86,9 @@ export function PixiDemo() {
         resizeTo: host,
       })
       .then(() => {
+        inited = true;
         if (destroyed) {
-          app.destroy(true);
+          destroyApp();
           return;
         }
         host.appendChild(app.canvas);
@@ -187,7 +195,7 @@ export function PixiDemo() {
       destroyed = true;
       host.removeEventListener("wheel", onWheel, wheelOpts);
       worldRef.current = null;
-      app.destroy(true);
+      destroyApp();
     };
   }, []);
 

@@ -60,6 +60,7 @@ export function ExcalidrawDemo() {
             setApi(next);
             syncCount(next);
           }}
+          onChange={(elements) => setCount(elements.length)}
           theme="dark"
           UIOptions={{ canvasActions: { toggleTheme: true } }}
           initialData={{
