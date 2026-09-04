@@ -21,6 +21,8 @@ npm run dev
 
 Open http://localhost:5173 — home page is the table, nav is one demo per library. On each demo: draw / select, then **Spawn 2k** (then 5k) and pan. FPS is main-thread frames, so React reconciling a huge tree counts.
 
+Follow-up spec: [file-hosted Excalidraw boards on GitHub Pages](GITHUB_PAGES_HOST.md) (`.../freeform/#/moodboard`).
+
 ---
 
 ## How to read this
