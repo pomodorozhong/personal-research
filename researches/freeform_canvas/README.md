@@ -15,11 +15,19 @@ Runnable playground (same spawn-stress HUD on every demo):
 
 ```bash
 cd researches/freeform_canvas/demo
-npm install
+npm ci
 npm run dev
 ```
 
-Open http://localhost:5173 — home page is the table, nav is one demo per library. On each demo: draw / select, then **Spawn 2k** (then 5k) and pan. FPS is main-thread frames, so React reconciling a huge tree counts.
+Requires Node.js `20.19+` or `22.12+` (the Vite version used here). Open http://localhost:5173 — the home page has the comparison table, and the top navigation opens one demo per library. On each demo: draw / select, then **Spawn 2k** (then 5k) and pan. FPS is main-thread frames, so React reconciling a huge tree counts.
+
+`npm ci` uses the committed lockfile. To verify a production build instead, run:
+
+```bash
+npm run build
+```
+
+The build is a compile/bundle check; the FPS readout in the playground is an intentionally qualitative, interactive comparison rather than a benchmark.
 
 ---
 
