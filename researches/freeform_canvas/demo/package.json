@@ -1,0 +1,29 @@
+{
+  "name": "freeform-canvas-bakeoff",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 5173"
+  },
+  "dependencies": {
+    "@excalidraw/excalidraw": "^0.18.1",
+    "fabric": "^7.4.0",
+    "konva": "^10.3.2",
+    "pixi.js": "^8.20.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-konva": "^19.2.5",
+    "react-router-dom": "^7.18.3",
+    "tldraw": "^5.4.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "typescript": "^5.9.2",
+    "vite": "^8.2.2"
+  }
+}
