@@ -16,6 +16,7 @@ Shared hardware note: [Your real memory budget](./memory-budget.md).
 | [report-2026-08-23-video-ai-news.md](./report-2026-08-23-video-ai-news.md) | video [rQ4yX5qNYdY](https://youtu.be/rQ4yX5qNYdY) (as of 2026-08-23) | Runnability on 16 GB M2 for every model named in that AI-news video; Audio8-TTS 0.1B + Ornith 1.5 9B vs the rest |
 | [report-2026-08-25-ltx-2.5.md](./report-2026-08-25-ltx-2.5.md) | as of 2026-08-25 | **LTX-2.5** deep dive vs **LTX-2.3** on the 16 GB M2; why the “16 GB VRAM” floor is not 16 GB unified |
 | [report-2026-08-30-video-ai-news.md](./report-2026-08-30-video-ai-news.md) | video [4wjHNgMLeyY](https://www.youtube.com/watch?v=4wjHNgMLeyY) (as of 2026-08-30) | Runnability on 16 GB M2 for every model named in that AI-news video; MLX ports for GLM-5.3-Flash / Qwen3.8-Flash-Next / FastH3 / Fibo vs VoiceMem |
+| [report-2026-09-06-video-ai-news.md](./report-2026-09-06-video-ai-news.md) | video [ngyFRCNq0Yc](https://www.youtube.com/watch?v=ngyFRCNq0Yc) (as of 2026-09-06) | Runnability on 16 GB M2 for every model named in that AI-news video; TimesFM-3 vs H3 world-model stack / frontier APIs |
 
 ## Scripts
 
