@@ -1,132 +1,243 @@
-# AI watermark solutions
+# Understanding AI watermarks
 
-Issue [#115](https://github.com/pomodorozhong/personal-research/issues/115) asks how popular AI watermarking solutions work and how to implement them. This research treats a watermark as one part of a broader provenance system: a hidden signal can survive ordinary transformations, while signed metadata can explain who created or edited an asset.
+AI watermarking is the practice of adding a machine-detectable signal to generated content. It sits alongside signed provenance metadata, which records claims about origin and edits. Each evidence layer survives different transformations and supports different conclusions.
 
-## Short answer
+This research is a guided introduction to those ideas. It develops the vocabulary first, follows a watermark through embedding and detection, compares representative systems, and ends with practical interpretation. The companion notebooks make the hidden intermediate steps visible.
 
-There is no single best watermark. The right design depends on the threat model and the medium:
+This work grew from [issue #115](https://github.com/pomodorozhong/personal-research/issues/115).
 
-| Solution / family | Medium | Core mechanism | Best fit | Main limitation |
+## How to use this guide
+
+A useful learning order is:
+
+1. Distinguish a watermark from provenance metadata and generic AI detection.
+2. Follow the common embed–transform–detect pipeline.
+3. Learn how the signal changes across image, audio and text.
+4. Study the trade-offs that determine whether a design is useful.
+5. Map those concepts onto real systems and chat products.
+6. Practice with the focused notebooks and the detection guide.
+
+## 1. Why generated content needs evidence
+
+Once content leaves a model, its origin does not automatically travel with it. A file can be renamed, copied, recompressed, cropped, screenshotted or detached from its metadata. Text can be pasted, shortened, translated or paraphrased. Every transformation changes which evidence remains available.
+
+This makes “Was this made by AI?” too broad to be a single technical question. A useful system asks narrower questions:
+
+- Who signed the claim about this asset?
+- Does this rendition contain a signal associated with a known generator?
+- Has the asset changed since it was signed?
+- Can a transformed copy still be linked to its original manifest?
+- How likely is this detector result under human or unmarked content?
+
+Watermarking is therefore best understood as evidence engineering, not as a universal AI label.
+
+## 2. Four different kinds of evidence
+
+The word “watermark” is often used for mechanisms that behave very differently.
+
+| Evidence type | Where it lives | What it can show | Typical weakness |
+|---|---|---|---|
+| Visible label | Rendered pixels or product UI | A platform chose to display an “AI” mark or logo | Easy to crop, cover or copy onto unrelated content |
+| Signed provenance | A cryptographically signed manifest, often using C2PA | An issuer made a claim about origin, edits and ingredients | Metadata can be removed; trust depends on signatures, issuers and validation |
+| Embedded watermark | Pixel values, frequency coefficients, audio samples or token choices | A detector recognized a provider-specific signal | Transformations and attacks can weaken the signal; detection needs calibration |
+| Generic AI detector | A separate classifier's model of style or distribution | The content resembles examples the classifier learned | It does not recover a watermark key or prove origin and can misclassify human content |
+
+A valid signature is evidence about a signed claim. A detected watermark is evidence that a detector recognized a signal. A generic detector produces a probabilistic resemblance judgment. None of these alone proves that an unmarked asset is human-made.
+
+## 3. The embed–transform–detect pipeline
+
+Most watermark systems can be understood through the same sequence:
+
+```text
+generator or editor
+    -> embed a keyed signal and/or sign provenance
+    -> publish the asset
+    -> asset is copied, compressed, cropped, translated or edited
+    -> detector or validator examines the resulting rendition
+    -> report a scoped result with confidence and provenance state
+```
+
+The visible asset is only one part of the system. A deployable design also needs:
+
+- an **embedder** that controls where and how strongly the signal is added;
+- a **secret or model identity** that prevents arbitrary parties from reproducing the signal;
+- a **channel model** describing expected transformations such as JPEG, resizing or paraphrase;
+- a **detector** that converts noisy observations into a score or recovered message;
+- a **calibration policy** that turns scores into decisions at a measured false-positive rate;
+- operational records for keys, detector versions, thresholds and manifests.
+
+Skipping any of these pieces can make an otherwise clever embedding algorithm unusable in practice.
+
+## 4. How the signal changes by medium
+
+### Images and video
+
+An image watermark slightly changes pixel values or an internal frequency/feature representation. Classical methods often modify DCT or wavelet coefficients. Learned methods use an encoder and detector trained together while simulating transformations.
+
+```text
+image + payload -> embedder -> watermarked image
+watermarked image + resize/JPEG/crop -> detector -> payload or confidence
+```
+
+The signal must be strong enough to survive ordinary processing but weak enough to remain visually unobtrusive. Video adds temporal consistency: a frame-by-frame mark may flicker, disappear during editing or be averaged away, so systems distribute evidence across space and time.
+
+The [image DCT notebook](02_image_dct.ipynb) exposes this process one stage at a time, from RGB pixels to an 8×8 block, coefficient editing, reconstruction and stress testing.
+
+### Audio
+
+An audio watermark changes waveform samples or time-frequency features while using perceptual masking to keep the signal difficult to hear. Speech-focused systems may also localize which time ranges contain generated audio.
+
+The relevant channel includes resampling, codecs, background noise, filtering, time shifts and splicing. A detector trained only on clean speech is not automatically robust to music, telephone audio or heavily edited recordings.
+
+### Text
+
+Text has no continuous pixel or waveform space. A text watermark must usually be inserted while the model selects tokens. A secret-keyed rule labels candidate tokens or assigns them watermark scores, and the sampler slightly favors choices that carry the desired signal.
+
+For a simple green-list construction, let:
+
+- `n` be the number of scored tokens;
+- `g` be the number assigned to the keyed green list;
+- `γ` be the expected green fraction for unmarked text.
+
+An illustrative detector uses:
+
+```text
+z = (g - γn) / sqrt(nγ(1 - γ))
+```
+
+One green token proves nothing. Detection comes from an unusual excess accumulated across many positions. Short passages provide little evidence, while paraphrase and translation replace token choices and can erase the pattern.
+
+The [text green-list notebook](01_text_green_list.ipynb) makes the keyed mapping, probability changes, cumulative evidence and length/bias trade-off visible.
+
+## 5. The trade-offs that shape a watermark
+
+A watermark should be evaluated against a stated threat model rather than described as simply “robust.”
+
+| Property | Question to test | Typical tension |
+|---|---|---|
+| Imperceptibility | Can people see, hear or notice the mark? | More signal energy often improves detection but harms quality |
+| Robustness | Which transformations preserve detection? | Training for more transformations can reduce capacity or clean-input accuracy |
+| Reliability | What are false-positive and false-negative rates at the chosen threshold? | A lower threshold finds more marked content but accuses more unmarked content |
+| Capacity | Is the goal one attribution bit, a provider ID or a longer payload? | Larger payloads need more signal or redundancy |
+| Localization | Can the detector identify an edited region or time span? | Local evidence is harder than one score for the whole asset |
+| Security | Can an attacker remove, forge or estimate the mark? | Public detector access can help evaluation while exposing an attack oracle |
+| Synchronization | Can the detector realign after crop, time shift or frame edits? | Synchronization structures consume capacity and may reveal the signal |
+
+Robustness must always name the channel: “survives JPEG quality 50” is meaningful; “robust to editing” is not.
+
+## 6. Provenance and watermarking work at different layers
+
+[C2PA Content Credentials](https://spec.c2pa.org/specifications/specifications/2.4/specs/ContentCredentials.html) use signed manifests to describe who created or edited an asset and what actions were recorded.
+
+A **hard binding** links the manifest to the exact asset or file structure. If the bytes change, validation may fail. A **soft binding** uses a fingerprint or invisible watermark to help locate the manifest after ordinary transformations or after embedded metadata is removed.
+
+That produces a layered design:
+
+```text
+signed manifest      -> explains issuer, actions and ingredient history
+hard binding         -> detects changes to the exact signed asset
+watermark/fingerprint -> helps recover identity after transformation
+manifest store       -> returns the detached provenance record
+```
+
+The signature establishes trust in the claim. The watermark or fingerprint helps find the claim again; it does not make the claim true by itself.
+
+## 7. Representative approaches
+
+The following systems illustrate different points in the design space.
+
+| Solution or family | Medium | Core idea | What it is useful for | Main limitation |
 |---|---|---|---|---|
-| [C2PA Content Credentials](https://spec.c2pa.org/specifications/specifications/2.4/specs/ContentCredentials.html) | Image, video, audio, text and more | Signed provenance manifest, with hard bindings and optional fingerprint/watermark soft bindings | Explain origin, edits and signer identity | Metadata can be stripped; recovery depends on a manifest store or soft binding |
-| [Google SynthID](https://deepmind.google/models/synthid/) | Image, video, audio, text | Provider-specific invisible signal; pixel/waveform embedding for media and token-probability modulation for text | Product-level attribution of Google-generated content | Detector and training details are largely product-controlled; not a universal authenticity proof |
-| [Stable Signature](https://arxiv.org/abs/2303.15435) | Image | Fine-tune a diffusion decoder so generated images carry a decoder-specific signal | Watermark every image emitted by a controlled image model | Must control or modify the generator; post-processing and attacks remain relevant |
-| [AudioSeal](https://github.com/facebookresearch/audioseal) | Speech/audio | Joint generator and detector; localized sample-level detection with perceptual masking | Voice-clone and generated-speech detection, including edited clips | A speech-focused model is not automatically a music or arbitrary-audio solution |
-| [VideoSeal](https://github.com/facebookresearch/videoseal) | Image/video | Neural embedder/extractor trained with differentiable augmentations and temporal propagation | Open, post-hoc image/video watermarking | Requires a model runtime and careful codec/resize evaluation |
-| LLM green-list watermarking ([SynthID text](https://deepmind.google/blog/watermarking-ai-generated-text-and-video-with-synthid/) and the [Kirchenbauer et al. baseline](https://arxiv.org/abs/2301.10226)) | Generated text | Use a secret-keyed token partition or score adjustment during sampling; detect a statistical token pattern | Low-cost attribution when the generator is under your control | Paraphrase, translation, short text and distribution shift reduce detection power |
+| [C2PA Content Credentials](https://spec.c2pa.org/specifications/specifications/2.4/specs/ContentCredentials.html) | Image, video, audio, text and more | Signed manifests with hard bindings and optional soft bindings | Origin, edit history and signer claims | Metadata can be stripped; recovery needs a store or soft binding |
+| [Google SynthID](https://deepmind.google/models/synthid/) | Image, video, audio and text | Provider-specific invisible signals adapted to each modality | Attribution inside participating product ecosystems | Detector and training details are provider-controlled; it is not a universal authenticity proof |
+| [Stable Signature](https://arxiv.org/abs/2303.15435) | Image | Fine-tune a diffusion decoder so its outputs carry a decoder-specific signal | Mark every image emitted by a controlled model | Requires control of the generator and remains subject to post-processing and attacks |
+| [AudioSeal](https://github.com/facebookresearch/audioseal) | Speech/audio | Joint watermark generator and localized detector | Detect generated speech and locate marked intervals | A speech-oriented model is not automatically suitable for music or arbitrary audio |
+| [VideoSeal](https://github.com/facebookresearch/videoseal) | Image/video | Learned embedder and extractor with augmentation and temporal propagation | Open post-hoc image and video watermarking | Requires model runtime and careful codec, resize and temporal evaluation |
+| LLM green-list watermarking ([SynthID Text](https://deepmind.google/blog/watermarking-ai-generated-text-and-video-with-synthid/) and [Kirchenbauer et al.](https://arxiv.org/abs/2301.10226)) | Generated text | Keyed token partition or score adjustment during sampling | Statistical attribution when the generator is controlled | Short text, paraphrase, translation and distribution shift reduce detection power |
 
-The practical recommendation is layered:
+These are not interchangeable products. The medium, generator access, payload, detector ownership and expected transformations determine which family is appropriate.
 
-1. Put a signed C2PA manifest on the original asset and every edit you control.
-2. Add a robust modality watermark when you need recovery after a file is re-encoded, resized or detached from its metadata.
-3. Keep a server-side manifest/fingerprint lookup and a calibrated detector; never treat “watermark not detected” as proof that a human made the content.
+## 8. How mainstream chat products map onto the concepts
 
-## Mainstream AI chat services
+Watermark keys and detectors are provider-specific. A signal from one provider is not a universal AI detector, and a chat service may attach metadata, embed a signal, do both or do neither depending on the modality, model and product version.
 
-The service matters because watermark keys and detectors are provider-specific. A watermark from one provider is not a universal “AI detector,” and a file that has passed through a chat service may contain metadata, an embedded signal, both, or neither depending on the modality, model and product version.
-
-| Service | Text responses | Image/file outputs | Practical detection path | What a negative result means |
+| Service | Text responses | Image/file outputs | Practical verification route | Meaning of a negative result |
 |---|---|---|---|---|
-| **ChatGPT / OpenAI** | OpenAI’s official provenance documentation currently describes checks for images and audio, not a provider-specific watermark detector for pasted ChatGPT prose. Treat generic AI-writing detectors as a separate, probabilistic class. | OpenAI’s Content Provenance API checks supported images for C2PA and SynthID signals. It also provides a browser verification flow. | Preserve the original image bytes, then use [OpenAI’s content provenance check](https://developers.openai.com/api/docs/guides/content-provenance) or a C2PA-aware verifier. | `not_detected` does not rule out OpenAI generation: metadata can be stripped, a watermark degraded, or the file can predate the signal. |
-| **Gemini / Google** | Google says SynthID Text changes token probabilities during Gemini app/web generation. Detection is statistical and provider-keyed; it is strongest on longer, diverse passages. | Gemini Apps combine invisible SynthID and C2PA signals for generated/edited visual media. Visible watermarks are a separate setting. | Upload the original image/video/audio to Gemini and ask whether Google AI created or edited it; the SynthID Detector is a separate Google portal with access that may be limited. | A missing SynthID signal means “not detected by Google’s signal,” not “human-made” or “not made by another provider.” |
-| **Claude / Anthropic** | Anthropic announced that future Claude models will use a keyed, SynthID-Text-style watermark. Its detection API is currently described as private preview for eligible organizations. | Claude chat currently produces text-based output; when Claude produces supported files such as PNG, JPG or SVG, Anthropic says it attaches a signed C2PA content credential in metadata. | For text, use Anthropic’s provider detector if eligible. For files, validate the C2PA credential with a C2PA-aware tool. | Small, factual, code or lightly proofread passages may not contain enough watermarkable choices; a missing credential can also reflect stripping or conversion. |
+| **ChatGPT / OpenAI** | OpenAI's official provenance documentation describes checks for images and audio, not a provider-specific watermark detector for pasted ChatGPT prose. Generic writing detectors are a separate probabilistic class. | OpenAI's Content Provenance API checks supported images for C2PA and SynthID signals and provides a browser flow. | Preserve the original image bytes, then use [OpenAI's content provenance check](https://developers.openai.com/api/docs/guides/content-provenance) or a C2PA-aware verifier. | `not_detected` does not rule out OpenAI generation: metadata may be stripped, a watermark may be degraded or the file may predate the signal. |
+| **Gemini / Google** | Google says SynthID Text changes token probabilities during Gemini generation. Detection is statistical and provider-keyed and is strongest on longer, diverse passages. | Gemini Apps combine invisible SynthID and C2PA signals for generated or edited visual media. Visible labels are a separate setting. | Use Gemini's verification flow or the SynthID Detector where available. | A missing SynthID signal means “not detected by Google's signal,” not “human-made” or “not made by another provider.” |
+| **Claude / Anthropic** | Anthropic announced keyed, SynthID-Text-style watermarking for future Claude models; its detection API is described as private preview for eligible organizations. | For supported files such as PNG, JPG or SVG, Anthropic says Claude attaches signed C2PA metadata. | Use Anthropic's detector when eligible; validate file credentials with a C2PA-aware tool. | Short, factual, code or lightly edited passages may lack enough watermarkable choices; credentials can also be stripped during conversion. |
 
-These are current product statements, not permanent guarantees. Track the product, model, generation date and original file when recording a result.
+These are product statements, not permanent guarantees. Record the product, model, generation date and original rendition with every result.
 
-## How to detect a watermark in practice
+## 9. Detection results are evidence, not verdicts
 
-Use this order when the input is available:
-
-1. **Preserve the original bytes.** Do not start from a screenshot, screen recording, copy-paste or social-media download. Compute a hash and record the filename, MIME type, dimensions, product, model and creation time if known.
-2. **Check visible labels separately.** A logo or “AI” label is a UI/product policy, not proof of an invisible signal. Gemini’s visible watermark setting, for example, is independent of SynthID and C2PA.
-3. **Validate Content Credentials.** Use a C2PA-aware viewer or validator, not only an EXIF dump. Inspect the signature state, issuer, generation/edit actions and ingredient history. A present-but-invalid manifest is not trustworthy provenance.
-4. **Use the provider’s detector.** For an OpenAI image, use [OpenAI’s browser verifier](https://openai.com/verify) or its Content Provenance API. For Google media, use Gemini’s verification flow or the SynthID Detector where available. For Claude text, access to the detector is currently restricted; for Claude-produced files, validate C2PA.
-5. **For text, retain the exact generated passage.** A keyed text watermark is encoded in token choices, not in hidden Unicode characters. Use the provider’s detector and its threshold; do not expect a generic AI detector to recover another provider’s secret key.
-6. **Treat generic AI detectors as weak secondary evidence.** They infer style or distributional patterns and can produce false positives on human text and false negatives after editing. They do not establish a watermark or authorship.
-
-### What you can and cannot conclude
+The safest interpretation preserves both the observation and its scope.
 
 | Observation | Defensible conclusion | Overclaim to avoid |
 |---|---|---|
-| Trusted C2PA credential naming OpenAI, Google or Anthropic | That issuer signed a claim that the file was created/processed by the stated tool | The entire file history is true, or the current holder is the original author |
-| Provider watermark detected | The detector found a signal associated with that provider; interpret the provider’s stated scope | The provider wrote every word/pixel, or a specific person made it |
-| Provider watermark not detected | No supported signal was found in this rendition | It was human-made or was not produced by another AI system |
+| Trusted C2PA credential naming a provider | That issuer signed a claim that the file was created or processed by the stated tool | The full history is true, or the current holder is the original author |
+| Provider watermark detected | The detector found a signal associated with that provider in this rendition | The provider created every word or pixel |
+| Provider watermark not detected | No supported signal was found by that detector in this rendition | The content is human-made or was not produced by another AI system |
 | Text looks “AI-like” | A style detector produced a probabilistic clue | A watermark was found |
 | Screenshot, crop, re-encode or pasted text | The evidence channel may have been damaged or removed | A negative result is meaningful evidence of absence |
 
-For OpenAI images, the official API returns independent C2PA and SynthID results. For example, a trusted C2PA result can identify an issuer and model while a SynthID result can be `not_detected`; read each result independently. The OpenAI documentation explicitly warns that `not_detected` does not rule out OpenAI generation and that the check is not a general-purpose AI detector.
+The [provenance and detection guide](03_provenance_detection.md) develops this workflow with product routing, transformation scenarios, structured result examples and an investigation checklist.
 
-### Minimal OpenAI image check
+## 10. Learning companion
 
-The following is an API example, not a notebook cell that runs without an API key:
+This README is the entry point for the research. Keep this compact distinction in mind while working through the focused materials:
 
-```python
-from openai import OpenAI
-
-client = OpenAI()
-with open("image.png", "rb") as image:
-    result = client.content_provenance_checks.create(
-        file=("image.png", image, "image/png"),
-    )
-
-for signal in result.results:
-    print(signal.type, signal.outcome, getattr(signal, "validation_state", None))
+```text
+provenance:  asset -> signed claim -> validate issuer and history
+watermark:   asset -> embedded signal -> transform -> detect signal
 ```
 
-For a local first pass, `exiftool` can show whether metadata exists, but it cannot replace cryptographic C2PA validation and it cannot detect a signal embedded in pixels or text. The safest operational result is therefore a structured status such as `trusted provenance`, `watermark detected`, `not detected`, or `inconclusive`.
+The repository separates interactive mechanics from static reference material:
 
-## What the notebook demonstrates
+| Order | Resource | Learning goal | Main material |
+|---|---|---|---|
+| 1 | [Text green-list notebook](01_text_green_list.ipynb) | Understand keyed statistical text signals | Candidate mappings, probability shifts, generation examples, cumulative detection, power and paraphrase |
+| 2 | [Image DCT notebook](02_image_dct.ipynb) | Understand frequency-domain image embedding | Eight pipeline stages, coefficient voting, visual residuals, transform tests and robustness/quality trade-offs |
+| 3 | [Provenance and detection guide](03_provenance_detection.md) | Interpret evidence responsibly | Product routing, artifact workflow, edit scenarios, valid conclusions and investigation checklist |
 
-[`ai_watermarks.ipynb`](ai_watermarks.ipynb) is a self-contained, runnable companion. It includes:
+Start with either mechanics notebook according to the medium you care about, then read the provenance guide to connect the signal to real artifact handling.
 
-- a decision framework for choosing provenance, signal watermarking or both;
-- a toy image watermark using mid-frequency DCT coefficients, followed by crop/noise/JPEG-style stress tests;
-- a toy text watermark using a secret-keyed green list and a z-score detector;
-- an interactive `ipywidgets` control for watermark strength and text bias, with a non-interactive fallback for headless execution;
-- implementation checklists, evaluation metrics and attack/abuse considerations for production systems.
+The examples are deliberately small and inspectable. They teach the pattern and trade-offs; they do not reproduce the security or performance of proprietary or research-grade systems.
 
-The demos intentionally use small classical constructions rather than pretending to reimplement proprietary or research-grade models. They show the design pattern—embed, transform, detect, calibrate—not the security or robustness of SynthID, AudioSeal or VideoSeal.
+## Run the notebooks
 
-## Run it
+Install the environment:
 
 ```bash
 cd researches/ai_watermarks
 uv sync
-uv run jupyter notebook ai_watermarks.ipynb
 ```
 
-For a headless smoke test:
+Then open either focused notebook directly:
 
 ```bash
-WATERMARKS_INTERACTIVE=0 uv run jupyter nbconvert --to notebook --execute ai_watermarks.ipynb \
-  --output-dir /tmp --output ai_watermarks.executed.ipynb
+uv run jupyter notebook 01_text_green_list.ipynb
+uv run jupyter notebook 02_image_dct.ipynb
 ```
 
-## Implementation notes
+For deterministic headless checks:
 
-### Provenance versus watermarking
-
-C2PA uses signed manifests to make provenance tamper-evident. Its “hard binding” hashes the asset or boxes in the file; its “soft binding” can use a fingerprint or invisible watermark to find a manifest after ordinary transformations. The signature answers “who signed this claim and what history did they assert?” A watermark answers “does this signal appear to be present?” Those are complementary questions.
-
-### Neural media watermarking
-
-The common implementation shape is an encoder/decoder pair:
-
-```text
-asset + secret message -> embedder -> watermarked asset
-watermarked asset + transform -> detector -> message/confidence/localization
+```bash
+for notebook in 01_text_green_list.ipynb 02_image_dct.ipynb; do
+  WATERMARKS_INTERACTIVE=0 uv run jupyter nbconvert --to notebook --execute "$notebook" \
+    --output-dir /tmp --output "${notebook%.ipynb}.executed.ipynb"
+done
 ```
-
-Training normally includes differentiable approximations of the transformations the detector must survive: resize, crop, blur, noise, color changes, codec compression, frame-rate changes and audio resampling. Perceptual or just-noticeable-difference losses keep the residual below a visibility or audibility threshold. The difficult trade-off is unavoidable: more payload and robustness generally require more signal energy and create more opportunities for detection, removal or false positives.
-
-### Text watermarking
-
-Text watermarks must be embedded before sampling. A secret-keyed token partition or score adjustment creates a statistical pattern across many generated tokens. Detection is hypothesis testing, not exact message recovery, so thresholds must be calibrated on human text, model families, languages, prompts and decoding settings. Rewriting the text changes the token sequence and can erase the signal.
 
 ## Sources
 
+### Provenance and standards
+
 - [C2PA Specifications 2.4 — Content Credentials](https://spec.c2pa.org/specifications/specifications/2.4/specs/ContentCredentials.html)
 - [C2PA Implementation Guidance — invisible watermarking and soft bindings](https://spec.c2pa.org/specifications/specifications/2.2/guidance/Guidance.html)
+
+### Provider documentation
+
 - [Google DeepMind — SynthID](https://deepmind.google/models/synthid/)
 - [Google DeepMind — watermarking AI-generated text and video with SynthID](https://deepmind.google/blog/watermarking-ai-generated-text-and-video-with-synthid/)
 - [Google DeepMind — identifying AI-generated images with SynthID](https://deepmind.google/blog/identifying-ai-generated-images-with-synthid/)
@@ -134,11 +245,14 @@ Text watermarks must be embedded before sampling. A secret-keyed token partition
 - [Google Gemini Apps Help — manage visible and invisible watermark settings](https://support.google.com/gemini/answer/17405358?hl=en-GB)
 - [OpenAI — content provenance guide](https://developers.openai.com/api/docs/guides/content-provenance)
 - [OpenAI — content provenance API reference](https://developers.openai.com/api/reference/go/resources/content_provenance_checks/methods/create)
-- [Anthropic — how Claude’s text watermark works](https://www.anthropic.com/news/claude-text-watermark)
+- [Anthropic — how Claude's text watermark works](https://www.anthropic.com/news/claude-text-watermark)
 - [Anthropic Help — can Claude produce images?](https://support.anthropic.com/en/articles/9002504-can-claude-produce-images)
+
+### Research and implementations
+
 - [Fernandez et al. — VideoSeal: Open and Efficient Video Watermarking](https://arxiv.org/abs/2412.09492)
 - [San Roman et al. — Proactive Detection of Voice Cloning with Localized Watermarking](https://arxiv.org/abs/2401.17264)
-- [Fernandez et al. — AudioSeal implementation](https://github.com/facebookresearch/audioseal)
-- [Fernandez et al. — VideoSeal implementation](https://github.com/facebookresearch/videoseal)
+- [AudioSeal implementation](https://github.com/facebookresearch/audioseal)
+- [VideoSeal implementation](https://github.com/facebookresearch/videoseal)
 - [Fernandez et al. — Stable Signature](https://arxiv.org/abs/2303.15435)
 - [Kirchenbauer et al. — A Watermark for Large Language Models](https://arxiv.org/abs/2301.10226)
