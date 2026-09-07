@@ -21,6 +21,60 @@ The practical recommendation is layered:
 2. Add a robust modality watermark when you need recovery after a file is re-encoded, resized or detached from its metadata.
 3. Keep a server-side manifest/fingerprint lookup and a calibrated detector; never treat “watermark not detected” as proof that a human made the content.
 
+## Mainstream AI chat services
+
+The service matters because watermark keys and detectors are provider-specific. A watermark from one provider is not a universal “AI detector,” and a file that has passed through a chat service may contain metadata, an embedded signal, both, or neither depending on the modality, model and product version.
+
+| Service | Text responses | Image/file outputs | Practical detection path | What a negative result means |
+|---|---|---|---|---|
+| **ChatGPT / OpenAI** | OpenAI’s official provenance documentation currently describes checks for images and audio, not a provider-specific watermark detector for pasted ChatGPT prose. Treat generic AI-writing detectors as a separate, probabilistic class. | OpenAI’s Content Provenance API checks supported images for C2PA and SynthID signals. It also provides a browser verification flow. | Preserve the original image bytes, then use [OpenAI’s content provenance check](https://developers.openai.com/api/docs/guides/content-provenance) or a C2PA-aware verifier. | `not_detected` does not rule out OpenAI generation: metadata can be stripped, a watermark degraded, or the file can predate the signal. |
+| **Gemini / Google** | Google says SynthID Text changes token probabilities during Gemini app/web generation. Detection is statistical and provider-keyed; it is strongest on longer, diverse passages. | Gemini Apps combine invisible SynthID and C2PA signals for generated/edited visual media. Visible watermarks are a separate setting. | Upload the original image/video/audio to Gemini and ask whether Google AI created or edited it; the SynthID Detector is a separate Google portal with access that may be limited. | A missing SynthID signal means “not detected by Google’s signal,” not “human-made” or “not made by another provider.” |
+| **Claude / Anthropic** | Anthropic announced that future Claude models will use a keyed, SynthID-Text-style watermark. Its detection API is currently described as private preview for eligible organizations. | Claude chat currently produces text-based output; when Claude produces supported files such as PNG, JPG or SVG, Anthropic says it attaches a signed C2PA content credential in metadata. | For text, use Anthropic’s provider detector if eligible. For files, validate the C2PA credential with a C2PA-aware tool. | Small, factual, code or lightly proofread passages may not contain enough watermarkable choices; a missing credential can also reflect stripping or conversion. |
+
+These are current product statements, not permanent guarantees. Track the product, model, generation date and original file when recording a result.
+
+## How to detect a watermark in practice
+
+Use this order when the input is available:
+
+1. **Preserve the original bytes.** Do not start from a screenshot, screen recording, copy-paste or social-media download. Compute a hash and record the filename, MIME type, dimensions, product, model and creation time if known.
+2. **Check visible labels separately.** A logo or “AI” label is a UI/product policy, not proof of an invisible signal. Gemini’s visible watermark setting, for example, is independent of SynthID and C2PA.
+3. **Validate Content Credentials.** Use a C2PA-aware viewer or validator, not only an EXIF dump. Inspect the signature state, issuer, generation/edit actions and ingredient history. A present-but-invalid manifest is not trustworthy provenance.
+4. **Use the provider’s detector.** For an OpenAI image, use [OpenAI’s browser verifier](https://openai.com/verify) or its Content Provenance API. For Google media, use Gemini’s verification flow or the SynthID Detector where available. For Claude text, access to the detector is currently restricted; for Claude-produced files, validate C2PA.
+5. **For text, retain the exact generated passage.** A keyed text watermark is encoded in token choices, not in hidden Unicode characters. Use the provider’s detector and its threshold; do not expect a generic AI detector to recover another provider’s secret key.
+6. **Treat generic AI detectors as weak secondary evidence.** They infer style or distributional patterns and can produce false positives on human text and false negatives after editing. They do not establish a watermark or authorship.
+
+### What you can and cannot conclude
+
+| Observation | Defensible conclusion | Overclaim to avoid |
+|---|---|---|
+| Trusted C2PA credential naming OpenAI, Google or Anthropic | That issuer signed a claim that the file was created/processed by the stated tool | The entire file history is true, or the current holder is the original author |
+| Provider watermark detected | The detector found a signal associated with that provider; interpret the provider’s stated scope | The provider wrote every word/pixel, or a specific person made it |
+| Provider watermark not detected | No supported signal was found in this rendition | It was human-made or was not produced by another AI system |
+| Text looks “AI-like” | A style detector produced a probabilistic clue | A watermark was found |
+| Screenshot, crop, re-encode or pasted text | The evidence channel may have been damaged or removed | A negative result is meaningful evidence of absence |
+
+For OpenAI images, the official API returns independent C2PA and SynthID results. For example, a trusted C2PA result can identify an issuer and model while a SynthID result can be `not_detected`; read each result independently. The OpenAI documentation explicitly warns that `not_detected` does not rule out OpenAI generation and that the check is not a general-purpose AI detector.
+
+### Minimal OpenAI image check
+
+The following is an API example, not a notebook cell that runs without an API key:
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+with open("image.png", "rb") as image:
+    result = client.content_provenance_checks.create(
+        file=("image.png", image, "image/png"),
+    )
+
+for signal in result.results:
+    print(signal.type, signal.outcome, getattr(signal, "validation_state", None))
+```
+
+For a local first pass, `exiftool` can show whether metadata exists, but it cannot replace cryptographic C2PA validation and it cannot detect a signal embedded in pixels or text. The safest operational result is therefore a structured status such as `trusted provenance`, `watermark detected`, `not detected`, or `inconclusive`.
+
 ## What the notebook demonstrates
 
 [`ai_watermarks.ipynb`](ai_watermarks.ipynb) is a self-contained, runnable companion. It includes:
@@ -76,6 +130,12 @@ Text watermarks must be embedded before sampling. A secret-keyed token partition
 - [Google DeepMind — SynthID](https://deepmind.google/models/synthid/)
 - [Google DeepMind — watermarking AI-generated text and video with SynthID](https://deepmind.google/blog/watermarking-ai-generated-text-and-video-with-synthid/)
 - [Google DeepMind — identifying AI-generated images with SynthID](https://deepmind.google/blog/identifying-ai-generated-images-with-synthid/)
+- [Google Gemini Apps Help — verify AI-generated images, videos and audio](https://support.google.com/gemini/answer/16722517?hl=en)
+- [Google Gemini Apps Help — manage visible and invisible watermark settings](https://support.google.com/gemini/answer/17405358?hl=en-GB)
+- [OpenAI — content provenance guide](https://developers.openai.com/api/docs/guides/content-provenance)
+- [OpenAI — content provenance API reference](https://developers.openai.com/api/reference/go/resources/content_provenance_checks/methods/create)
+- [Anthropic — how Claude’s text watermark works](https://www.anthropic.com/news/claude-text-watermark)
+- [Anthropic Help — can Claude produce images?](https://support.anthropic.com/en/articles/9002504-can-claude-produce-images)
 - [Fernandez et al. — VideoSeal: Open and Efficient Video Watermarking](https://arxiv.org/abs/2412.09492)
 - [San Roman et al. — Proactive Detection of Voice Cloning with Localized Watermarking](https://arxiv.org/abs/2401.17264)
 - [Fernandez et al. — AudioSeal implementation](https://github.com/facebookresearch/audioseal)
