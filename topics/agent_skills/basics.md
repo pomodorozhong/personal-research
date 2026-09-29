@@ -30,13 +30,13 @@ Only `SKILL.md` is required. The other folders and files below are optional. The
 release-brief/                         Required: the skill folder
 ├── SKILL.md                           Required: metadata and instructions
 ├── agents/                            Optional: product-specific settings
-│   └── openai.yaml                     Optional: OpenAI UI, policy, and dependencies
+│   └── openai.yaml                    Optional: OpenAI UI, policy, and dependencies
 ├── scripts/                           Optional: executable helpers
-│   └── render-brief.mjs                Optional: example document generator
+│   └── render-brief.mjs               Optional: example document generator
 ├── references/                        Optional: guidance read when needed
 │   └── change-evidence.md             Optional: example evidence rules
 └── assets/                            Optional: files used to make the output
-    └── briefing-template.docx          Optional: example document template
+    └── briefing-template.docx         Optional: example document template
 ```
 
 Inside `SKILL.md`, the YAML block must include `name` and `description`, followed by Markdown instructions. These are parts of the file, not extra files or folders. The open format defines `scripts/`, `references/`, and `assets/` as optional. OpenAI's skill-creator guide also recommends `agents/openai.yaml`, but that file is an optional OpenAI addition. [Agent Skills specification](https://agentskills.io/specification), [Anatomy of a Skill](https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md#anatomy-of-a-skill)
@@ -54,9 +54,6 @@ A template belongs in `assets/`. You still need instructions that explain when a
 An agent reads a skill in stages, loading more detail when it needs it. The specification calls this *progressive disclosure*. Each swimlane below represents a level of information used by the same agent. The chart uses [Mermaid's native swimlane syntax](https://mermaid.js.org/syntax/swimlanes.html):
 
 ```mermaid
----
-title: Progressive disclosure
----
 swimlane-beta TB
     accTitle: Progressive disclosure in three levels
     accDescr: The same agent starts with metadata, loads instructions after selecting a skill, and accesses supporting resources only when needed.
@@ -100,9 +97,7 @@ swimlane-beta TB
     K -->|Material| N
     L -->|Script results| N
 
-    style metadata fill:#646464,color:#fff
-    style instructions fill:#646464,color:#fff
-    style resources fill:#646464,color:#fff
+    style instructions fill:#c3c3c3,color:#fff
 ```
 
 Progressive disclosure keeps the agent from reading every instruction and supporting file before it knows what the task needs. Think of browsing a library: first read the catalog entry, then open the relevant book, then turn to the chapters you need. Skills use the same idea to save space in the model's context—the information it can work with at one time. [Specification: progressive disclosure](https://agentskills.io/specification#progressive-disclosure)
