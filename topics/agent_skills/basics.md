@@ -55,15 +55,17 @@ An agent reads a skill in stages, loading more detail when it needs it. The spec
 
 ```mermaid
 flowchart TD
-    A["Product finds installed or attached skills"] --> B["Agent sees names and descriptions<br/>Full instructions are not loaded yet"]
+    subgraph PD["Progressive disclosure: load more detail only when needed"]
+    A["Product finds installed or attached skills"] --> B["Level 1: Metadata<br/>Agent sees names and descriptions<br/>Full instructions are not loaded yet"]
     B --> C["User makes a request"]
     C --> D{"User names a skill,<br/>or the agent finds a relevant one?"}
     D -->|No| E["Continue without loading this skill"]
     D -->|Yes| F["Apply the product's activation rules<br/>Ask for consent if required"]
     F --> G{"Activation allowed?"}
     G -->|No| E
-    G -->|Yes| H["Read SKILL.md<br/>Follow its task instructions"]
-    H --> I{"What does the next step need?"}
+    G -->|Yes| H["Level 2: Instructions<br/>Read SKILL.md and follow its task instructions"]
+    H --> R["Level 3: Supporting resources, as needed<br/>Read or use only what the next step requires"]
+    R --> I{"What does the next step need?"}
     I -->|Guidance| J["Read the relevant reference file"]
     I -->|Template or other material| K["Use the needed asset"]
     I -->|Repeatable code step| L["Run a script with available tools<br/>and the product's permissions"]
@@ -75,15 +77,20 @@ flowchart TD
     N --> O{"More work needed?"}
     O -->|Yes| I
     O -->|No| P["Return the output and any unresolved problems"]
+    end
 ```
 
-The chart shows a typical workflow. The shared loading pattern has three levels: names and descriptions first, `SKILL.md` when selected, and supporting files when needed. Selection can come from a user request or the agent's judgment. Consent and activation rules vary by product; see [How different products use skills](provider-differences.md). [Specification: progressive disclosure](https://agentskills.io/specification#progressive-disclosure)
+Progressive disclosure keeps the agent from reading every instruction and supporting file before it knows what the task needs. Think of browsing a library: first read the catalog entry, then open the relevant book, then turn to the chapters you need. Skills use the same idea to save space in the model's context—the information it can work with at one time. [Specification: progressive disclosure](https://agentskills.io/specification#progressive-disclosure)
 
-Reading a reference adds guidance to the agent's context. Using an asset might mean copying a template into the output. Running a script can perform a step without loading all of its source code into context, though the agent may read the code when it needs to inspect or change it. None of these happens automatically just because the folder exists. [OpenAI skill-creator: bundled resources](https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md#bundled-resources-optional)
+**Level 1: metadata helps the agent choose.** The name and description explain what a skill does and when to use it. At this stage, the agent does not need the full workflow. For example, the description of `release-brief` should make it clear that the skill writes release briefings, so a request to deploy software does not look like a match. Put this selection guidance in the description, where the agent can see it before loading the instructions. [OpenAI skill-creator: progressive disclosure](https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md#progressive-disclosure-design-principle)
 
-The specification recommends keeping `SKILL.md` below 500 lines. Keep the main steps there, and move details needed only for some tasks into references. [Specification: progressive disclosure](https://agentskills.io/specification#progressive-disclosure)
+**Level 2: instructions explain how to do the task.** Once the skill is selected, the agent reads `SKILL.md`. For `release-brief`, this could explain which change records to gather, how to handle missing evidence, and what the briefing must include. Keep the main steps and essential checks here so the agent can understand the workflow without opening every reference. The specification recommends keeping this file below 500 lines. [Specification: progressive disclosure](https://agentskills.io/specification#progressive-disclosure)
 
-Putting a file in the folder does not mean the agent will read it. Tell the agent when to open it: "For breaking changes, read `references/breaking-changes.md` before drafting compatibility notes."
+**Level 3: supporting files provide detail when needed.** A release with breaking changes might require `references/breaking-changes.md`; a routine release might not. A DOCX briefing might use a template and generator that a short Markdown summary does not need. Reading a reference adds text to context. Using a template or running a script can help produce the output without loading the whole file as text, though the agent may inspect it when needed. [OpenAI skill-creator: bundled resources](https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md#bundled-resources-optional)
+
+To make this work, give each supporting file a clear purpose and tell the agent when to use it. For example: "For breaking changes, read `references/breaking-changes.md` before drafting compatibility notes." Moving a long rule into another file helps only if the agent knows when to read it. Keep essential requirements in the main instructions, or make the required reference explicit. Avoid making the agent follow a long chain of links to find a rule. [Specification: file references](https://agentskills.io/specification#file-references)
+
+The chart shows a typical workflow rather than a fixed sequence for every product. A task can use several resources or need none at all. Progressive disclosure describes when information is loaded; it does not grant permission to run code or guarantee that the agent follows every instruction. Selection can come from a user request or the agent's judgment, and some products ask for consent before activation. See [How different products use skills](provider-differences.md) for those differences.
 
 Keep skill descriptions short and easy to tell apart. OpenAI's September 2026 Astra guidance warns that long or overlapping descriptions can make it harder to select the right skill. It recommends specific conditions for using each skill and short instructions that direct the agent to the right branch of a workflow. This advice concerns how the model uses skills; it does not change the shared file format. [Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra)
 
