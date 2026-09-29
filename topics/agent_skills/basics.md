@@ -97,7 +97,7 @@ swimlane-beta TB
     K -->|Material| N
     L -->|Script results| N
 
-    style instructions fill:#c3c3c3,color:#fff
+    style instructions fill:#c3c3e3,color:#fff
 ```
 
 Progressive disclosure keeps the agent from reading every instruction and supporting file before it knows what the task needs. Think of browsing a library: first read the catalog entry, then open the relevant book, then turn to the chapters you need. Skills use the same idea to save space in the model's context—the information it can work with at one time. [Specification: progressive disclosure](https://agentskills.io/specification#progressive-disclosure)
