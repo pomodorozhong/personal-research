@@ -21,12 +21,11 @@ An agent skill is a folder of instructions and supporting files that helps an AI
   - How do discovery, activation, permissions, and sharing differ?
   - How do local skills differ from skills attached through an API?
 - [Storing and sharing skills](storage-and-distribution.md)
-  - What are common ways to store and share skills?
-  - How can a public or private Git repository work with an installer?
-  - What would a small GitHub skill repository look like?
+  - How do you store one skill or manage several skills in a Git repository?
+  - Which existing templates and example repositories can you adapt?
+  - How do you install selected skills, choose links or copies, and track versions?
   - How do you export a skill and install it for Codex?
-  - How do you install a skill for a particular agent, and choose between linked files and copies?
-  - When should a skill belong to one project, and when should it be available across your projects?
+  - When should you use plugins, team sharing, or a public directory?
 - [Document generation example](document-generation-example.md)
   - When should a task use a template, a generator, or a separate formatting skill?
   - Where should you put the document rules, template, and helper scripts?

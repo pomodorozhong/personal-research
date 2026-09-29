@@ -1,130 +1,116 @@
 # Storing and Sharing Agent Skills
 
-Folder locations and product behavior were checked on 2026-09-29. This guide covers common ways to store and share skills. It does not list or rank every option.
+Repository examples, folder locations, and installer behavior checked on 2026-09-29.
 
-## Where skills live
+Keep the files you maintain in Git. Put the skills you want an agent to use in that product's skill folder, either by copying, linking, or installing them. A repository can hold a large library without installing the whole library for every project.
 
-| Approach | Examples | Good fit | Trade-off |
-| --- | --- | --- | --- |
-| Project folder in Git | `.agents/skills/<name>/SKILL.md` | Keeping team instructions with the code; supported by Codex, Cursor, and GitHub Copilot | Check where each agent looks for skills |
-| Folder for a specific agent | `.claude/skills/`, `.cursor/skills/`, `.github/skills/`; personal folders such as `~/.claude/skills/`, `~/.cursor/skills/`, `~/.copilot/skills/`, and `~/.agents/skills/` | Features specific to one product, or personal skills | Products may look in different folders; separate copies can get out of sync |
-| Git repository plus installer | A public or private repository, with an installer that puts skills where each agent expects them | Sharing across projects, machines, or agents | You also need to manage the installer and its updates |
-| Sharing through a product | Cursor team marketplace; Claude Code plugins or Claude API workspace skills; Codex plugins | Team skill lists, hosted agents, or centrally managed updates | Each product has its own sharing rules; uploads may not carry over to its other apps or APIs |
-| Public skill directory | [skills.sh](https://skills.sh/) | Finding community skills and seeing how often they are installed | A listing or high install count does not prove a skill is useful or safe |
+This guide covers repository layouts, managing a collection, real examples, and installation. For how a skill works, see [Basics](basics.md). For product-specific discovery and permissions, see [Product differences](provider-differences.md).
 
-If several coding agents use the same repository, `.agents/skills/` is a useful place to start. Codex, Cursor, and GitHub Copilot all document support for it. Use a product's own folder when a feature requires it. Personal folders such as `~/.agents/skills/` let you keep private preferences outside the repository. [Codex locations](https://developers.openai.com/codex/skills), [Cursor paths](https://prod.cursor.com/help/customization/skills), [Copilot locations](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills)
+## Choose a repository layout
 
-The folder rules overlap, but they are not identical:
+| Situation | Suggested layout | How the agent gets the skills |
+| --- | --- | --- |
+| A skill belongs to an existing project | `.agents/skills/<name>/SKILL.md`, or the product's documented folder | The agent discovers it while working in that project |
+| A separate repository publishes one skill | `SKILL.md` at the repository root, with supporting folders beside it | Install or copy that skill into the target agent's folder |
+| A separate repository publishes several skills | `skills/<name>/SKILL.md`, one folder per skill | Select and install the skills needed for each project |
 
-- Claude Code uses `.claude/skills/` for project skills and `~/.claude/skills/` for personal skills.
-- Cursor looks in `.cursor/skills/`, `.agents/skills/`, and Claude and Codex skill folders.
-- Copilot supports `.github/skills/`, `.claude/skills/`, and `.agents/skills/` in a repository, as well as personal skill folders.
+These are practical layout choices. The skill format requires each skill to have its own `SKILL.md`; a Git repository is only the container. Vercel's installer supports root skills and collections under `skills/`. [Agent Skills specification](https://agentskills.io/specification), [Installer discovery rules](https://github.com/vercel-labs/skills#skill-discovery)
 
-Hosted products may handle uploads and sharing differently from local coding agents. [Claude Platform overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), [Cursor documentation](https://prod.cursor.com/help/customization/skills), [GitHub Copilot documentation](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills)
+For one skill, a small repository can look like this:
 
-## Sharing through Git and an installer
+```text
+release-brief/
+├── README.md              Recommended: purpose, setup, and example request
+├── LICENSE                Recommended: terms for reuse
+├── SKILL.md               Required: skill metadata and instructions
+├── references/            Optional: supporting instructions
+├── assets/                Optional: templates and other files
+└── scripts/               Optional: executable helpers
+```
 
-A Git repository gives you one place to maintain skills. You can review changes, keep scripts and references beside `SKILL.md`, and release updates together. A repository can hold one skill at its root or several skill folders:
+For skills kept with application code, Codex and Cursor both support `.agents/skills/`. A publishing folder named `skills/` alone is not a Codex discovery location. Install or link selected skills into a location the agent scans. [Codex locations](https://developers.openai.com/codex/skills#where-codex-loads-local-skills), [Cursor locations](https://prod.cursor.com/help/customization/skills)
+
+## Manage several skills in one Git repository
+
+Use a separate folder for each installable skill. Keep its instructions and supporting files together so it can be installed on its own:
 
 ```text
 agent-skills/
-  release-brief/
-    SKILL.md
-    references/
-      change-evidence.md
-    assets/
-      briefing-template.docx
-  incident-brief/
-    SKILL.md
-    references/
-      incident-evidence.md
-```
-
-Vercel's open-source `skills` command-line tool can list the skills in a repository and install the ones you choose for supported agents. For example:
-
-```bash
-npx skills add acme/agent-skills --list
-npx skills add acme/agent-skills --skill release-brief --agent codex
-```
-
-By default, the tool installs skills for the current project. Add `--global` to install them for your user account, or `--agent` to choose which agents receive them.
-
-The tool recommends using symbolic links, or *symlinks*: each agent's folder points to one shared local copy of the skill. Use `--copy` if you need separate files or cannot use symlinks. You can install from GitHub repositories, other Git URLs, or local folders. Private repositories work when Git has the credentials needed to access them. [Vercel `skills` CLI](https://github.com/vercel-labs/skills)
-
-Maintain the original files in Git, and let the installer put them where each agent expects them. If you use only one agent, you can also clone a repository directly into its documented project or user skill folder. You do not need an installer for that approach.
-
-### Example GitHub repository you can copy
-
-For a real collection, look at [openai/skills](https://github.com/openai/skills). Its [skill-creator folder](https://github.com/openai/skills/tree/main/skills/.system/skill-creator) shows how instructions, references, and scripts stay together.
-
-For your own collection, this smaller layout is a useful starting point. `your-name/agent-skills` is an example repository name; replace it with yours.
-
-```text
-agent-skills/
-├── README.md                          Recommended: skills, setup, and examples
-├── LICENSE                            Recommended: terms for reuse
-├── .gitignore                         Recommended: local files to leave out of Git
-└── skills/                            Collection folder for this example
-    └── release-brief/                 One installable skill
+├── README.md                          Recommended: catalog and installation guide
+├── LICENSE                            Recommended: shared terms, if applicable
+├── .gitignore                         Recommended: exclude local/generated files
+├── CHANGELOG.md                       Optional: changes to the collection
+└── skills/                            Collection folder in this layout
+    ├── release-brief/                 One installable skill
+    │   ├── SKILL.md                   Required
+    │   ├── agents/openai.yaml         Optional: OpenAI settings
+    │   ├── references/                Optional
+    │   │   └── change-evidence.md
+    │   ├── assets/                    Optional
+    │   │   └── briefing-template.docx
+    │   └── scripts/                   Optional
+    │       └── render-brief.mjs
+    └── incident-brief/                Another installable skill
         ├── SKILL.md                   Required
-        ├── agents/                    Optional
-        │   └── openai.yaml            Optional: OpenAI settings
-        ├── references/                Optional
-        │   └── change-evidence.md     Optional: evidence rules
-        ├── assets/                    Optional
-        │   └── briefing-template.docx Optional: document template
-        └── scripts/                   Optional
-            └── render-brief.mjs       Optional: document generator
+        └── references/                Optional
+            └── incident-evidence.md
 ```
 
-This is a suggested repository layout, not a GitHub template repository that has been created for you. Begin with `README.md`, your chosen license, and `skills/release-brief/SKILL.md`. Add the optional files only when the skill uses them. If you want Codex to use the skill while working in this repository, also install or link it under `.agents/skills`; a collection folder named `skills/` alone is not a Codex discovery location.
+The repository root does not need a `SKILL.md` for the collection. Put one inside each skill folder, and make the front matter's `name` match that folder's name. For example, `skills/release-brief/SKILL.md` uses `name: release-brief`. The name/folder match is part of the shared specification. [Naming rules](https://agentskills.io/specification#name-field)
 
-A minimal `skills/release-brief/SKILL.md` could contain:
+A manageable collection needs a few conventions:
 
-```markdown
----
-name: release-brief
-description: Write or revise a release briefing from approved change records. Use for release summaries; not for deploying software.
----
+1. **Keep a catalog in the README.** List each skill's name, purpose, supported products, software requirements, and an example request. Link directly to its folder and show how to install it separately.
+2. **Keep each installed folder complete.** A script or reference outside that folder may not travel with it. Put required files inside the skill, or document and package the external dependency explicitly. See [Scripts and dependencies](scripts-and-mcp.md).
+3. **Avoid maintaining several editable copies.** Make changes in the source repository, then refresh installations. If products need different settings, explain those differences rather than letting copies drift apart.
+4. **Review changes by skill.** Update instructions, scripts, templates, and examples together. Check referenced paths and run any affected helpers. Try a request that should select the skill and one that should not.
+5. **Record a reviewed version.** A Git tag or commit identifies the whole repository at that point. Two skills installed from the same revision come from the same snapshot. Record the revision and selected folders when a team needs reproducible installations.
+6. **Install a useful subset.** Adding a skill to the library does not mean everyone needs it enabled. See [How many skills are too many?](managing-skills.md) for listing limits and selection problems.
 
-# Release briefing
+These are maintenance recommendations, not extra requirements of the skill format. Start with a flat `skills/<name>/` layout; add categories only when browsing the collection becomes difficult and your chosen installer supports the nesting.
 
-1. Identify the release and gather the approved change records.
-2. Ask for any information needed to identify the release or its sources.
-3. Write a summary, key changes, known impact, and open questions.
-4. Cite the records behind each factual claim. State when impact is unknown.
-5. Check the briefing against the records and return it for review.
-```
+## Existing templates and example repositories
 
-In the repository README, explain what each skill does, its software requirements, an example request, and how to install it. For this layout, these commands list the skills and install `release-brief` for Codex in the current project:
+These are real repositories or folders you can inspect. The layouts above are suggested designs.
+
+| Example | What it contains | What to learn from it |
+| --- | --- | --- |
+| [Anthropic's starter template](https://github.com/anthropics/skills/blob/main/template/SKILL.md) | A minimal `SKILL.md` inside the `anthropics/skills` repository | Copy the starting file for one skill, then replace its placeholder name, description, and instructions |
+| [anthropics/skills](https://github.com/anthropics/skills) | Multiple skills in `skills/<name>/`, plus the starter template | A collection with separate folders, supporting files, and installation documentation |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Multiple skills under `skills/`, with a README describing available skills | A collection intended for selective installation through the `skills` CLI |
+| [openai/plugins](https://github.com/openai/plugins) | Plugin examples under `plugins/<name>/`; plugins can contain `skills/` and other components | How to package skills for Codex distribution, including skills used with connectors |
+
+For a first skill, start with Anthropic's template. For a collection, study Anthropic's or Vercel's folder layout. For Codex plugin distribution, use OpenAI's current plugin examples. These are examples to adapt; the starter file is not a complete GitHub repository template. Check the license for the specific files you reuse. Anthropic's repository includes both open-source and source-available skills with different terms. [Anthropic repository notes](https://github.com/anthropics/skills#about-this-repository)
+
+The older [openai/skills](https://github.com/openai/skills) catalog still shows useful folder patterns, but its README now marks it deprecated and points to `openai/plugins` for current examples.
+
+## Install selected skills from a collection
+
+Vercel's `skills` CLI can list a repository's skills and install selected names. In these examples, replace `your-name/agent-skills` with your repository. Run installation commands from the target project's root:
 
 ```bash
 npx skills add your-name/agent-skills --list
 npx skills add your-name/agent-skills --skill release-brief --agent codex
+npx skills add your-name/agent-skills --skill release-brief --skill incident-brief --agent cursor
 ```
 
-The example uses Vercel's installer, which supports repositories with skill subfolders and selection by skill name. [Vercel `skills` CLI](https://github.com/vercel-labs/skills)
+Project installation is the default. Add `--global` for a personal installation across projects. The CLI accepts public or private Git repositories and local folders; private repositories need working credentials. [CLI options](https://github.com/vercel-labs/skills#options)
 
-### Versioning and review
+For a reviewed revision, check out that tag or commit locally, then install selected skills from its local path:
 
-Use a public repository when you want others to find and use the skill. Use a private repository for internal procedures. Before installing either, review `SKILL.md`, scripts, dependencies, templates, and any network access. A public repository can still contain unsafe code.
+```bash
+npx skills add /absolute/path/to/agent-skills --skill release-brief --agent codex
+```
 
-To give everyone on a team the same version, review a specific tag or commit before installing it. If the installer cannot select that exact version, check it out locally and install from that folder. Another option is a team-maintained copy of the repository with a defined update process. For workflows where changes could affect important output or data access, review updates before installing them automatically.
-
-Choose between links and copies based on where the skill will run:
-
-- **Symlinks:** several agents use one local copy, so an update applies to all of them. Some products or remote agents may not follow the links.
-- **Copies:** each installation has its own files. You need to update each copy to keep them in sync.
-
-Install at project level for skills that belong with a repository. Install globally for personal preferences you want to use across projects.
+Choose between **links** and **copies**. A symlink points an agent's installation to the installer's shared local copy. A copy has independent files; `--copy` selects that approach. Updating the source Git repository does not by itself refresh every installed copy. Agree on an update process and retest affected skills. [Installation methods](https://github.com/vercel-labs/skills#installation-methods)
 
 ## Exporting and installing a skill for Codex
 
 ### Export the whole skill folder
 
-To share a skill, include `SKILL.md` and every local file its instructions use. Keep their relative paths intact. Check for private examples, machine-specific paths, and secrets before sharing. A standalone skill can be sent as a folder, stored in Git, or packed into an archive for transport.
+Include `SKILL.md` and every local file the skill uses, with their relative paths intact. Export one skill folder rather than the whole collection. Remove private examples, secrets, and machine-specific paths before sharing.
 
-For example, run this from a project that contains `.agents/skills/release-brief`. It creates a fresh export folder and a `.tar.gz` archive:
+From a project containing `.agents/skills/release-brief`, these commands create an export folder and an archive:
 
 ```bash
 mkdir skill-export
@@ -132,83 +118,66 @@ cp -R .agents/skills/release-brief skill-export/release-brief
 tar -czf skill-export/release-brief.tar.gz -C skill-export release-brief
 ```
 
-If `skill-export` already exists, choose a new export folder before running the commands. The archive should contain `release-brief/SKILL.md` and its supporting files. Unpack it before using the manual installation below. This is a file-copy example, not a Codex export command.
+Choose a new export folder if `skill-export` already exists. For a collection repository, replace the copy source with `skills/release-brief`. The archive should contain `release-brief/SKILL.md` and supporting files. Unpack it before manual installation. These are file-copy commands, not a Codex export command.
 
 ### Install by copying the folder
 
-Choose the scope first:
+Choose the scope using [Codex's documented discovery locations](https://developers.openai.com/codex/skills#where-codex-loads-local-skills):
 
-| Scope | Destination | Use it when |
+| Scope | Codex's documented destination | Use it when |
 | --- | --- | --- |
-| Project | `.agents/skills/release-brief/` | The skill belongs with this repository |
-| Personal | `~/.agents/skills/release-brief/` | You want the skill across your projects |
+| Project | `.agents/skills/release-brief/` | The skill belongs with that project |
+| Personal | `~/.agents/skills/release-brief/` | You want it across projects |
 
-These are Codex's documented local discovery locations. [Codex skill locations](https://developers.openai.com/codex/skills#where-codex-loads-local-skills)
-
-From the root of the target project, copy the exported folder:
+From the target project's root, copy an unpacked export into the project:
 
 ```bash
 mkdir -p .agents/skills
 test ! -e .agents/skills/release-brief && cp -R skill-export/release-brief .agents/skills/release-brief
 ```
 
-Or copy it to your personal skill folder:
+Or copy it into your personal folder:
 
 ```bash
 mkdir -p "$HOME/.agents/skills"
 test ! -e "$HOME/.agents/skills/release-brief" && cp -R skill-export/release-brief "$HOME/.agents/skills/release-brief"
 ```
 
-The `test` prevents copying over an existing installation. If it fails, compare the versions and decide which to keep. In these examples, `skill-export/release-brief` is the unpacked folder; change that source path if you stored it elsewhere.
+Change the source path if the export is elsewhere. The `test` stops the copy when an installation already exists; compare the versions before replacing it.
 
-### Install from GitHub
+### Install from GitHub with Codex's installer
 
-In Codex, ask the built-in installer to install the repository's skill folder:
-
-```text
-$skill-installer Install release-brief from https://github.com/your-name/agent-skills/tree/main/skills/release-brief.
-```
-
-Replace the example URL with your repository. `$skill-installer` supports skills from other GitHub repositories. [Codex installer guidance](https://developers.openai.com/codex/skills#install-curated-skills-for-local-use)
-
-**Check the destination.** The published installer currently defaults to `$CODEX_HOME/skills`, usually `~/.codex/skills`, while Codex's documented personal discovery folder is `~/.agents/skills`. To use the latter, ask for it explicitly:
+Ask the built-in installer for a specific folder and destination:
 
 ```text
 $skill-installer Install release-brief from https://github.com/your-name/agent-skills/tree/main/skills/release-brief into ~/.agents/skills.
 ```
 
-The installer's helper supports `--dest` for the destination and `--ref` for a Git tag or commit. Ask for a reviewed revision when you need a fixed version. Its script location depends on where the built-in skill is installed. [Published skill-installer instructions](https://github.com/openai/skills/blob/main/skills/.system/skill-installer/SKILL.md)
+Replace the example URL with your repository. The published installer defaults to `$CODEX_HOME/skills`, usually `~/.codex/skills`, which differs from the personal discovery folder documented above. Giving the destination explicitly makes the intended location clear. Its helper supports `--dest`, `--ref` for a tag or commit, and multiple `--path` values for several skills. Ask for a reviewed revision if you need a fixed version. [Published installer instructions](https://github.com/openai/skills/blob/main/skills/.system/skill-installer/SKILL.md)
 
-You can also use Vercel's installer. Add `--global` for a personal installation:
+### Check the installation
 
-```bash
-npx skills add your-name/agent-skills --skill release-brief --agent codex --global
-```
+In Codex CLI or the IDE extension, open `/skills` or mention `$release-brief`. If it is missing, check the installed path and `SKILL.md`; restart Codex if needed. Then try a small task with sample records. Being listed proves discovery; following the steps on a sample task checks behavior. [Codex skill guide](https://developers.openai.com/codex/skills)
 
-### Check that Codex can use it
+## Share through a product or public directory
 
-In Codex CLI or the IDE extension, open `/skills` or mention `$release-brief`. If it is missing, restart Codex and check the destination and `SKILL.md`. Then try a small request with sample change records and confirm that it follows the briefing steps. Seeing the skill listed checks discovery; a sample task checks whether it works. [Codex loading and installation](https://developers.openai.com/codex/skills)
+Git stores the source files. A plugin or marketplace provides another way for people to install them. OpenAI recommends plugins for distributing reusable skills beyond one repository; a plugin can contain one or several skills and optional connectors. See the [Codex plugin packaging guide](https://developers.openai.com/plugins/build/plugins) and [OpenAI's example repository](https://github.com/openai/plugins).
 
-### When to package it as a plugin
+Cursor has a team marketplace for sharing skills. Other products have their own packaging and upload rules; see [Product differences](provider-differences.md). [Cursor team sharing](https://prod.cursor.com/help/customization/skills)
 
-For wider distribution, OpenAI recommends plugins. A plugin can bundle skills and optional connectors into one installable package. Copying or archiving a skill folder does not create a plugin; follow the separate [plugin packaging guide](https://developers.openai.com/plugins/build/plugins).
-
-## Public directories and team sharing
-
-[skills.sh](https://skills.sh/) lists public skills and ranks them using anonymous installation data from Vercel's `skills` tool. The tool can also search for skills and install them from repositories. The documentation says it cannot guarantee the quality or safety of every listed skill. Install counts can help you find candidates, but you still need to review them. [skills.sh documentation](https://www.skills.sh/docs), [CLI reference](https://www.skills.sh/docs/cli)
-
-Teams can also share skills through a product they already use. Cursor has a team marketplace. Claude Code supports plugins, and Claude API skills can be uploaded and shared within a workspace. Codex can include skills in plugins. Each method has its own rules. For example, a skill uploaded to one Claude app or API does not automatically appear in the others. [Cursor team skills](https://prod.cursor.com/help/customization/skills), [Claude sharing model](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), [Codex skills and plugins](https://developers.openai.com/codex/skills)
+[skills.sh](https://skills.sh/) helps people find public skills through Vercel's ecosystem. Treat a listing as a way to find candidates. Review the instructions, scripts, dependencies, and licenses before installation.
 
 ## Sources
 
+- [Agent Skills specification](https://agentskills.io/specification)
 - [Codex: Build skills](https://developers.openai.com/codex/skills)
-- [Claude Platform Agent Skills overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
-- [Cursor skills documentation](https://prod.cursor.com/help/customization/skills)
-- [GitHub Copilot agent skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills)
+- [Cursor: Skills](https://prod.cursor.com/help/customization/skills)
 - [Vercel `skills` CLI](https://github.com/vercel-labs/skills)
-- [skills.sh CLI docs](https://www.skills.sh/docs/cli)
-- [OpenAI skills repository](https://github.com/openai/skills)
-- [OpenAI skill-installer instructions](https://github.com/openai/skills/blob/main/skills/.system/skill-installer/SKILL.md)
-- [OpenAI plugin packaging](https://developers.openai.com/plugins/build/plugins)
+- [Anthropic skills and starter template](https://github.com/anthropics/skills)
+- [Vercel's skill collection](https://github.com/vercel-labs/agent-skills)
+- [OpenAI's current plugin examples](https://github.com/openai/plugins)
+- [OpenAI's deprecated skill catalog](https://github.com/openai/skills)
+- [Published skill-installer instructions](https://github.com/openai/skills/blob/main/skills/.system/skill-installer/SKILL.md)
+- [Codex plugin packaging](https://developers.openai.com/plugins/build/plugins)
 
-Folder locations and installer behavior were checked on 2026-09-29 and may change. Installer commands follow the linked documentation. The repository layout, sample skill, and export commands are examples. No skill was installed into Codex while writing this guide.
+The repository layouts and maintenance advice are recommendations. Export and project-copy commands were checked with temporary files; no skill was installed into Codex. Product and installer behavior may change.
