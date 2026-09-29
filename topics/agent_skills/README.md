@@ -8,6 +8,10 @@ An agent skill is a folder of instructions and supporting files that helps an AI
   - What belongs in a skill folder, and what are `SKILL.md`, `scripts/`, `references/`, and `assets/` for?
   - How does an agent find a skill and read its files as needed?
   - How do you write, test, review, and improve a skill?
+- [How many skills are too many?](managing-skills.md)
+  - What happens when the agent's skill list becomes crowded?
+  - Is there a safe number, and what limits do products document?
+  - How do you trim, scope, disable, and test a collection?
 - [How different products use skills](provider-differences.md)
   - What do Codex, Claude Code, Gemini CLI, Cursor, and Copilot share?
   - How do discovery, activation, permissions, and sharing differ?

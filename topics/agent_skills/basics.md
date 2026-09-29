@@ -114,6 +114,8 @@ The chart shows a typical workflow rather than a fixed sequence for every produc
 
 Keep skill descriptions short and easy to tell apart. OpenAI's September 2026 Astra guidance warns that long or overlapping descriptions can make it harder to select the right skill. It recommends specific conditions for using each skill and short instructions that direct the agent to the right branch of a workflow. This advice concerns how the model uses skills; it does not change the shared file format. [Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra)
 
+For the practical limits of a large skill list and ways to keep it useful, see [How many skills are too many?](managing-skills.md).
+
 ## Writing, reviewing, and improving a skill
 
 Start with a task you have needed more than once. Explain what the agent needs, what it should produce, and what commonly goes wrong. Include instructions that help it make better decisions. State firm requirements clearly, and leave room for judgment where several approaches could work.

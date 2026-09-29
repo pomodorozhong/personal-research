@@ -26,6 +26,8 @@ The [Agent Skills specification](https://agentskills.io/specification) defines a
 
 Codex's initial skill list has a context limit. Descriptions may be shortened, and some entries may be omitted; a selected skill's full instructions still load. [Codex guide](https://developers.openai.com/codex/skills)
 
+See [How many skills are too many?](managing-skills.md) for documented Codex and Claude Code budgets, warning signs, and ways to reduce the active list.
+
 Claude Code accepts some files that are less strict than the open specification, including omitted `name` or `description` fields. For a skill you want to share across products, keep both fields. [Claude Code front matter](https://code.claude.com/docs/en/skills#frontmatter-reference)
 
 ### Permissions also differ
