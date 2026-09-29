@@ -51,32 +51,46 @@ A template belongs in `assets/`. You still need instructions that explain when a
 
 ## How an agent reads a skill
 
-An agent reads a skill in stages, loading more detail when it needs it. The specification calls this *progressive disclosure*:
+An agent reads a skill in stages, loading more detail when it needs it. The specification calls this *progressive disclosure*. Each swimlane below represents a level of information used by the same agent:
 
 ```mermaid
-flowchart TD
-    subgraph PD["Progressive disclosure: load more detail only when needed"]
-    A["Product finds installed or attached skills"] --> B["Level 1: Metadata<br/>Agent sees names and descriptions<br/>Full instructions are not loaded yet"]
-    B --> C["User makes a request"]
-    C --> D{"User names a skill,<br/>or the agent finds a relevant one?"}
-    D -->|No| E["Continue without loading this skill"]
-    D -->|Yes| F["Apply the product's activation rules<br/>Ask for consent if required"]
-    F --> G{"Activation allowed?"}
-    G -->|No| E
-    G -->|Yes| H["Level 2: Instructions<br/>Read SKILL.md and follow its task instructions"]
-    H --> R["Level 3: Supporting resources, as needed<br/>Read or use only what the next step requires"]
-    R --> I{"What does the next step need?"}
-    I -->|Guidance| J["Read the relevant reference file"]
-    I -->|Template or other material| K["Use the needed asset"]
-    I -->|Repeatable code step| L["Run a script with available tools<br/>and the product's permissions"]
-    I -->|No supporting files| M["Carry out the step using the instructions"]
-    J --> N["Check the result of the step"]
-    K --> N
-    L --> N
-    M --> N
-    N --> O{"More work needed?"}
-    O -->|Yes| I
-    O -->|No| P["Return the output and any unresolved problems"]
+sequenceDiagram
+    box rgb(235, 244, 255) Level 1 — available before selection
+        participant M as Metadata
+    end
+    box rgb(237, 249, 239) Level 2 — loaded when selected
+        participant I as Instructions
+    end
+    box rgb(255, 247, 230) Level 3 — accessed only as needed
+        participant R as Supporting resources
+    end
+
+    Note over M,R: Progressive disclosure: load more detail only when needed
+    M->>M: Discover skill names and descriptions
+    M->>M: Match the user request or a named skill
+    Note over M,I: Apply product activation rules and request consent if required
+
+    alt No skill selected or activation not allowed
+        M->>M: Continue without loading this skill
+    else Skill selected and activation allowed
+        M->>I: Load the selected SKILL.md
+        I->>I: Read the workflow and essential requirements
+        loop For each task step
+            I->>I: Decide what this step needs
+            opt Supporting files are needed
+                I->>R: Access the relevant file or helper
+                alt Guidance
+                    R->>R: Read a reference
+                else Template or other material
+                    R->>R: Use an asset in the output
+                else Repeatable code step
+                    R->>R: Run a script with available tools and permissions
+                end
+                R-->>I: Return guidance, material, or script results
+            end
+            I->>I: Carry out the step and check its result
+        end
+        I->>I: Return the output and unresolved problems
     end
 ```
 
