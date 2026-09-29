@@ -12,6 +12,10 @@ An agent skill is a folder of instructions and supporting files that helps an AI
   - What happens when the agent's skill list becomes crowded?
   - Is there a safe number, and what limits do products document?
   - How do you trim, scope, disable, and test a collection?
+- [Using scripts in a skill](scripts-and-mcp.md)
+  - When is a script useful, and when would you use MCP instead?
+  - Which languages and dependencies can a script use?
+  - How should an agent run a helper and check its result?
 - [How different products use skills](provider-differences.md)
   - What do Codex, Claude Code, Gemini CLI, Cursor, and Copilot share?
   - How do discovery, activation, permissions, and sharing differ?

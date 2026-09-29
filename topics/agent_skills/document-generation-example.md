@@ -90,6 +90,8 @@ The document rules—called a *content contract* in the example—should explain
 
 The generator applies the template's styles and section order. It should reject invalid input and handle special characters safely. Source text must remain data rather than being run as commands.
 
+For a small working citation-ID checker, script invocation instructions, and advice on choosing between a local helper and an MCP tool, see [Using scripts in a skill](scripts-and-mcp.md). The document generator in this example remains a design sketch.
+
 Naming another skill does not guarantee that the product will load it. Explain how to find its installed `SKILL.md`, tell the agent to read it, and say what to do if it is missing. Use paths such as `../briefing-format` only if you know the skills will always be installed next to each other.
 
 ## Check the result
