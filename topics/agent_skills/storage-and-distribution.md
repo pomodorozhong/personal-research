@@ -199,10 +199,6 @@ For wider distribution, OpenAI recommends plugins. A plugin can bundle skills an
 
 Teams can also share skills through a product they already use. Cursor has a team marketplace. Claude Code supports plugins, and Claude API skills can be uploaded and shared within a workspace. Codex can include skills in plugins. Each method has its own rules. For example, a skill uploaded to one Claude app or API does not automatically appear in the others. [Cursor team skills](https://prod.cursor.com/help/customization/skills), [Claude sharing model](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), [Codex skills and plugins](https://developers.openai.com/codex/skills)
 
-## Recommendation for this repository
-
-Keep this repository's report-writing skill in its existing `.agents/skills/` folder. Commit `SKILL.md`, references, and output templates together. If you want others to install and adapt it, share a reusable version in a public Git repository. People can find it through `skills.sh` and use an installer to put it in their agents' folders. Keep track of the reviewed Git version so you know what is installed.
-
 ## Sources
 
 - [Codex: Build skills](https://developers.openai.com/codex/skills)
