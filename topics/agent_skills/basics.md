@@ -51,47 +51,58 @@ A template belongs in `assets/`. You still need instructions that explain when a
 
 ## How an agent reads a skill
 
-An agent reads a skill in stages, loading more detail when it needs it. The specification calls this *progressive disclosure*. Each swimlane below represents a level of information used by the same agent:
+An agent reads a skill in stages, loading more detail when it needs it. The specification calls this *progressive disclosure*. Each swimlane below represents a level of information used by the same agent. The chart uses [Mermaid's native swimlane syntax](https://mermaid.js.org/syntax/swimlanes.html):
 
 ```mermaid
-sequenceDiagram
-    box rgb(235, 244, 255) Level 1 — available before selection
-        participant M as Metadata
-    end
-    box rgb(237, 249, 239) Level 2 — loaded when selected
-        participant I as Instructions
-    end
-    box rgb(255, 247, 230) Level 3 — accessed only as needed
-        participant R as Supporting resources
+---
+title: Progressive disclosure
+---
+swimlane-beta TB
+    accTitle: Progressive disclosure in three levels
+    accDescr: The same agent starts with metadata, loads instructions after selecting a skill, and accesses supporting resources only when needed.
+
+    subgraph metadata["Level 1: Metadata — available before selection"]
+        A["Discover skill names and descriptions"]
+        B["Match the user request or a named skill"]
+        C["Apply activation rules<br/>Request consent if required"]
+        D{"Skill selected and<br/>activation allowed?"}
+        E(["Continue without this skill"])
+        A --> B --> C --> D
+        D -->|No| E
     end
 
-    Note over M,R: Progressive disclosure: load more detail only when needed
-    M->>M: Discover skill names and descriptions
-    M->>M: Match the user request or a named skill
-    Note over M,I: Apply product activation rules and request consent if required
-
-    alt No skill selected or activation not allowed
-        M->>M: Continue without loading this skill
-    else Skill selected and activation allowed
-        M->>I: Load the selected SKILL.md
-        I->>I: Read the workflow and essential requirements
-        loop For each task step
-            I->>I: Decide what this step needs
-            opt Supporting files are needed
-                I->>R: Access the relevant file or helper
-                alt Guidance
-                    R->>R: Read a reference
-                else Template or other material
-                    R->>R: Use an asset in the output
-                else Repeatable code step
-                    R->>R: Run a script with available tools and permissions
-                end
-                R-->>I: Return guidance, material, or script results
-            end
-            I->>I: Carry out the step and check its result
-        end
-        I->>I: Return the output and unresolved problems
+    subgraph instructions["Level 2: Instructions — loaded when selected"]
+        H["Read the selected SKILL.md"]
+        I{"Does the next step need<br/>supporting files?"}
+        N["Carry out the step<br/>and check its result"]
+        O{"More work needed?"}
+        P(["Return output and unresolved problems"])
+        H --> I
+        I -->|No| N
+        N --> O
+        O -->|Yes| I
+        O -->|No| P
     end
+
+    subgraph resources["Level 3: Supporting resources — accessed as needed"]
+        R{"What does this step need?"}
+        J["Read a reference"]
+        K["Use an asset in the output"]
+        L["Run a script with available<br/>tools and permissions"]
+        R -->|Guidance| J
+        R -->|Template or other material| K
+        R -->|Repeatable code step| L
+    end
+
+    D -->|Yes: load full instructions| H
+    I -->|Access only the needed resource| R
+    J -->|Guidance| N
+    K -->|Material| N
+    L -->|Script results| N
+
+    style metadata fill:#646464,color:#fff
+    style instructions fill:#646464,color:#fff
+    style resources fill:#646464,color:#fff
 ```
 
 Progressive disclosure keeps the agent from reading every instruction and supporting file before it knows what the task needs. Think of browsing a library: first read the catalog entry, then open the relevant book, then turn to the chapters you need. Skills use the same idea to save space in the model's context—the information it can work with at one time. [Specification: progressive disclosure](https://agentskills.io/specification#progressive-disclosure)
