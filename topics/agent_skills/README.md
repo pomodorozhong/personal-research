@@ -74,6 +74,22 @@ A skill is also distinct from a tool. Instructions can tell an agent how to use 
 
 The OpenAI API has separate integration mechanics. Responses hosted shell can attach uploaded bundles via `tools[].environment.skills`; bundles have versions and support explicit version selection. The Agents API instead discovers skill directories registered through sandbox capability directories. Neither is equivalent to placing a folder in Codex's local scan path. The Responses guide describes skill instructions as user prompt input, so its priority statement should not be generalized into a hierarchy for every host. [OpenAI API skills guide](https://developers.openai.com/api/docs/guides/tools-skills)
 
+### Common storage and distribution choices
+
+The paths and products below were checked on 2026-09-29. They represent common approaches, not an exhaustive or ranked market survey.
+
+| Approach | Examples | Good fit | Trade-off |
+| --- | --- | --- | --- |
+| Project folder in Git | `.agents/skills/<name>/SKILL.md` | Team instructions versioned with the code; supported by Codex, Cursor, and GitHub Copilot | Check each target agent's discovery rules before assuming one path works everywhere |
+| Agent-specific folder | `.claude/skills/`, `.cursor/skills/`, `.github/skills/`; user-level folders such as `~/.claude/skills/`, `~/.cursor/skills/`, `~/.copilot/skills/`, or `~/.agents/skills/` | Product-specific features or personal skills | Different clients may not discover the same paths; copies can drift |
+| Private or public Git repository plus installer | A team skills repository installed from Git; Vercel's `npx skills add` accepts GitHub, local, and other Git sources and targets supported agents | Reusing skills across projects or agents; can install at project or user scope and symlink or copy | Keep a reviewed Git revision as your source of truth; do not treat installer success as a security review |
+| Managed product distribution | Cursor team marketplace; Claude Code plugins or workspace API skills; Codex plugins | Team catalogs, hosted/API environments, or managed rollout | Availability and sharing are product-specific; a skill uploaded to one surface may not sync to another |
+| Public discovery registry | [skills.sh](https://skills.sh/) | Finding community skills and seeing install activity | Discovery and install counts do not establish quality, safety, or fit; inspect code and instructions before use |
+
+For this repository, the simplest source of truth is the existing project skill tree under `.agents/skills/`, committed alongside its `SKILL.md`, references, and assets. Codex and Copilot support that project path, and Cursor also discovers it. Use a vendor-specific directory when a feature requires one, or install from a maintained private Git repository when the same skill must reach several projects. A registry or marketplace is a distribution layer; it need not replace the reviewed source repository. [Codex skill locations](https://developers.openai.com/codex/skills), [Claude Code locations and sharing](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), [Cursor skill paths](https://prod.cursor.com/help/customization/skills), [GitHub Copilot skill locations](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills), [Vercel skills CLI](https://github.com/vercel-labs/skills)
+
+Treat install counts as a discovery signal only. The `skills` CLI can symlink one canonical installation into agent directories or make copies; the registry describes its install telemetry as the basis for leaderboard counts, and says it cannot guarantee the quality or security of listed skills. For controlled reuse, review a skill, pin its source revision, and test the paths and behavior on every target client. [CLI storage and installation options](https://github.com/vercel-labs/skills), [skills.sh documentation](https://www.skills.sh/docs)
+
 ## 4. Choosing a document-generation architecture
 
 The following comparison is my engineering recommendation. Choose by reuse and failure modes, rather than the number of files a skill could contain.
@@ -246,7 +262,11 @@ After extraction, test consumers together. A formatting change that benefits inc
 - [Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra): September 11, 2026 guidance on scope, context, and decision boundaries.
 - [OpenAI API guide to skills](https://developers.openai.com/api/docs/guides/tools-skills): API integration, versioning, and security.
 - [Testing Agent Skills Systematically with Evals](https://developers.openai.com/blog/eval-skills): January 22, 2026 evaluation methodology; its historical `.codex/skills` examples differ from the current location documentation.
+- [Claude Platform Agent Skills overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview): current filesystem paths and product-specific sharing behavior.
+- [Cursor skills documentation](https://prod.cursor.com/help/customization/skills): supported project/global paths, nested project skills, and team marketplace.
+- [GitHub Copilot agent skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills): project and personal locations and GitHub CLI installation.
+- [Vercel `skills` CLI](https://github.com/vercel-labs/skills) and [skills.sh CLI docs](https://www.skills.sh/docs/cli): install from repositories, target agents, choose project/global scope, and copy or symlink skills.
 
 ## Method and limits
 
-This is a technical topic guide based on the primary sources above, consulted on 2026-09-28. Document architecture, example instructions, validation layers, and diagnostic recommendations are my synthesis. The example package was neither installed nor executed; this guide does not claim measured trigger rates, artifact rendering results, or a source-code audit of Codex's implementation. Host behavior is described from current documentation and can change across releases. Recheck the linked documentation before relying on specific locations, API attachment details, or optional policies.
+This is a technical topic guide based on the primary sources above, consulted on 2026-09-28 and 2026-09-29. Document architecture, storage recommendations, example instructions, validation layers, and diagnostic recommendations are my synthesis. The example package was neither installed nor executed; this guide does not claim measured trigger rates, artifact rendering results, or a source-code audit of Codex's implementation. Host behavior is described from current documentation and can change across releases. Recheck the linked documentation before relying on specific locations, API attachment details, or optional policies.
