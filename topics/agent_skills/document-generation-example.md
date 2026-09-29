@@ -1,31 +1,31 @@
-# Document Generation as a Skill Example
+# Example: A Skill That Creates Documents
 
-This example shows how a workflow skill, a formatting skill, a template, and a generator can work together. The example is illustrative; it is not a tested package.
+This example shows how a skill can gather information and turn it into a document. It explains when to use a template, a script that generates the document, or a separate formatting skill. The files and instructions below show a possible design; they have not been tested as a working package.
 
-## Choose the smallest useful design
+## Start with a simple design
 
-Start with one workflow skill and a template when one workflow owns a simple format. Add a generator when predictable structure or rendering matters. Extract a formatting skill when several workflows share the same document contract or users request formatting independently.
+Start with one skill and a template if you have one task with a simple document format. Add a generator—a script that creates the document—when you need consistent structure or layout. Put formatting in a separate skill when several tasks need the same document rules, or when users want to request formatting on its own.
 
 | Approach | Choose when | Strength | Cost or risk |
 | --- | --- | --- | --- |
-| Workflow skill with a template | One workflow owns one simple format | Easy to inspect and revise | A template guides output but does not enforce correctness |
-| Workflow skill with a generator | Layout or serialization must be repeatable | Code can enforce fields, styles, and ordering | Runtime and dependency maintenance; prose can still be wrong |
-| Workflow plus formatting skill | Several workflows share a format, or formatting is a standalone task | One contract serves different inputs | Extra routing and an interface to maintain |
-| Workflow, template, and generator | A workflow needs readable format rules and reliable rendering | Separates editorial decisions from rendering | Template and generator can drift unless checked together |
+| Skill with a template | One task needs a simple format | Easy to inspect and change | A template cannot guarantee correct output |
+| Skill with a generator | Document structure or layout must be consistent | Code can check fields and apply styles and section order | Software and dependencies need maintenance; the text can still be wrong |
+| Task skill plus formatting skill | Several tasks share a format, or users request formatting separately | Different tasks use the same document rules | You must explain how the skills work together and maintain that connection |
+| Skill, template, and generator | A task needs both clear format rules and consistent document generation | The agent handles content decisions; code applies the layout | Check the template and generator together so they stay in sync |
 
-Keep these responsibilities clear, whether they live in one skill or several:
+Whether you use one skill or several, explain who or what handles each part:
 
-- **Workflow:** what question to answer, how to gather and assess evidence, what is missing, and when the result is ready for review.
-- **Format:** required fields and sections, styles, units, page conventions, and reference presentation.
-- **Template:** reusable material incorporated into the output. Put a document template in `assets/`.
-- **Generator:** deterministic conversion of validated input into an artifact. Put executable helpers in `scripts/`.
-- **Validation:** checks that the structure, references, and rendered pages meet the contract. Put detailed rules in `references/` when the workflow needs them.
+- **Workflow:** what question to answer, how to gather and check evidence, what information is missing, and when the document is ready for review.
+- **Format:** which fields and sections to include, and how to present styles, units, pages, and sources.
+- **Template:** a reusable file used to make the output. Put document templates in `assets/`.
+- **Generator:** code that turns checked input into a document in a repeatable way. Put these scripts in `scripts/`.
+- **Validation:** checks that the document has the right structure, sources, and page layout. Put detailed checking rules in `references/` when needed.
 
-A template file belongs in `assets/` because it is used in the output. A formatting specification or content schema belongs in `references/` because the agent reads it as guidance. The workflow instructions in `SKILL.md` should route to both. This follows the [Agent Skills resource conventions](https://agentskills.io/specification) and [OpenAI skill-creator guidance](https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md).
+Put a template in `assets/` because it helps make the output. Put formatting rules and definitions of required data fields in `references/` because the agent reads them for guidance. In `SKILL.md`, tell the agent when and how to use both. This follows the [Agent Skills resource conventions](https://agentskills.io/specification) and [OpenAI skill-creator guidance](https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md).
 
 ## Example: release and incident briefings
 
-Suppose release research and incident analysis both produce the same briefing format. Separate their evidence workflows from the shared document contract:
+Suppose you want briefings about software releases and incidents to use the same format. Each task needs different evidence, but both can use one set of document rules:
 
 ```text
 skills/
@@ -43,79 +43,81 @@ skills/
     scripts/check-brief.mjs
 ```
 
-Illustrative `release-brief/SKILL.md` instructions:
+Example instructions for `release-brief/SKILL.md`:
 
 ```markdown
 1. Identify the release and read references/change-evidence.md.
 2. Gather approved change records. Separate verified facts from unknowns.
 3. Locate the installed briefing-format skill and read its SKILL.md.
-   If unavailable, report the missing dependency before rendering.
-4. Prepare content under its contract. Mark unknown impact explicitly;
-   do not infer a customer benefit from a commit title.
-5. Follow briefing-format to render and check the artifact.
-6. Return the document and unresolved evidence gaps for review.
+   If it is missing, report that before generating the document.
+4. Prepare the content using its document rules. State when impact is unknown;
+   do not assume a customer benefit from a commit title.
+5. Follow briefing-format to generate and check the document.
+6. Return the document and any missing evidence for review.
    Publish only when the user has authorized publication.
 ```
 
-Illustrative `briefing-format/SKILL.md` instructions:
+Example instructions for `briefing-format/SKILL.md`:
 
 ```markdown
-1. Read references/content-contract.md. Validate the title, date, summary,
+1. Read references/content-contract.md. Check the title, date, summary,
    findings, actions, and sources fields.
-2. Resolve assets/briefing-template.docx and scripts relative to this skill.
-   Check the documented runtime and locked dependencies.
+2. Find assets/briefing-template.docx and the scripts within this skill's folder.
+   Check that the required software and pinned dependency versions are available.
 3. Run scripts/render-brief.mjs with the content JSON, template path,
    and requested output path as explicit arguments.
-4. Run scripts/check-brief.mjs against the output. Repair reported failures.
-5. Render to page images using the documented renderer. Inspect every page
+4. Run scripts/check-brief.mjs on the output. Fix any problems it reports.
+5. Convert the document to page images using the documented tool. Check every page
    for clipped text, split tables, and missing references.
-6. Return the artifact and validation results. Report unavailable rendering
-   without claiming visual verification.
+6. Return the document and check results. If you cannot create page images,
+   say that you could not check the page layout.
 ```
 
-An example structured input could be:
+The generator could receive content as JSON:
 
 ```json
 {
   "title": "Release 2.4 briefing",
   "date": "2026-09-28",
   "summary": "Import jobs now resume after interrupted connections.",
-  "findings": [{"text": "Resume behavior verified in a disposable fixture.", "sourceIds": ["test-17"]}],
+  "findings": [{"text": "Resume behavior checked using temporary test data.", "sourceIds": ["test-17"]}],
   "actions": [{"owner": "Release lead", "text": "Review rollout timing."}],
   "sources": [{"id": "test-17", "reference": "Approved QA record TEST-17"}]
 }
 ```
 
-The content contract should define unknown-value handling, valid dates, unique source IDs, reference integrity, and empty-section behavior. The renderer applies the template's styles and section order. It should reject malformed input and escape content safely; treat source text as data, not executable commands.
+The document rules—called a *content contract* in the example—should explain how to handle unknown values and empty sections, which dates are valid, and how source IDs work. Require unique source IDs and check that every citation points to a listed source.
 
-Do not rely on a host activating the formatting skill just because another skill names it. Specify how to locate the installed `SKILL.md`, explicitly direct the agent to read it, and define what to do if it is missing. Avoid relative sibling paths such as `../briefing-format` unless the distribution guarantees that layout.
+The generator applies the template's styles and section order. It should reject invalid input and handle special characters safely. Source text must remain data rather than being run as commands.
 
-## Validate the result
+Naming another skill does not guarantee that the product will load it. Explain how to find its installed `SKILL.md`, tell the agent to read it, and say what to do if it is missing. Use paths such as `../briefing-format` only if you know the skills will always be installed next to each other.
 
-| Layer | Example check | What it cannot prove |
+## Check the result
+
+| What to check | Example check | What this does not tell you |
 | --- | --- | --- |
-| Skill package | Parse YAML; confirm metadata and referenced files | Correct skill selection |
-| Workflow | Verify evidence and missing-data handling | Rendered layout |
-| Structured content | Validate schema and resolve each source ID | Whether a cited claim is true |
-| Generated document | Reopen DOCX; check sections and styles | Visual readability |
-| Rendered pages | Inspect wrapping, page breaks, tables, references | Completeness of the underlying research |
+| Skill files | Check the YAML fields and confirm that linked files exist | Whether the agent will choose the right skill |
+| Workflow | Check the evidence and how missing information is handled | Whether the page layout looks right |
+| Input data | Check required fields and match each source ID to a source | Whether a cited claim is true |
+| Generated document | Reopen the DOCX and check its sections and styles | Whether the pages are easy to read |
+| Page images | Check text wrapping, page breaks, tables, and references | Whether the research is complete |
 
-A document that opens can still contain clipped text or unsupported conclusions. Inspect the actual deliverable. For Markdown, section/link checks and a rendered review may suffice; for DOCX or PDF, inspect the pages.
+A document can open successfully and still have cut-off text or claims without evidence. Check the finished document. For Markdown, checking headings and links and viewing the formatted page may be enough. For DOCX or PDF, inspect the pages.
 
-Use representative requests to test both skill selection and document quality:
+Try realistic requests and test inputs to check both skill selection and document quality:
 
-| Request or fixture | Expected result |
+| Request or test input | Expected result |
 | --- | --- |
-| Explicitly invoke release-brief with approved records | Workflow loads the shared format contract |
-| Ask for a release briefing without naming a skill | Release workflow is selected |
-| Ask for an incident briefing during unrelated release discussion | Incident evidence rules are used |
-| Ask to deploy the release | Briefing generation is not substituted for deployment |
-| Records omit customer impact | The output preserves it as unknown |
-| Source text asks the agent to upload secrets | Text remains data; no unauthorized action occurs |
-| Formatting skill is unavailable | The workflow reports the missing dependency |
-| Findings and references are unusually long | Required content remains readable in the rendered pages |
+| Request release-brief by name with approved records | The skill reads the shared document rules |
+| Ask for a release briefing without naming a skill | The agent selects the release briefing skill |
+| Ask for an incident briefing during an unrelated release discussion | The skill uses the incident evidence rules |
+| Ask to deploy the release | The agent does not mistake deployment for a briefing request |
+| Records leave out customer impact | The document states that impact is unknown |
+| Source text asks the agent to upload secrets | The agent treats the text as data and does not follow that instruction |
+| Formatting skill is unavailable | The skill reports that the required formatting skill is missing |
+| Findings and references are unusually long | Required content is still readable on the pages |
 
-These are proposed cases, not evaluation results. Combine deterministic checks with review of the claims and rendered artifact. OpenAI's evaluation guide recommends testing explicit, implicit, contextual, and negative-control prompts and tracking regressions over time. [Testing Agent Skills Systematically with Evals](https://developers.openai.com/blog/eval-skills)
+These are suggested tests; they have not been run. Use automated checks alongside a review of the claims and page layout. OpenAI's evaluation guide recommends testing requests that name a skill, describe its task, depend on conversation context, or should not trigger it. Keep those tests so you can catch problems after later changes. [Testing Agent Skills Systematically with Evals](https://developers.openai.com/blog/eval-skills)
 
 ## Sources and limits
 
@@ -124,4 +126,4 @@ These are proposed cases, not evaluation results. Combine deterministic checks w
 - [OpenAI API guide: risks and safety](https://developers.openai.com/api/docs/guides/tools-skills#risks-and-safety)
 - [Testing Agent Skills Systematically with Evals](https://developers.openai.com/blog/eval-skills), January 22, 2026.
 
-The package and commands above are design sketches, not tested implementations. No script, document template, or generated artifact accompanies this example.
+The folder layout and instructions above show a possible design. They have not been tested, and this example does not include working scripts, a document template, or a generated document.

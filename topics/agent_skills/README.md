@@ -1,22 +1,27 @@
 # Agent Skills
 
-Skills package reusable instructions and supporting files for agent workflows. This guide explains the format, how agents discover skills, where teams store and distribute them, and how to organize one concrete document-generation workflow.
+An agent skill is a folder of instructions and supporting files that helps an AI agent carry out a particular task. These guides explain what goes in that folder, how agents find and use skills, and how to share them. A document-generation example shows how the pieces fit together.
 
 ## What each guide answers
 
 - [Basics](basics.md)
-  - What belongs in a skill directory, and what are `SKILL.md`, `scripts/`, `references/`, and `assets/` for?
-  - Which parts of the format are portable, and which behaviors are specific to Codex?
-  - How do discovery and progressive disclosure work?
-  - How should a skill be authored, tested, secured, and improved over time?
-- [Storage and distribution](storage-and-distribution.md)
-  - What are common ways to store and distribute skills?
+  - What belongs in a skill folder, and what are `SKILL.md`, `scripts/`, `references/`, and `assets/` for?
+  - How does an agent find a skill and read its files as needed?
+  - How do you write, test, review, and improve a skill?
+- [How different products use skills](provider-differences.md)
+  - What do Codex, Claude Code, Gemini CLI, Cursor, and Copilot share?
+  - How do discovery, activation, permissions, and sharing differ?
+  - How do local skills differ from skills attached through an API?
+- [Storing and sharing skills](storage-and-distribution.md)
+  - What are common ways to store and share skills?
   - How can a public or private Git repository work with an installer?
-  - How do you install a skill for particular agents, and choose between symlinks and copies?
-  - When should a skill live in a project, and when should it be installed at user level?
+  - What would a small GitHub skill repository look like?
+  - How do you export a skill and install it for Codex?
+  - How do you install a skill for a particular agent, and choose between linked files and copies?
+  - When should a skill belong to one project, and when should it be available across your projects?
 - [Document generation example](document-generation-example.md)
-  - When should a workflow use a template, a generator, or a separate formatting skill?
-  - Where do the format contract, template, and helper scripts belong?
-  - How can the generated document be validated, including its rendered pages?
+  - When should a task use a template, a generator, or a separate formatting skill?
+  - Where should you put the document rules, template, and helper scripts?
+  - How do you check the document's contents and page layout?
 
-The [Agent Skills specification](https://agentskills.io/specification) defines the portable package format. Paths, invocation, installation, and sharing vary by product. Product details in these guides were checked on 2026-09-29; recheck the linked documentation before relying on them.
+The [Agent Skills specification](https://agentskills.io/specification) defines the shared file format. Each product has its own rules for finding, starting, installing, and sharing skills. Product details in these guides were checked on 2026-09-29. Check the linked documentation for later changes.
