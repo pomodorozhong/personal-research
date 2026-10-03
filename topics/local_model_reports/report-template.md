@@ -7,7 +7,14 @@ Keep table cells brief. Use one model card per recommended configuration.
 Include any modality with enough community attention and a credible local path:
 text, decisions, music, images, video, speech, embeddings, OCR, or other tasks.
 Older models qualify through continuing discussion/use. Label practical carryovers.
-If a category has no qualifying candidate, give one sentence explaining the gap.
+Create category sections only for notable categories in the report period.
+Use descriptive headings suited to those categories; do not require a fixed list.
+Mention a coverage gap in the appendix only when it affects interpretation.
+Prefix each Best for cell by output/task: 🖼️ images, 📹 video, 💬 text-output
+LLMs (including multimodal input), ⚖️ decisions, 🎵 music. For other categories,
+choose an appropriate symbol and define it; do not force them into these five.
+Prefix each Mac fit cell: ✅ Comfortable, ⚠️ Constrained, ⚠️ Experimental,
+❌ Outside budget. Retain the text label; emoji alone is insufficient.
 Keep exact sizes, benchmark details, licensing, and deployment caveats in the appendix.
 Link factual claims to direct sources near the claim; Sources is a navigation index.
 Replace every {placeholder}; delete unused rows, sections, and drafting instructions.
@@ -27,13 +34,13 @@ This format is for community shortlists; video chapter roundups need a full inve
 
 | Model / configuration | Best for | Why it matters now | Mac fit |
 | --- | --- | --- | --- |
-| [{Model + quant/runtime}](#model-slug) | {Task} | {Short reason} | {Fit label} |
+| [{Model + quant/runtime}](#model-slug) | {Task emoji} {Task} | {Short reason} | {Fit emoji} {Fit label} |
 
 **Attention:** Recurring = repeated discussion/use; Launch spike = substantial announcement attention; Carryover = older model with continuing use and a practical role. These describe this search sample, not a measured popularity ranking.
 
-**Mac fit:** Comfortable = credible complete path with headroom; Constrained = fits with specific limits; Experimental = plausible path with important verification gaps. Outside budget belongs in the watchlist. Every verdict states its evidence basis in the appendix.
+**Mac fit:** ✅ Comfortable = credible complete path with headroom; ⚠️ Constrained = fits with specific limits; ⚠️ Experimental = plausible path with important verification gaps; ❌ Outside budget = unsuitable for this machine. Outside-budget models belong in the watchlist. Every verdict states its evidence basis in the appendix.
 
-## Text and coding
+## {Notable category this period}
 
 {One-sentence category takeaway.}
 
@@ -47,23 +54,12 @@ This format is for community shortlists; video chapter roundups need a full inve
 
 [Community evidence]({direct thread URL}) · [Model/runtime]({primary source URL}) · [Deployment details](#model-slug-deployment)
 
-## Decisions and classification
-
-{Category takeaway, then repeat the model-card format above.}
-
-## Music generation
-
-{Category takeaway, then model cards. Distinguish songs with vocals from clips/loops.}
-
-## Image generation and editing
-
-{Category takeaway, then model cards. Distinguish generation from reference editing.}
-
-## Video generation
-
-{Category takeaway, then model cards. State short-clip limits and realistic speed uncertainty.}
-
-<!-- Add speech, OCR, embeddings, 3D, or other sections when qualifying evidence exists. -->
+<!-- Repeat the category section and model cards only for notable categories.
+Choose headings from the findings; there is no mandatory modality checklist.
+Describe the actual output/task: text-output LLMs may accept multimodal input;
+music may mean songs or loops; images may mean generation or editing;
+video entries should specify clip limits and speed uncertainty.
+-->
 
 ## Watchlist for a larger machine
 
