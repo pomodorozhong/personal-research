@@ -11,14 +11,16 @@ Create category sections only for notable categories in the report period.
 Use descriptive headings suited to those categories; do not require a fixed list.
 Mention a coverage gap in the appendix only when it affects interpretation.
 Prefix each Best for cell by output/task: 🖼️ images, 📹 video, 💬 text-output
-LLMs (including multimodal input), ⚖️ decisions, 🎵 music. For other categories,
-choose an appropriate symbol and define it; do not force them into these five.
+LLMs (including multimodal input), ⚖️ decisions, 🎵 music. Use ❓ for any new
+model type that does not fit these categories; retain a descriptive task label.
 Prefix each Mac fit cell: ✅ Comfortable, ⚠️ Constrained, ⚠️ Experimental,
 ❌ Outside budget. Retain the text label; emoji alone is insufficient.
 Keep exact sizes, benchmark details, licensing, and deployment caveats in the appendix.
 Link factual claims to direct sources near the claim; Sources is a navigation index.
 Replace every {placeholder}; delete unused rows, sections, and drafting instructions.
 This format is for community shortlists; video chapter roundups need a full inventory.
+Output reports under topics/local_model_reports/; relative links in this scaffold
+are relative to that output location, not this asset folder.
 -->
 
 # Local AI shortlist — {Month Year}

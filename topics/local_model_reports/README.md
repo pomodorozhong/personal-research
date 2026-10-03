@@ -4,7 +4,7 @@ Notes and shortlists for local models (Metal / MLX / llama.cpp / Ollama / audio 
 
 Shared hardware note: [Your real memory budget](./memory-budget.md).
 
-Reusable format: [Community shortlist template](./report-template.md), with a five-minute main report and deployment details in an appendix.
+Reusable format: [Community shortlist template](../../.agents/skills/ai-research-report/assets/local-community-shortlist-template.md), with a five-minute main report and deployment details in an appendix.
 
 ## Reports
 
