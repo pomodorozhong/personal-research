@@ -1,8 +1,10 @@
 # Report modes
 
-Choose a mode from the user's question and source material. A report may combine modes, but keep its primary question visible and use only the sections that help answer it. First reuse the structure of a relevant report already in the topic directory.
+Choose a mode from the user's question and source material. A report may combine modes, but keep its primary question visible and use only the sections that help answer it. Use the specialized template selected in SKILL.md when available; use relevant existing reports for context and other modes.
 
 ## Video or news roundup
+
+For the weekly `video-ai-news.md` series, use [the weekly video template](../assets/weekly-video-ai-news-template.md). Keep a concise main report and place the full chapter inventory and deployment evidence in the appendix.
 
 - Inventory each official chapter or listed item in source order; include timestamps when available.
 - In a compact table, distinguish releases with weights, hosted products, research results, infrastructure stories, and non-model news.

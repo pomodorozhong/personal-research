@@ -4,6 +4,8 @@ Notes and shortlists for local models (Metal / MLX / llama.cpp / Ollama / audio 
 
 Shared hardware note: [Your real memory budget](./memory-budget.md).
 
+Reusable formats: [Community shortlist](../../.agents/skills/ai-research-report/assets/local-community-shortlist-template.md) and [weekly AI video report](../../.agents/skills/ai-research-report/assets/weekly-video-ai-news-template.md). Both keep the main report concise and deployment evidence in an appendix; weekly reports also retain every video chapter.
+
 ## Reports
 
 | Report | Window | Focus |
