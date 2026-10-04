@@ -22,7 +22,7 @@ Produce a complete, reviewable report that follows the relevant topic's existing
 - **Local-model community shortlists:** use [the approved community shortlist template](assets/local-community-shortlist-template.md), with task-based cards, categories chosen from the period’s findings, and a technical appendix.
 - **Other report modes:** reuse a suitable topical format or use [the generic template](assets/report-template.md) as a fallback.
 
-Both specialized templates define the approved task/fit emojis, including 🗣️ for speech recognition/transcription models and ❓ for model types outside the defined categories. Keep source-video coverage separate from community-attention selection.
+Both specialized templates define the approved task/fit emojis, including ❓ for model types outside the defined categories. Keep source-video coverage separate from community-attention selection.
 
 ## Pull request preference
 

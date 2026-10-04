@@ -8,13 +8,10 @@ Include any modality with enough community attention and a credible local path:
 text, decisions, music, images, video, speech, embeddings, OCR, or other tasks.
 Older models qualify through continuing discussion/use. Label practical carryovers.
 Create category sections only for notable categories in the report period.
-Use short task/category names for headings, such as "Speech recognition and
-transcription" or "Research synthesis"; do not require a fixed list. Put
-recommendations and caveats in the takeaway text below the heading.
+Use descriptive headings suited to those categories; do not require a fixed list.
 Mention a coverage gap in the appendix only when it affects interpretation.
 Prefix each Best for cell by output/task: 🖼️ images, 📹 video, 💬 text-output
-LLMs (including multimodal input), ⚖️ decisions, 🎵 music, 🗣️ speech recognition/
-transcription. Use ❓ for any new
+LLMs (including multimodal input), ⚖️ decisions, 🎵 music. Use ❓ for any new
 model type that does not fit these categories; retain a descriptive task label.
 Prefix each Mac fit cell: ✅ Comfortable, ⚠️ Constrained, ⚠️ Experimental,
 ❌ Outside budget. Retain the text label; emoji alone is insufficient.
@@ -45,7 +42,7 @@ are relative to that output location, not this asset folder.
 
 **Mac fit:** ✅ Comfortable = credible complete path with headroom; ⚠️ Constrained = fits with specific limits; ⚠️ Experimental = plausible path with important verification gaps; ❌ Outside budget = unsuitable for this machine. Outside-budget models belong in the watchlist. Every verdict states its evidence basis in the appendix.
 
-## {Task or category}
+## {Notable category this period}
 
 {One-sentence category takeaway.}
 
