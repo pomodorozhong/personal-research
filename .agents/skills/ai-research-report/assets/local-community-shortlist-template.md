@@ -11,7 +11,8 @@ Create category sections only for notable categories in the report period.
 Use descriptive headings suited to those categories; do not require a fixed list.
 Mention a coverage gap in the appendix only when it affects interpretation.
 Prefix each Best for cell by output/task: 🖼️ images, 📹 video, 💬 text-output
-LLMs (including multimodal input), ⚖️ decisions, 🎵 music. Use ❓ for any new
+LLMs (including multimodal input), ⚖️ decisions, 🎵 music, 🗣️ speech recognition/
+transcription. Use ❓ for any new
 model type that does not fit these categories; retain a descriptive task label.
 Prefix each Mac fit cell: ✅ Comfortable, ⚠️ Constrained, ⚠️ Experimental,
 ❌ Outside budget. Retain the text label; emoji alone is insufficient.

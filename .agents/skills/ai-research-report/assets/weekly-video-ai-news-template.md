@@ -2,28 +2,21 @@
 AUTHORING NOTES — remove this comment from a finished report.
 
 Use for topics/local_model_reports/report-YYYY-MM-DD-video-ai-news.md.
-Keep the main report a five-minute read; move the complete chapter inventory,
-component budgets, runtime evidence, and detailed source notes into the appendix.
+Keep the main report a five-minute read; move the complete chapter inventory, component budgets, runtime evidence, and detailed source notes into the appendix.
 Inspect the official video title, publication date, description, and chapters.
-Account for every official chapter in source order, including hosted services,
-research, tools, hardware, editorial transitions, and items that cannot run locally.
-If official chapters are unavailable, identify how the inventory was constructed
-and disclose incomplete coverage. Never invent timestamps or transcript claims.
-Release recency and Reddit attention are not eligibility filters for this mode:
-the source video defines coverage. Verify its claims against primary sources.
+Account for every official chapter in source order, including hosted services, research, tools, hardware, editorial transitions, and items that cannot run locally.
+If official chapters are unavailable, identify how the inventory was constructed and disclose incomplete coverage. Never invent timestamps or transcript claims.
+Release recency and Reddit attention are not eligibility filters for this mode: the source video defines coverage. Verify its claims against primary sources.
 Highlight only worthwhile local candidates; do not fill a quota or invent a winner.
-Category headings follow notable findings; do not require fixed modalities.
-Best for emoji: 🖼️ image output/editing, 📹 video output, 💬 text-output LLMs
-(including multimodal input), ⚖️ decisions, 🎵 music, ❓ other/new model types.
+Choose card-section categories from notable findings; do not require fixed modalities.
+Use short task/category names for headings, such as "Speech recognition and transcription" or "Research synthesis". Put recommendations and caveats in the takeaway text below the heading.
+Best for emoji: 🖼️ image output/editing, 📹 video output, 💬 text-output LLMs(including multimodal input), ⚖️ decisions, 🎵 music, 🗣️ speech recognition/transcription, ❓ other/new model types.
 Mac fit emoji: ✅ Comfortable, ⚠️ Constrained, ⚠️ Experimental, ❌ Outside budget.
-In the chapter inventory, ❌ Hosted means no verified local weights; use — N/A
-for non-model stories, and ⚠️ Unverified when evidence cannot establish fit.
+In the chapter inventory, ❌ Hosted means no verified local weights; use — N/A for non-model stories, and ⚠️ Unverified when evidence cannot establish fit.
 Distinguish a local application/harness from its remote model dependencies.
 Keep text labels with emojis. API access from a Mac is not local inference.
-Cite important claims near their evidence. Use exact checkpoint/runtime versions
-when known; verify the entire pipeline and label measured versus inferred fit.
-Only include executable setup commands when checked against the chosen runtime;
-otherwise link to documentation and describe the suggested starting configuration.
+Cite important claims near their evidence. Use exact checkpoint/runtime versions when known; verify the entire pipeline and label measured versus inferred fit.
+Only include executable setup commands when checked against the chosen runtime; otherwise link to documentation and describe the suggested starting configuration.
 Replace all {placeholders}; remove unused drafting sections and comments.
 Relative links below are relative to the output report directory, not this asset.
 -->
@@ -46,7 +39,7 @@ Relative links below are relative to the output report directory, not this asset
 
 **Mac fit:** ✅ Comfortable = credible path with headroom; ⚠️ Constrained = specific limits required; ⚠️ Experimental = important verification gaps; ❌ Outside budget = unsuitable for local inference on this machine. Evidence basis is recorded in the appendix.
 
-## {Notable category or development this week}
+## {Task or category}
 
 {One-sentence takeaway. Repeat this section only for findings worth highlighting.}
 
@@ -67,11 +60,6 @@ research, or tools. State their relevance and access limits. Omit when unnecessa
 every remaining chapter is still covered in the appendix.}
 
 - **{Item}:** {What changed and why it matters; local/hosted/research distinction.} [Source]({Primary URL})
-
-## What changed since the previous weekly report
-
-{Up to three evidence-backed changes to recommendations, runtime support, or
-feasibility. Link the previous weekly report. Omit if no meaningful comparison exists.}
 
 ## Technical appendix
 
