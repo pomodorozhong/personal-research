@@ -12,13 +12,13 @@ Start with **Whistle for short speech commands**, **Phonon-2 for English transcr
 
 | Model / configuration | Best for | Why it matters this week | Mac fit |
 | --- | --- | --- | --- |
-| [Whistle `.cact`, native CPU engine](#whistle) | ❓ Speech recognition and speech embeddings | 16.9 MB deployment file; seven languages; can feed Needle tool calls | ✅ Comfortable |
-| [Phonon-2, MLX](#phonon-2) | ❓ English transcription and dictation | 164 MB compressed download; published Apple-silicon path | ✅ Comfortable |
+| [Whistle `.cact`, native CPU engine](#whistle) | 🗣️ Speech recognition and speech embeddings | 16.9 MB deployment file; seven languages; can feed Needle tool calls | ✅ Comfortable |
+| [Phonon-2, MLX](#phonon-2) | 🗣️ English transcription and dictation | 164 MB compressed download; published Apple-silicon path | ✅ Comfortable |
 | [AstaBrief-8B, Q4_K_M GGUF](#astabrief-8b) | 💬 Cited research synthesis | Qwen3-8B derivative specialized for reports from retrieved excerpts | ⚠️ Constrained |
 
 **Mac fit:** ✅ Comfortable = credible path with headroom; ⚠️ Constrained = specific limits required; ⚠️ Experimental = important verification gaps; ❌ Outside budget = unsuitable in the checked configuration. These are deployment judgments, not M2 measurements. The shared budget is approximately **8–11 GB for the entire inference process**, including weights, caches, and activations.
 
-## Small speech models are the practical highlight
+## Speech recognition and transcription
 
 These models recognize speech. Neither generates music or supplies an ElevenLabs-style speaking voice, and neither documents Mandarin support in the released configuration.
 
@@ -44,7 +44,7 @@ These models recognize speech. Neither generates music or supplies an ElevenLabs
 
 [Video chapter](https://www.youtube.com/watch?v=lHmZoRHMZyM&t=293s) · [Runtime](https://github.com/fermionresearch/phonon) · [Deployment details](#phonon-2-deployment)
 
-## A report writer worth testing with your own sources
+## Research synthesis
 
 ### AstaBrief-8B
 

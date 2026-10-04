@@ -12,9 +12,13 @@ and disclose incomplete coverage. Never invent timestamps or transcript claims.
 Release recency and Reddit attention are not eligibility filters for this mode:
 the source video defines coverage. Verify its claims against primary sources.
 Highlight only worthwhile local candidates; do not fill a quota or invent a winner.
-Category headings follow notable findings; do not require fixed modalities.
+Choose card-section categories from notable findings; do not require fixed modalities.
+Use short task/category names for headings, such as "Speech recognition and
+transcription" or "Research synthesis". Put recommendations and caveats in the
+takeaway text below the heading.
 Best for emoji: 🖼️ image output/editing, 📹 video output, 💬 text-output LLMs
-(including multimodal input), ⚖️ decisions, 🎵 music, ❓ other/new model types.
+(including multimodal input), ⚖️ decisions, 🎵 music, 🗣️ speech recognition/
+transcription, ❓ other/new model types.
 Mac fit emoji: ✅ Comfortable, ⚠️ Constrained, ⚠️ Experimental, ❌ Outside budget.
 In the chapter inventory, ❌ Hosted means no verified local weights; use — N/A
 for non-model stories, and ⚠️ Unverified when evidence cannot establish fit.
@@ -46,7 +50,7 @@ Relative links below are relative to the output report directory, not this asset
 
 **Mac fit:** ✅ Comfortable = credible path with headroom; ⚠️ Constrained = specific limits required; ⚠️ Experimental = important verification gaps; ❌ Outside budget = unsuitable for local inference on this machine. Evidence basis is recorded in the appendix.
 
-## {Notable category or development this week}
+## {Task or category}
 
 {One-sentence takeaway. Repeat this section only for findings worth highlighting.}
 
