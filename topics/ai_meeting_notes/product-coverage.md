@@ -1,8 +1,8 @@
 # Product coverage
 
-[Paid baseline](paid-baseline.md) · [Feature catalogue](paid-baseline.md#feature-catalogue) · [Topic and roadmap](README.md)
+[Paid baseline](paid-baseline.md) · [Feature catalogue](feature-catalogue.md) · [Topic and roadmap](README.md)
 
-Research date: **2026-10-06**, Asia/Taipei. Compare Notion AI meeting notes, Amie, and Spellar AI against the 22 stable feature IDs defined in the [baseline catalogue](paid-baseline.md#feature-catalogue). Product output quality has not been tested.
+Research date: **2026-10-06**, Asia/Taipei. Compare Notion AI meeting notes, Amie, and Spellar AI against the 22 stable feature IDs defined in the [Feature catalogue](feature-catalogue.md). Product output quality has not been tested. This comparison is retained as background; subsequent work uses the Feature catalogue directly and does not require paid-product parity or resolving vendor gaps.
 
 **D** = behavior described in official operational documentation or release notes. **A** = advertised or displayed in a public demo. **U** = not established by the inspected evidence. These describe evidence strength, not quality ratings. A “U” is not proof that the feature is absent. Product-specific restrictions in the [language and processing table](paid-baseline.md#language-platform-and-processing-boundaries) still apply to the rows below.
 

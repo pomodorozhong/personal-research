@@ -3,13 +3,13 @@
 | Field | Value |
 | --- | --- |
 | Research date | **2026-10-06**, Asia/Taipei |
-| Question | What observable features and subscription costs should local alternatives be evaluated against? |
+| Question | What features, prices, and processing boundaries do the reviewed meeting assistants document? |
 | Products | Notion AI meeting notes, Amie, Spellar AI |
 | Evidence | Official documentation, pricing controls, release notes, policies, and public product examples |
-| Status | **Phase 1 ready for review**; feature priorities pending; no paid-product trial or local benchmark |
-| Next step | [Review guide](review-guide.md#1-choose-the-features-that-matter), then open-source pipeline mapping |
+| Status | **Background research**; the feature catalogue is accepted; no paid-product trial or local benchmark |
+| Next step | [Feature catalogue](feature-catalogue.md), then [pipeline investigation](README.md#three-phase-roadmap) |
 
-The subscriptions bundle transcription and summaries with the surrounding workflow: finding past meetings, connecting calendar context, editing notes, sharing results, and delivering follow-ups. The catalogue below makes each behavior a separate target for later investigation. It does not establish accuracy or local reproducibility.
+The subscriptions bundle transcription and summaries with the surrounding workflow: finding past meetings, connecting calendar context, editing notes, sharing results, and delivering follow-ups. The separate [feature catalogue](feature-catalogue.md) defines the behaviors to investigate. The remaining work uses those definitions as its reference; paid-product matching and subscription selection are outside the active scope.
 
 ## Prices and what the subscription buys
 
@@ -56,36 +56,7 @@ For saved data, Notion offers optional local retention of the recorder's ten mos
 
 ## Feature catalogue
 
-The following **authored evaluation definitions** provide the common contract for Phases 2 and 3. They are not claims that every paid product satisfies every row. Unknown deadlines, names, or decisions must remain unknown in reference outputs instead of being filled by guesswork.
-
-Keep IDs unchanged. Speaker **separation** means distinguishing voice turns; **identity** means attaching the correct person's name. Keyword search finds matching text; semantic questions require finding relevant evidence and composing an answer.
-
-| ID | Feature | Observable input → output | Boundary or failure to check |
-| --- | --- | --- | --- |
-| MN-01 | Meeting capture | Mic and remote-call audio → complete recording or transcription input | Headsets, shared microphones, app compatibility, device switches, missing audio |
-| MN-02 | Existing-file import | A saved audio file → transcript and notes | Accepted formats, size/duration limits, duplicate imports |
-| MN-03 | Recording controls and disclosure | Start/pause/stop commands → clear recording state and participant disclosure | Paused speech must stay excluded; no bot does not establish participant awareness |
-| MN-04 | Transcription and language | English, Chinese, or mixed speech → faithful original-language text | Technical terms, negation, script, translation, code switching, live backlog |
-| MN-05 | Time navigation and replay | A transcript segment → timestamp and corresponding audio | Segment versus word timing, retained audio, exported time links |
-| MN-06 | Speaker separation | Multi-speaker audio → consistent speaker-labelled turns | Overlap, shared mic, merged/split speakers; anonymous labels are acceptable only for this ID |
-| MN-07 | Named speakers | Speaker turns and identity context → correct names | Calendar attendees alone do not prove who spoke; manual correction may be needed |
-| MN-08 | Meeting summary | Transcript and optional context → concise topics and key facts | Omitted facts, invented claims, correction effort, latency |
-| MN-09 | Decisions | Transcript → explicit decisions with supporting evidence | Distinguish accepted decisions from proposals, rejected ideas, and open questions |
-| MN-10 | Action items | Commitments → task, owner, and deadline when stated | Wrong attribution; invented owners/dates; unassigned actions must stay unassigned |
-| MN-11 | Customization and context | Agenda, vocabulary, instructions, or template → focused transcript/notes | Vocabulary bias differs from summary formatting; plan restrictions matter |
-| MN-12 | Correction and regeneration | Corrected transcript/name or new instructions → updated saved content | Check whether summaries, actions, citations, and downstream tasks become stale |
-| MN-13 | Meeting history | Saved meetings and metadata → persistent browsable archive | Organization, retention, deduplication, cross-device access |
-| MN-14 | Keyword search | A name or phrase → matching meetings/passages | Search transcript versus summary only; distinguish search from AI answers |
-| MN-15 | Questions with evidence | Question plus one/multiple meetings → answer with traceable sources | Scope, wrong sources, unsupported answers, “not found” handling |
-| MN-16 | Portable export | Selected transcript/notes/audio → usable files | Text, speakers, timestamps, citations, attachments, and formatting can be lost |
-| MN-17 | Sharing and access | Saved notes plus recipients → controlled read/edit access | Public link versus private access; revoke links; avoid accidental broad sharing |
-| MN-18 | Calendar context | Event and participants → linked meeting, reminder, and capture entry point | Ad hoc calls, recurring events, multiple calendars, wrong event attribution |
-| MN-19 | Integration delivery | Notes/actions plus destination → correct external document/task | Authentication, retries, duplicates, plan gates, destination subscription |
-| MN-20 | Processing and retention control | Chosen inference/storage settings → known local/cloud boundary and deletion behavior | Audio and text differ; API keys do not imply offline inference; verify deletion separately |
-| MN-21 | Follow-up automation | Reviewed actions/context → scheduled tasks or draft follow-up | Extracting a task differs from assigning, scheduling, or sending it |
-| MN-22 | Cross-meeting recaps | Several meetings over a period → digest and commitment changes | Stale commitments, contradictory meetings, missing provenance |
-
-See [Product coverage](product-coverage.md) for the feature-by-feature comparison of documented behavior, advertised capabilities, and unresolved gaps.
+The accepted feature scope now lives in the standalone [Feature catalogue](feature-catalogue.md). Subsequent work follows its definitions and examines pipeline dependencies, failures, and resource tradeoffs. This paid-product research is background material.
 
 ## Public examples and their limits
 
@@ -93,23 +64,23 @@ See [Product coverage](product-coverage.md) for the feature-by-feature compariso
 - **Amie:** The May 2025 changelog demonstrates labelling a speaker and asking what that person said; later entries add action grouping and shareable timestamps. These examples connect identity, retrieval, and follow-up behavior, but contain no shared audio/reference-transcript test. [Changelog](https://amie.so/changelog/embed)
 - **Spellar:** The homepage's sample roadmap meeting exposes Summary, Transcript, and Actions tabs. Observed outputs include timestamped named turns, separate decisions, and owner-labelled tasks; its sample chat shows a meeting/time citation. These are curated public examples, not evidence of generation accuracy, reliable deadlines, or actual audio alignment. [Interactive example](https://www.spellar.ai/)
 
-## Gaps to resolve at the Phase 1 checkpoint
+## Limits of the background comparison
 
-| Gap | Affected IDs | Consequence and next evidence |
+These unresolved details limit what the paid comparison establishes. They are retained for context and do not gate the pipeline investigation or local measurements.
+
+| Unresolved detail | Affected IDs | Limit on the background evidence |
 | --- | --- | --- |
-| Chinese-English speech and speaker naming | MN-04, MN-06, MN-07 | Notion documents language/setup limits; Amie claims mixed support; Spellar's engine-specific Chinese support is unestablished. Confirm required language/script and group-call behavior, then obtain exact vendor guidance or shared-fixture trials. |
-| Transcript navigation/export detail | MN-05, MN-12, MN-16 | Confirm retained audio, timestamp granularity, edit propagation, and whether exported notes preserve transcript, labels, and citations. General export support is insufficient evidence. |
-| Exact action ownership and deadlines | MN-09, MN-10, MN-21 | Separate proposals from decisions, task owners from speakers, and deadlines from estimated durations. Shared-fixture trials are required to assess quality. |
-| Live and long meetings | MN-01, MN-04, MN-08 | Amie's August 2026 changelog calls live transcription experimental. Verify release availability and per-session limits; “unlimited” subscriptions do not establish backlog, reliability, or latency. |
-| Pricing and delivery route | MN-11, MN-19, MN-21 | Confirm existing subscriptions, legacy entitlements, advanced integration gates, optional AI credits, API charges, and destination-service costs. |
-| Fully local behavior and storage | MN-20 | Spellar advertises local ASR while cloud AI/text storage is documented. Its older mobile blog describes cloud transcription; the present pages and policies describe selectable engines. Verify the chosen build/settings and any fallback before calling a configuration fully local. |
-| Documentation inconsistencies | MN-02, MN-13, MN-17 | Notion's upload instructions list audio formats and exclude video, while its storage section mentions video uploads. Amie plan names vary. Spellar's trial/refund routes vary. Preserve these gaps rather than merging conflicting statements into a capability claim. |
+| Chinese-English speech and speaker naming | MN-04, MN-06, MN-07 | Notion documents language/setup limits; Amie claims mixed support; Spellar's engine-specific Chinese support is unestablished. Shared-fixture quality was not tested. |
+| Transcript navigation/export detail | MN-05, MN-12, MN-16 | Audio retention, timestamp granularity, edit propagation, and preservation of labels/citations in exports are not established across the products. |
+| Exact action ownership and deadlines | MN-09, MN-10, MN-21 | The examples do not establish reliable separation of proposals, decisions, owners, and stated deadlines. |
+| Live and long meetings | MN-01, MN-04, MN-08 | Amie's August 2026 changelog calls live transcription experimental. Release availability, backlog, reliability, and per-session limits remain untested. |
+| Pricing and delivery route | MN-11, MN-19, MN-21 | Legacy entitlements, advanced integration gates, optional credits, API charges, and destination-service costs vary by account and route. |
+| Fully local behavior and storage | MN-20 | Spellar advertises local ASR while cloud AI/text storage is documented. Its older mobile blog and current engine choices describe different processing configurations; build/settings and fallback behavior were not tested. |
+| Documentation inconsistencies | MN-02, MN-13, MN-17 | Notion's upload instructions exclude video while its storage section mentions it. Amie plan names and Spellar trial/refund routes vary across pages. |
 
-Phase 2 can explain how a feature would be reproduced even when paid quality remains untested. Material uncertainty about **what an essential feature must do** should be resolved first; unknown paid accuracy remains an explicit limit on later parity claims.
+### Scope decision
 
-### Priority decisions
-
-**Pending user review.** No essential/useful/unnecessary labels have been assigned on the reader's behalf. Use the [review guide](review-guide.md#1-choose-the-features-that-matter); record accepted priorities here with feature IDs, required behavior, acceptable compromises, and any source gaps to resolve. Phase 2 has not started.
+The Feature catalogue is sufficient and accepted as the reference for the remaining work. Phase 2 examines how pipeline choices affect those features; Phase 3 measures their quality and resource demands on the target Mac. No further paid-product comparison or parity assessment is required. See the [current roadmap](README.md#three-phase-roadmap).
 
 ## Sources
 
@@ -145,4 +116,4 @@ All sources below are primary vendor pages or the developer's App Store listing,
 
 Read official pages and release notes, inspected monthly/yearly browser controls, and switched the public Spellar demo between its summary, transcript, and action views. Arithmetic is shown as calculated cost scenarios. Documentation and curated examples establish intended interfaces and advertised behavior; they do not establish product quality or latency.
 
-No subscription was bought, no account settings were changed, and no meeting audio was submitted. No apps/models were installed or benchmarked on the target Mac. Unpublished limits, plan discrepancies, code-switching accuracy, permission behavior, export fidelity, deadline extraction, and end-to-end parity remain unverified. The later [pipeline investigation and measurement plan](README.md#three-phase-roadmap) will preserve these evidence boundaries.
+No subscription was bought, no account settings were changed, and no meeting audio was submitted. No apps/models were installed or benchmarked on the target Mac. Unpublished limits, plan discrepancies, code-switching accuracy, permission behavior, export fidelity, deadline extraction, and paid-product output quality remain unverified. These limits belong to this background comparison; the [pipeline investigation and measurement plan](README.md#three-phase-roadmap) uses the accepted catalogue as its reference.

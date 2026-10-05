@@ -1,36 +1,34 @@
 # Reviewing the meeting-notes investigation
 
-[Topic and roadmap](README.md) · [Paid baseline](paid-baseline.md) · [Product coverage](product-coverage.md)
+[Topic and roadmap](README.md) · [Feature catalogue](feature-catalogue.md) · [Pipeline impact map](README.md#pipeline-steps-and-feature-impact)
 
-Each review uses a concrete document or runnable result. Technical checks remain with the implementer. A review is finished when material feedback has been addressed, rather than simply when the document has been read.
+Each review uses a concrete document or runnable result. Technical checks remain with the implementer. A review is finished when material feedback has been addressed.
 
-## 1. Choose the features that matter
+## 1. Feature scope is confirmed
 
-**Ready now:** the [paid baseline](paid-baseline.md), with costs and `MN-01` through `MN-22`, and the separate [product coverage comparison](product-coverage.md). Allow roughly **15 minutes**.
+The [Feature catalogue](feature-catalogue.md), `MN-01` through `MN-22`, is sufficient and accepted. Phase 1 is complete. The next work explains how pipeline steps affect the features we can obtain and the compromises involved. Further paid-product comparison and vendor-gap resolution are outside the scope.
 
-Think of one real meeting you want to improve: who attends, whether it mixes Chinese and English, whether you wear a headset, and where its notes should end up. No recording or purchase is needed for this review.
+Use the catalogue's input/output definitions and failure cases as the reference throughout the investigation. Keep every ID visible even when a feature needs additional application work, depends on an external service, or cannot be supported by the selected pipeline. Any later change to expected behavior should name the affected ID and explain why it changes the investigation.
 
-1. Read the pricing and language tables, then scan the feature catalogue and product coverage comparison.
-2. Mark features **essential**, **useful**, or **unnecessary** for that meeting. Identify any capability the catalogue misses.
-3. Choose the gaps that must be resolved before pipeline research. In particular, decide whether named speakers in bilingual group calls, reliable deadlines, and a fully local workflow are requirements.
-4. State which existing subscriptions should be used for the incremental-cost comparison, if any. The report gives conditional examples; it does not assume you hold a subscription.
+## 2. Review pipeline effects and experiment choices
 
-Send feedback as `feature ID / priority / expected behavior / gap or correction / impact`. For example: `MN-07 / essential / correctly name three speakers in a Chinese-English call / product support is unclear / wrong owners make actions unusable`.
+**Prepared after Phase 2:** `open-source-pipelines.md`, with source revisions, stage/artifact diagrams, a stage-to-feature map, and a dependency chain for every feature ID. Allow roughly **15–20 minutes**.
 
-The implementer records priorities and addresses material source gaps in the baseline. **Phase 2 waits for this review.** Independent citation corrections and documentation cleanup can continue.
+1. Follow a real meeting through capture, segmentation, transcription, attribution, assembly, summarization, storage, retrieval, and delivery. Check which artifacts each step produces and which features depend on them.
+2. Inspect the choices that change feature availability or reliability: language support, chunk boundaries, speaker identity, context limits, evidence links, correction propagation, and local/cloud processing.
+3. Check how upstream failures reach downstream features. For example, does a wrong transcript or speaker label explain an incorrect action owner, or does the extraction step introduce the error?
+4. Review missing application work and external dependencies for history, calendars, sharing, integrations, and follow-ups. Select experiments whose results would change the adopt/customize/build decision.
 
-## 2. Review reproduction recipes
+Send feedback as `stage / affected feature IDs / expected behavior / failure or tradeoff / measurement priority`. For example: `speaker identity / MN-07, MN-10 / name three speakers in a Chinese-English call / anonymous labels leave owners unresolved / measure identity accuracy and manual correction effort`.
 
-**Prepared after Phase 2:** `open-source-pipelines.md`, with source revisions, diagrams, and a row for every feature ID. Allow roughly **15–20 minutes**.
+The implementer resolves missing dependency mappings and updates the experiment selection. **Phase 3 waits for the pipeline findings and experiment review.** Independent source corrections can continue.
 
-Read the recipes for essential features first. Notice which require several models, manual speaker naming, additional application code, or an external service. Check whether those compromises still satisfy your expected behavior. Rank the measurements that could change the adopt/customize/build decision.
+## 3. Inspect feature outputs and resource demands
 
-Use the same feedback format, adding `acceptable compromise / measurement priority`. The implementer resolves missing feature mappings and updates the benchmark selection. **Phase 3 waits for the recipe and benchmark review.** Independent source corrections can continue.
+**Prepared after Phase 3:** `local-measurements.md`, reference and generated outputs, intermediate artifacts, resource results, and a representative combined workflow. Allow roughly **20–30 minutes**.
 
-## 3. Inspect outputs and resource demands
+Inspect one Chinese-English excerpt and one long meeting. Check speakers, decisions, owners, deadlines, omitted facts, invented claims, and source links against the supplied references and catalogue definitions. Compare intermediate artifacts to locate the stage responsible for an error. Inspect how a changed model, chunk size, or processing schedule affects both feature outcomes and resource use.
 
-**Prepared after Phase 3:** `local-measurements.md`, reference and generated outputs, resource results, and a representative combined workflow. Allow roughly **20–30 minutes**.
+Try the selected workflow alongside your usual meeting app, including a headset change, and notice call quality, responsiveness, and correction effort. Check the coverage matrix for features that still require manual work, application development, or an external service.
 
-Inspect one Chinese-English excerpt and one long meeting. Check named speakers, decisions, owners, deadlines, omitted facts, and invented claims against the supplied references. Try the selected workflow alongside your usual meeting app, including a headset change, and notice call quality, responsiveness, and correction effort.
-
-Use `feature ID / expected result / actual result / impact / acceptable or needs work`. The implementer reruns affected measurements and updates the recommendation when feedback exposes a material problem. Decide whether to adopt, customize, or build, and whether the evidence is sufficient to resolve [#167](https://github.com/pomodorozhong/rabbit-holes/issues/167).
+Use `stage / feature ID / expected result / actual result / impact / acceptable or needs work`. The implementer reruns affected measurements and updates the recommendation when feedback exposes a material problem. Decide whether to adopt, customize, or build, and whether the evidence is sufficient to resolve [#167](https://github.com/pomodorozhong/rabbit-holes/issues/167).
