@@ -7,7 +7,7 @@
 | Products | Notion AI meeting notes, Amie, Spellar AI |
 | Evidence | Official documentation, pricing controls, release notes, policies, and public product examples |
 | Status | **Background research**; the feature catalogue is accepted; no paid-product trial or local benchmark |
-| Next step | [Feature catalogue](feature-catalogue.md), then [pipeline investigation](README.md#three-phase-roadmap) |
+| Next step | [Feature catalogue](feature-catalogue.md), then [pipeline investigation](investigation-plan.md#three-phase-roadmap) |
 
 The subscriptions bundle transcription and summaries with the surrounding workflow: finding past meetings, connecting calendar context, editing notes, sharing results, and delivering follow-ups. The separate [feature catalogue](feature-catalogue.md) defines the behaviors to investigate. The remaining work uses those definitions as its reference; paid-product matching and subscription selection are outside the active scope.
 
@@ -80,7 +80,7 @@ These unresolved details limit what the paid comparison establishes. They are re
 
 ### Scope decision
 
-The Feature catalogue is sufficient and accepted as the reference for the remaining work. Phase 2 examines how pipeline choices affect those features; Phase 3 measures their quality and resource demands on the target Mac. No further paid-product comparison or parity assessment is required. See the [current roadmap](README.md#three-phase-roadmap).
+The Feature catalogue is sufficient and accepted as the reference for the remaining work. Phase 2 examines how pipeline choices affect those features; Phase 3 measures their quality and resource demands on the target Mac. No further paid-product comparison or parity assessment is required. See the [current roadmap](investigation-plan.md#three-phase-roadmap).
 
 ## Sources
 
@@ -116,4 +116,4 @@ All sources below are primary vendor pages or the developer's App Store listing,
 
 Read official pages and release notes, inspected monthly/yearly browser controls, and switched the public Spellar demo between its summary, transcript, and action views. Arithmetic is shown as calculated cost scenarios. Documentation and curated examples establish intended interfaces and advertised behavior; they do not establish product quality or latency.
 
-No subscription was bought, no account settings were changed, and no meeting audio was submitted. No apps/models were installed or benchmarked on the target Mac. Unpublished limits, plan discrepancies, code-switching accuracy, permission behavior, export fidelity, deadline extraction, and paid-product output quality remain unverified. These limits belong to this background comparison; the [pipeline investigation and measurement plan](README.md#three-phase-roadmap) uses the accepted catalogue as its reference.
+No subscription was bought, no account settings were changed, and no meeting audio was submitted. No apps/models were installed or benchmarked on the target Mac. Unpublished limits, plan discrepancies, code-switching accuracy, permission behavior, export fidelity, deadline extraction, and paid-product output quality remain unverified. These limits belong to this background comparison; the [pipeline investigation and measurement plan](investigation-plan.md#three-phase-roadmap) uses the accepted catalogue as its reference.

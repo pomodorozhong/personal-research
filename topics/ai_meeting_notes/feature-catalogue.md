@@ -1,6 +1,6 @@
 # Feature catalogue
 
-[Topic and pipeline roadmap](README.md) · [Review guide](review-guide.md)
+[Topic overview](README.md) · [Investigation plan](investigation-plan.md) · [Review guide](review-guide.md)
 
 These **authored evaluation definitions** are the accepted feature scope for the pipeline investigation and local measurements. Evaluate each feature against its observable behavior and failure cases. Unknown deadlines, names, or decisions must remain unknown in reference outputs instead of being filled by guesswork.
 
@@ -37,7 +37,7 @@ For every ID, trace the pipeline stages and application work it depends on. Reco
 
 For example, MN-10 depends on capturing a commitment, preserving its wording during transcription, resolving who owns it, and extracting only the stated task and deadline. The pipeline report should distinguish missing audio, transcription errors, identity mistakes, and extraction errors rather than treating them as one action-item failure.
 
-The [pipeline impact map](README.md#pipeline-steps-and-feature-impact) gives the starting questions. The definitions above are the acceptance criteria; implementation choices and practical coverage remain to be investigated.
+The [pipeline impact map](investigation-plan.md#pipeline-steps-and-feature-impact) gives the starting questions. The definitions above are the acceptance criteria; implementation choices and practical coverage remain to be investigated.
 
 ## Sources
 

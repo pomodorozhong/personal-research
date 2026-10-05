@@ -1,6 +1,6 @@
 # Reviewing the meeting-notes investigation
 
-[Topic and roadmap](README.md) · [Feature catalogue](feature-catalogue.md) · [Pipeline impact map](README.md#pipeline-steps-and-feature-impact)
+[Topic overview](README.md) · [Investigation plan](investigation-plan.md) · [Feature catalogue](feature-catalogue.md) · [Pipeline impact map](investigation-plan.md#pipeline-steps-and-feature-impact)
 
 Each review uses a concrete document or runnable result. Technical checks remain with the implementer. A review is finished when material feedback has been addressed.
 
@@ -12,7 +12,7 @@ Use the catalogue's input/output definitions and failure cases as the reference 
 
 ## 2. Review pipeline effects and experiment choices
 
-**Prepared after Phase 2:** `open-source-pipelines.md`, with source revisions, stage/artifact diagrams, a stage-to-feature map, and a dependency chain for every feature ID. Allow roughly **15–20 minutes**.
+**Initial source overview:** [open-source-pipelines.md](open-source-pipelines.md). The complete Phase 2 review will use the expanded report, with source revisions, stage/artifact diagrams, a stage-to-feature map, and a dependency chain for every feature ID. Allow roughly **15–20 minutes**.
 
 1. Follow a real meeting through capture, segmentation, transcription, attribution, assembly, summarization, storage, retrieval, and delivery. Check which artifacts each step produces and which features depend on them.
 2. Inspect the choices that change feature availability or reliability: language support, chunk boundaries, speaker identity, context limits, evidence links, correction propagation, and local/cloud processing.
