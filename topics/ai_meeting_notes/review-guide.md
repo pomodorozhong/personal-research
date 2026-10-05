@@ -1,16 +1,16 @@
 # Reviewing the meeting-notes investigation
 
-[Topic and roadmap](README.md) · [Paid baseline](paid-baseline.md)
+[Topic and roadmap](README.md) · [Paid baseline](paid-baseline.md) · [Product coverage](product-coverage.md)
 
 Each review uses a concrete document or runnable result. Technical checks remain with the implementer. A review is finished when material feedback has been addressed, rather than simply when the document has been read.
 
 ## 1. Choose the features that matter
 
-**Ready now:** the [paid baseline](paid-baseline.md), with costs, product coverage, and `MN-01` through `MN-22`. Allow roughly **15 minutes**.
+**Ready now:** the [paid baseline](paid-baseline.md), with costs and `MN-01` through `MN-22`, and the separate [product coverage comparison](product-coverage.md). Allow roughly **15 minutes**.
 
 Think of one real meeting you want to improve: who attends, whether it mixes Chinese and English, whether you wear a headset, and where its notes should end up. No recording or purchase is needed for this review.
 
-1. Read the pricing and language tables, then scan the feature catalogue.
+1. Read the pricing and language tables, then scan the feature catalogue and product coverage comparison.
 2. Mark features **essential**, **useful**, or **unnecessary** for that meeting. Identify any capability the catalogue misses.
 3. Choose the gaps that must be resolved before pipeline research. In particular, decide whether named speakers in bilingual group calls, reliable deadlines, and a fully local workflow are requirements.
 4. State which existing subscriptions should be used for the incremental-cost comparison, if any. The report gives conditional examples; it does not assume you hold a subscription.
