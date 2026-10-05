@@ -7,6 +7,7 @@ A personal collection of questions I’ve followed into notes, guides, notebooks
 | Topic | What’s inside |
 | --- | --- |
 | [Agent Skills](topics/agent_skills/README.md) | Skill mechanics, Codex integration, document workflows, and authoring practices. |
+| [AI Meeting Notes](topics/meeting_notes/README.md) | Paid features and pricing, followed by open-source pipeline research and local measurements. |
 | [AI watermarks](topics/ai_watermarks/README.md) | A guide to watermarking and provenance, with text and image notebooks. |
 | [Doppler effect](topics/doppler_semitone/README.md) | A notebook on Doppler shift, pitch perception, and a charging fighter. |
 | [Freeform canvas](topics/freeform_canvas/README.md) | A comparison of browser canvas packages and runnable demos. |
