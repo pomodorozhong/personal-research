@@ -1,13 +1,16 @@
 # App Review and paywall design
 
-Research checked **2026-10-06**. Focus: iOS subscription apps distributed through
+Apple guidance checked **2026-10-06**; gallery expanded **2026-10-07**.
+Focus: iOS subscription apps distributed through
 the App Store. Start with the purchase route and customer state the reviewer
 actually saw; a rejection mentioning subscriptions does not necessarily require
 a visual redesign.
 
 Read the [real paywall gallery](gallery.md), then the [developer case notes](cases.md)
 and [submission checklist](checklist.md). [Image provenance](images/README.md)
-records the six source images. This research addresses
+records twenty source images. The gallery includes ten additional cases from
+developer blogs, newsletters (including Substack), and Reddit, with an
+[index by design question](gallery.md#browse-by-design-question). This research addresses
 [issue #171](https://github.com/pomodorozhong/rabbit-holes/issues/171).
 
 ## What the evidence can establish
@@ -145,6 +148,13 @@ practical lesson about clarity, not a controlled claim that one added bullet
 caused approval. Do not infer Apple's use of automation from absent backend logs
 or quick responses.
 
+The expanded [gallery](gallery.md) also separates review fixes from growth
+experiments and proposed layouts. Metacast and Snapkin describe several review
+corrections; Foodnoms and Dark Noise report business experiments; Melonote is
+still a proposal. Headway is an outside observer's teardown. Conversion results,
+product availability, and a popular app's screenshot do not establish Apple's
+acceptance of an exact layout.
+
 ## Storefront and policy dates matter
 
 | Context, checked 2026-10-06 | Implication for a design review |
@@ -162,7 +172,8 @@ flow; this guide is a dated research snapshot.
 ## Sources and research limits
 
 Apple links below were inspected on 2026-10-06. The HIG required the browser to
-read its rendered content. The [case collection](cases.md) gives original social
+read its rendered content. The [case collection](cases.md) gives original social,
+developer-blog, and newsletter
 links, dates, interventions, and outcomes; [image records](images/README.md)
 identify each preserved asset and its gaps.
 
@@ -171,6 +182,13 @@ text and images were inspected successfully in the in-app browser without
 signing in. Reddit JSON and some direct image requests were also blocked;
 rendered posts and observed browser assets supplied the evidence. Search snippets
 and vendor roundups were leads, not substitutes for those original posts.
+
+For the gallery expansion, targeted searches of **Threads** (`threads.com` and
+`threads.net`) returned no qualifying posts. This is a search/access limitation,
+not evidence that Threads has no useful discussions. Public developer blogs,
+Substack posts/newsletters, another developer newsletter, and Reddit supplied
+the ten additions. Only sources with inspectable paywall media were selected;
+generic cover illustrations and unpictured approval stories did not count.
 
 No App Store Connect account, app binary, transaction, or appeal was tested for
 this research. Versions/storefronts absent from the sources remain unknown.

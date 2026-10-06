@@ -9,5 +9,6 @@ bootstrapping, and everything around them.
 ## Research
 
 - [App Review and paywall design](app-review/README.md): current Apple guidance,
-  developer rejection and approval cases, a gallery of real paywall screenshots,
+  developer rejection and approval cases, fourteen illustrated paywall cases
+  from social posts, developer blogs, and newsletters,
   and a design/submission checklist.

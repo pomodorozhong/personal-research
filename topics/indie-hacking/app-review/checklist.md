@@ -22,7 +22,11 @@ our review/testing advice. Checking every box is not proof of future acceptance.
 - [ ] **Recommended:** avoid a trial-only action concealing its paid continuation;
   make optionality and the customer commitment readable before the tap.
 - [ ] **Recommended:** substantiate savings/urgency claims against the actual
-  reference price and offer schedule; never manufacture a countdown.
+  reference price and offer schedule; distinguish price savings from a free
+  trial ([WatchFrame](gallery.md#watchframe-a-native-plan-picker-with-ambiguous-free-copy)).
+  Recheck these claims in follow-up offers after dismissal
+  ([Headway](gallery.md#headway-what-happens-after-declining-the-paywall));
+  never manufacture a countdown.
 - [ ] **Recommended:** for promised free content, provide an obvious route back.
   For paid-only services, explain access restrictions in metadata and review
   notes. Do not mistake paywall dismissal for cancellation.
@@ -30,6 +34,17 @@ our review/testing advice. Checking every box is not proof of future acceptance.
   links in the app and relevant metadata. [Apple purchase guidance](https://developer.apple.com/app-store/subscriptions/).
 - [ ] **Recommended:** inspect all this on supported iPhone/iPad layouts, small
   screens, larger text, and relevant localizations; verify controls are usable.
+  Check content beneath fixed purchase areas and legal-link scrollability
+  ([Metacast](gallery.md#metacast-legal-links-below-the-fold),
+  [Melonote](gallery.md#melonote-a-trial-timeline-on-a-small-screen)).
+- [ ] **Recommended:** if promising a trial reminder, test permissions, scheduling,
+  and delivery; explain any permission dependency
+  ([Foodnoms](gallery.md#foodnoms-feature-matrix-to-trial-timeline)).
+- [ ] **Recommended:** after badge, plan-order, or shared-copy changes, compare the
+  action and footer across layouts/locales
+  ([ShotZen](gallery.md#shotzen-a-badge-change-moves-the-purchase-area));
+  remove inapplicable platform references from each build
+  ([Snapkin](gallery.md#snapkin-platform-specific-cancellation-copy)).
 
 ## Actual purchase and entitlement behavior
 

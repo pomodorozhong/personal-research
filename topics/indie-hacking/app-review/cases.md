@@ -1,12 +1,16 @@
-# Developer discussions: rejection, response, outcome
+# Paywall cases: rejection, response, experiment, outcome
 
 [Guide](README.md) · [Gallery](gallery.md) · [Checklist](checklist.md)
 
-Checked 2026-10-06. Dates below are publication dates unless an event date is
+Review accounts checked 2026-10-06; visual-case expansion added 2026-10-07.
+Dates below are publication dates unless an event date is
 specified. Reddit dates were read from rendered timestamps; X dates from the
 original post. Outcomes are attributed to the relevant author, not independently
 verified Apple records. Comments by other developers are separate cases, not
 follow-ups by the original poster.
+
+Cases 1–8 examine review accounts; [cases 9–18](#cases-918-additional-visual-evidence)
+add developer blogs, newsletters, experiments, and an observer's teardown.
 
 ## Case 1: Lenglio made the paid entitlement explicit
 
@@ -190,6 +194,26 @@ evidence; a nonresponsive purchase button still needs a fix. Follow
 [Apple's appeal guidance](https://developer.apple.com/app-store/review/) rather
 than treating an appeal as an alternative to correcting a known defect.
 
+## Cases 9–18: additional visual evidence
+
+The [expanded gallery](gallery.md#browse-by-design-question) contains the source
+images, dates, annotations, and detailed evidence limits for these ten additions.
+Experiments and proposals belong here as design references, without assigning
+them a rejection or acceptance they do not document.
+
+| Case | Original source | Intervention / observation | Outcome boundary |
+| --- | --- | --- | --- |
+| 9. [Metacast](gallery.md#metacast-legal-links-below-the-fold) | [Developer blog](https://metacast.app/blog/company/case-study-google-play-apple-app-store-launch), 2024-10-07 | Small-layout footer visibility | Launch reported after multiple fixes |
+| 10. [Snapkin](gallery.md#snapkin-platform-specific-cancellation-copy) | [Mattias Geniar](https://ma.ttias.be/app-store-rejection-reasons/), 2026-09-30 | Remove other-platform references | Launch reported after multiple fixes |
+| 11. [Foodnoms](gallery.md#foodnoms-feature-matrix-to-trial-timeline) | [Developer blog](https://ryanwesley.com/paywall-optimization-success-story/), 2024-07-25 | Eligible-user trial timeline | Business experiment; no review decision |
+| 12. [Dark Noise](gallery.md#dark-noise-revealing-all-plans-up-front) | [Developer on RevenueCat](https://www.revenuecat.com/blog/engineering/how-i-successfully-migrated-my-indie-app-to-revenuecat-paywalls), 2024-01-03; updated 2025-11-21 | Expose all purchase options | Conversion/churn report; no review decision |
+| 13. [ShotZen](gallery.md#shotzen-a-badge-change-moves-the-purchase-area) | [Developer on Substack](https://changyou.substack.com/p/a-small-badge-shifted-my-ios-paywall), 2026-09-08 | Badge and plan-order regression | Later revision unpictured; no review decision |
+| 14. [Substack](gallery.md#substack-plan-choice-versus-payment-route) | [Product newsletter](https://on.substack.com/p/now-anyone-can-pay-for-a-substack), 2025-08-18 | Plan choice and payment route | Announced flow; exact approval unknown |
+| 15. [Unnamed notJust.dev app](gallery.md#notjustdev-trial-copy-and-metadata-are-different-surfaces) | [Developer newsletter](https://news.notjust.dev/posts/my-first-from-app-dev), exact date unknown | Metadata terms links | Acceptance reported; exact pictured build unknown |
+| 16. [Melonote](gallery.md#melonote-a-trial-timeline-on-a-small-screen) | [Developer on Reddit](https://www.reddit.com/r/UXDesign/comments/1kvy27i/feedback_request_upcoming_paywall_design/), 2025-05-26 | Proposed timeline on iPhone SE | Fictional prices; no review/refund result |
+| 17. [Headway](gallery.md#headway-what-happens-after-declining-the-paywall) | [Retention.Blog on Substack](https://www.retention.blog/p/headway-evolution-2024-2025), 2025-02-03 | Changing exit offers | Observer's teardown; no internal experiment or review result |
+| 18. [WatchFrame](gallery.md#watchframe-a-native-plan-picker-with-ambiguous-free-copy) | [Developer on Reddit](https://www.reddit.com/r/iOSDevelopment/comments/1vixwb9/spent_a_week_making_my_paywall_feel_less_like_a/), 2026-08-08 | Native picker; ambiguous savings/trial copy | Work in progress; planned rewording unpictured |
+
 ## Coverage and gaps
 
 | Evidence available | What remains unknown |
@@ -200,6 +224,7 @@ than treating an appeal as an alternative to correcting a known defect.
 | Flo's old/new comparison | Review history, version/storefront, controlled pricing comparison |
 | RadTrack app/system mismatch | Corrected configuration and final subscription approval |
 | Reports of metadata fixes, clarification, and appeal | Complete reviewer exchanges and independent outcome verification |
+| Ten additional illustrated cases from blogs, newsletters, and Reddit | Exact pictured builds/storefronts, authenticated decisions, and causal comparisons |
 
 These gaps are part of the evidence assessment. They are not filled with
 generated paywalls, unrelated live screenshots, or presumed approvals.
