@@ -10,7 +10,11 @@ Read the [real paywall gallery](gallery.md), then the [developer case notes](cas
 and [submission checklist](checklist.md). [Image provenance](images/README.md)
 records twenty source images. The gallery includes ten additional cases from
 developer blogs, newsletters (including Substack), and Reddit, with an
-[index by design question](gallery.md#browse-by-design-question). This research addresses
+[index by design question](gallery.md#browse-by-design-question). Read the paired
+rejection-to-acceptance cases first: Lenglio, Snapkin, and Metacast. Each case
+separates the reported/suspected problem, change, benefit beyond approval, and
+outcome limits; experiments and proposals use design questions instead of
+invented rejection reasons. This research addresses
 [issue #171](https://github.com/pomodorozhong/rabbit-holes/issues/171).
 
 ## What the evidence can establish
