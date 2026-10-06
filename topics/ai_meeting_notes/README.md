@@ -50,6 +50,10 @@ If capture and transcript assembly work correctly, and A, B, and C pass the qual
 1. **Check the open-source projects.** For A, B, and C, record the exact model, model version, download size, software used to run it, and relevant settings. Check the required macOS version, language support, model license, whether processing stays local, and whether the step runs during or after the call. Download size is not the same as memory needed while running. Use the [initial source overview](open-source-pipelines.md) as the starting point and confirm the details in code and configuration files.
 2. **Test a meeting recording.** Use a meeting recording on the M2 Pro / 16 GB Mac to check whether a model can reliably distinguish speakers and produce a good transcript. If a model does both well enough for our needs, stop testing. If none does, use the problems in its output to plan further experiments with other models and pipelines.
 
+## Work in progress
+
+This note is still being developed. The model review and meeting-recording test are pending. Their results, and any further experiments they call for, will be added here.
+
 ## Sources
 
 The catalogue comes from the [dated paid-product research](paid-baseline.md#sources). Pipeline observations come from the primary project documentation and selected source files listed in [Local pipeline sources](open-source-pipelines.md#sources), inspected on **2026-10-06**. The combined diagram, feature dependencies, and choice of first experiments are our analysis of those sources.
