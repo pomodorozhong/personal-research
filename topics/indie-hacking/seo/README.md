@@ -1,6 +1,6 @@
 # SEO for an indie product
 
-SEO helps people find a useful answer and decide whether a product can help them. [Google's starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide) frames it around making content understandable to search engines and useful to searchers, with no guarantee of indexing or ranking. For an indie developer, I would start with a small set of real customer problems rather than a large publishing quota.
+SEO helps people find a useful answer and decide whether a product can help them. [Google's starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide) emphasizes understandable content without guaranteeing indexing or ranking. My starting point would be a small set of real customer problems.
 
 This guide focuses on unpaid web-search discovery. Search distribution still costs writing, research, engineering, and maintenance time. It does not promise an immediate substitute for other acquisition channels.
 
@@ -37,17 +37,17 @@ This is a proposed outline, not a claim that the utility or those tests exist.
 
 ## Make the page understandable
 
-Use a descriptive title, a clear main heading, a readable URL, and links that explain their destination. Keep the important answer visible in the page, with images near the relevant explanation and descriptive alt text. Write a concise meta description, while recognizing that Google may generate the search snippet from page content. Internal links should connect the diagnosis, walkthrough, comparison, and product documentation. [Google starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide).
+Use descriptive titles, headings, URLs, link text, and image alt text. A concise meta description can inform a snippet, but Google may use page content instead. [Google starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide). For this fictional product, I would connect the diagnosis, walkthrough, comparison, and documentation with internal links.
 
 Avoid repeating every keyword variant in the title and paragraphs. [Google's spam policies](https://developers.google.com/search/docs/essentials/spam-policies) address keyword stuffing, scaled content abuse, and manipulative links. Publishing many lightly varied pages does not substitute for a useful answer.
 
 ## Check the technical path
 
-My first checks on a public page would be: it loads successfully, a signed-out visitor can read the answer, important navigation uses crawlable links, and the mobile layout permits the task. Then inspect what the crawler sees and whether the intended URL is eligible for indexing. A sitemap can help discovery, but does not guarantee inclusion. [Google starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide).
+Check that the public page loads, signed-out users can read it, navigation is crawlable, and mobile users can complete the task. A sitemap helps discovery without guaranteeing inclusion. [Google starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide).
 
 Be precise about access controls. [`robots.txt` controls crawling](https://developers.google.com/search/docs/crawling-indexing/robots/intro); it does not reliably keep a URL out of results or protect confidential content. `noindex` needs to be visible to the crawler to prevent indexing. Sensitive user files need authentication, not just a crawler directive. Do not create public search pages from uploaded customer data.
 
-If several URLs display the same answer, choose a preferred canonical URL and handle obsolete URLs thoughtfully. Use Search Console's inspection tools to investigate indexing problems instead of assuming that absence from a search results page means a penalty. Google reports that changes can take time to appear, so immediate ranking changes are not a reliable acceptance test. [Google starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide).
+Choose a canonical URL for duplicate content and inspect indexing problems in Search Console. Changes can take time to appear. [Google starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide). My acceptance checks would examine the actual page and indexing status; an immediate ranking change would not be a reliable test.
 
 ## Earn relevant links
 
