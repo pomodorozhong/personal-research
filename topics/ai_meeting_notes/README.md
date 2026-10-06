@@ -47,23 +47,8 @@ If capture and transcript assembly work correctly, and A, B, and C pass the qual
 
 ## Testing the bottlenecks
 
-The next steps are to identify the models used by the projects, choose candidates, and test them on the **M2 Pro / 16 GB** Mac:
-
 1. **Check the open-source projects.** For A, B, and C, record the exact model, model version, download size, software used to run it, and relevant settings. Check the required macOS version, language support, model license, whether processing stays local, and whether the step runs during or after the call. Download size is not the same as memory needed while running. Use the [initial source overview](open-source-pipelines.md) as the starting point and confirm the details in code and configuration files.
-2. **Choose a small set of candidates.** Include models that cover the required languages and speaker behavior. Where apps use the same model and software, share the component test and check their app-specific settings separately. Review the choices before starting measurements, as described in the [review guide](review-guide.md#2-review-pipeline-effects-and-experiment-choices).
-3. **Prepare shared test recordings.** Include English, Chinese, mixed speech, several speakers, overlapping speech, technical terms, and a long meeting. Supply checked transcripts, speaker names, decisions, and tasks. Include proposals that were rejected and tasks with no stated owner or deadline.
-4. **Test each model against the checklist below.** Keep the inputs and outputs. Test the summary model with the checked transcript first, then with the generated transcript, so we can tell whether an error began in transcription or summary generation.
-5. **Test the selected steps together.** Run them alongside a meeting app, including a headset change. Compare live transcription followed by summaries after the call with any required processing during the call. Try smaller chunks or unloading a model between steps and record which features, errors, and waiting times change.
-
-| Step | Checklist for the model test |
-| --- | --- |
-| **A. Transcription** | Check language and mixed-language accuracy, names, technical terms, negation, missing words, and timestamps. Measure processing time against audio length, delay before text appears, and whether unfinished audio keeps building up. |
-| **B. Speaker separation and identity** | Check merged or split speakers, overlap, labels that change incorrectly, and name assignment. Record processing time, when final labels become available, and how much manual correction is needed. Check task ownership separately. |
-| **C. Summaries, decisions, and actions** | Check missing or invented facts, proposals reported as decisions, wrong owners or deadlines, and details lost across chunks. Measure time to finish the notes and test both short and long transcripts. |
-
-For every model, record load time separately from processing time, peak memory, memory pressure, swap growth, and CPU/GPU use where measurable. Repeat timed runs three times. In the combined test, also check missing audio and whether the meeting app stays responsive. Record model versions, settings, errors, correction effort, and the features the setup supports together with these measurements.
-
-The [investigation plan](investigation-plan.md) contains the full measurement rules and review checkpoints. The model list and experiments are still to be completed; no local performance or output-quality results are available yet. The final assessment will show whether the supported features and remaining work are enough to resolve [#167](https://github.com/pomodorozhong/rabbit-holes/issues/167).
+2. **Test a meeting recording.** Use a meeting recording on the M2 Pro / 16 GB Mac to check whether a model can reliably distinguish speakers and produce a good transcript. If a model does both well enough for our needs, stop testing. If none does, use the problems in its output to plan further experiments with other models and pipelines.
 
 ## Sources
 
