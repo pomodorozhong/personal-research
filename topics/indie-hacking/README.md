@@ -8,5 +8,7 @@ bootstrapping, and everything around them.
 
 ## Notes
 
-Each subfolder contains a self-contained guide with examples, limitations, and
-sources. [Browse the notes](.) to choose a topic.
+- [Marketing funnel](marketing-funnel/README.md)
+  - How does someone move from discovering a product to paying, returning, and recommending it?
+  - Which counts and follow-up windows make those steps meaningful?
+  - How can a small product choose an improvement from the evidence?
