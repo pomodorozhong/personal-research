@@ -4,9 +4,11 @@
 
 Write in a calm, direct, approachable voice. Assume the reader is capable but may be unfamiliar with the subject. Replace promotional language, exaggerated importance, and unnecessary formality with concrete behavior and consequences.
 
-Use clear subjects and verbs: state what changes, what causes it, and why it matters. For example, replace "The retry layer provides robust recovery" with "If a request fails temporarily, the client waits and tries again. The retry limit bounds how long recovery can take."
+Use clear subjects and verbs: state what changes, what causes it, and why it matters. Prefer active voice and name who acted or reported the result when the evidence identifies them; preserve uncertainty when it does not. For example, replace "The retry layer provides robust recovery" with "If a request fails temporarily, the client waits and tries again. The retry limit bounds how long recovery can take."
 
 Keep each paragraph focused on one idea and connect it to the next. Vary sentence length naturally. Remove filler and repeated summaries while retaining the explanation needed to follow the reasoning. Avoid stock openings and conclusions, invented labels, and words such as "delve" or "leverage" when familiar wording works.
+
+Shorten by removing repetition and secondary details before cutting the context that makes an explanation understandable. Use complete sentences for explanations rather than compressed status phrases such as "Approval reported." Labels, table cells, and source metadata can stay brief. Treat word counts as rough planning aids unless the user requests a limit.
 
 Explain the mechanism directly. Use a contrast when it resolves a likely misunderstanding or compares meaningful alternatives; avoid turning every explanation into a warning or a slogan. Use questions to identify what a guide answers or what an experiment investigates, rather than repeatedly asking and immediately answering rhetorical questions.
 
@@ -24,9 +26,13 @@ Establish what the document helps the reader understand or do. State assumed kno
 
 Arrange ideas by dependency. Start with the smallest example that exposes the central mechanism, interpret it, then extend to the larger case. Introduce taxonomies and presentation variants after the reader understands the underlying idea, unless distinguishing those variants is the document's actual question.
 
+Choose examples whose actor, problem, action, and useful result the intended reader can readily picture. Include enough context to understand why the action is needed. If explaining an example's background becomes a second lesson that distracts from the subject, choose a more familiar situation. Technical examples remain useful when their mechanism is part of the lesson or the audience already knows the setting.
+
 Explain unfamiliar terms beside their first meaningful use, then use the technical names consistently. A labeled table cell should not require a beginner to infer the label's meaning from context alone.
 
-A section can introduce an idea, demonstrate it, interpret the result, and connect it to the next idea. Vary section shapes naturally. Avoid imposing identical subheadings on every section. Match the depth to the question; secondary procedures and edge cases can be placed later or in separate material when they interrupt the main explanation.
+When introducing a measurement, procedure, or new part of a mechanism, establish what question it answers and why the answer matters before developing the details. Make that purpose clear through the explanation or a concrete situation; it does not require a separate "Why this matters" heading. Connect results to what they help the reader understand, investigate, or decide.
+
+A section can introduce an idea, demonstrate it, interpret the result, and connect it to the next idea. Vary section shapes when they explain different ideas; use consistent headings or fields when readers compare or skim multiple cases. Match the depth to the question; secondary procedures and edge cases can be placed later or in separate material when they interrupt the main explanation.
 
 ## Headings, tables, and conclusions
 
