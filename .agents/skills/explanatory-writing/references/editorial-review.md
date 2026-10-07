@@ -5,6 +5,8 @@ Read the document in order from the intended reader's starting point. Evaluate e
 Check whether:
 
 - The opening establishes a useful purpose and the depth matches the question.
+- A skimming reader can understand who did what, what changed, and why it matters without decoding shorthand.
+- Supporting documents explain each example locally and link to the main guide for broader concepts; shared fields help readers compare cases.
 - Terms and prerequisites appear before the reader must use them; a taxonomy does not postpone the first understandable example.
 - Examples show enough actual illustrative input, choice, or result to teach the mechanism. A proposed outline is identified accurately.
 - Tables are readable and serve comparisons or reference; they do not silently carry several unexplained lessons.
