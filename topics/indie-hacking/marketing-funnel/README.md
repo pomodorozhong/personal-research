@@ -1,94 +1,130 @@
 # Marketing funnel for a small indie product
 
-People can discover a product, try it, and leave before it solves their problem. A marketing funnel makes those steps visible so that the product owner can investigate where people stop and choose a useful improvement. This guide follows one small product from discovery through payment, repeat use, and referral.
+A person can discover a product, try it, and leave before it solves their problem. Another person may get a useful result, pay, and return when the task comes up again. A marketing funnel helps follow these journeys and investigate what makes the next step possible. This guide follows a meal-planning app from discovery through payment, repeat use, and referral, then considers how to choose an improvement.
 
 ## Follow one person from a problem to a useful result
 
-Consider a fictional CSV-cleaning app for freelancers whose files contain dates that an importer rejects. The product, counts, and proposed changes throughout this guide are illustrative; they are not measured results or conversion benchmarks.
+Consider a fictional meal-planning app for busy parents who want to spend less time deciding what to cook. It helps them choose dinners for the week and combines the ingredients into a grocery list. The product, counts, and proposed changes throughout this guide are illustrative; they are not measured results or conversion benchmarks.
 
-A freelancer searches for help with a rejected file and finds an explanation of date formats. The explanation links to the app, where a sample shows how `07/10/2026`, interpreted as day/month/year, becomes `2026-10-07`. The sample lets the freelancer see what the app does before creating an account.
+A parent searches for quick weekday dinners and finds the app's website. They open a sample menu: pasta on Monday, vegetable curry on Tuesday, and other dinners for the rest of the week, with recipes and a grocery list. Seeing how the meals fit together gives them a reason to explore the app before creating an account.
 
-Next, the freelancer checks the supported formats, price, and how uploaded data is handled, then starts a trial with their own file. A useful first result is a valid export whose output they can inspect. Call that **activation**: the point at which someone first obtains the value the product is meant to provide. A signup alone does not show that this happened.
+The next question is whether it will work for their household. The parent checks the kinds of recipes offered and the subscription price, then starts a free trial. They choose meals their family likes and save a weekly menu with its grocery list. Call that **activation**: the first useful result from the product. They now have a plan they can shop from, instead of having to choose each dinner from scratch. Creating an account alone would leave that work unfinished.
 
-If the trial solves the task and the price is acceptable, the freelancer may pay. Later, another import job may bring them back. After a successful result, they may recommend the app to a colleague using a safe sample rather than sharing a private client file.
+If the plan is worth the price, the parent may subscribe for more weekly menus. They may later return to plan another week and recommend the app to a friend who also struggles to decide what to cook. Saving a menu gives us an observable result to count; it does not tell us whether the family cooked the meals or enjoyed them.
 
-The stages give names to the decisions in that journey:
+The stages name the questions and actions along that journey:
 
 | Stage | What the person is deciding | Observable action in this example |
 | --- | --- | --- |
-| Awareness | Is there a way to solve this import problem? | Discover the explanation and visit the product page. |
-| Interest | Does this look useful enough to explore? | Complete the sample. |
-| Consideration | Will it work for my file, at an acceptable price? | Check fit and start a trial. |
-| Conversion | Is the result worth paying for? | Complete the first payment. |
-| Retention | Is it useful when the task comes up again? | Return and complete another useful export. |
+| Awareness | Can planning dinners take less effort? | Find the app and visit its website. |
+| Interest | Does this look useful enough to explore? | Open the sample menu. |
+| Consideration | Will the meals suit my household, at an acceptable price? | Check recipes and price, then start a trial. |
+| Conversion | Is the result worth paying for? | Complete the first subscription payment. |
+| Retention | Does it help with another week's dinners? | Return and save another weekly menu with its grocery list. |
 | Referral | Would this help someone else? | Recommend it and bring a new visitor. |
 
-These actions are signals, not direct readings of someone's thoughts. A pricing-page visit, for example, cannot establish that the person understood the price. Voluntary customer conversations can help explain the behavior.
+An action gives some evidence about a person's progress, but leaves their reasoning partly unknown. A pricing-page visit, for example, cannot establish that they understood the price. Voluntary customer conversations can help explain why they continued or stopped.
 
-The journey can also take other paths. Someone might arrive through a colleague's recommendation and buy without completing the sample. As [HubSpot's marketing-funnel overview](https://blog.hubspot.com/marketing/i-took-a-deep-dive-into-the-marketing-funnel-heres-what-i-learned) explains, buyers can skip stages or return later. The stages help organize questions about a product; a measured funnel needs explicit rules about which paths it counts.
+The stages also allow for different paths. Someone arriving through a friend's recommendation might already know what the app does and subscribe without opening the sample menu. As [HubSpot's marketing-funnel overview](https://blog.hubspot.com/marketing/i-took-a-deep-dive-into-the-marketing-funnel-heres-what-i-learned) explains, buyers can skip stages or return later. To measure one path through the product, we need to say which actions it includes and how long people have to complete them.
 
-## Turn that journey into comparable counts
+## Find where people stop before paying
 
-Start with a **cohort**: a group of people who enter during a defined period and whose progress you follow. For this worksheet, assume 600 distinct landing visitors who arrive during one week, with consistently linked identities. Of those visitors, 180 complete the sample, 60 then start a trial, and 18 of those trial users pay. Each person completes their counted acquisition steps within 14 days of their own landing visit. All 600 have completed that observation window.
+If few visitors become buyers, the payment total alone gives little guidance about what to change. People might leave before opening the sample menu, struggle to put together meals they like, or save a useful plan and decide against subscribing. Following those steps separately helps narrow the investigation to a particular part of the product.
 
-This is a **closed funnel**: entry begins at the landing visit, and later counts include only people who completed the required earlier steps in order. The rate between two steps divides the people who reached the next step by the people eligible to reach it.
+Start with a **cohort**: a group of people who enter during a defined period and whose progress we follow. Here, 600 distinct people visit the landing page during one week. Their identities are consistently linked across the subsequent actions, and each has completed a full 14-day observation window after their own landing visit.
+
+Within that window, 180 open the sample menu, 60 of those people start a trial, and 18 trial users pay. During the trial, 36 save a weekly menu with its grocery list, including all 18 buyers before they pay. This is a **closed funnel**: people enter at the landing visit and qualify for later steps by completing the required earlier actions in order.
+
+![Sankey diagram of 600 visitors: 180 open the sample menu, 60 start a trial, 36 save their own weekly menu and grocery list, and 18 pay. Each stage also shows the people who do not reach the next required step.](assets/acquisition-sankey.svg)
+
+Of the 180 people who open the sample menu, 60 start a trial and 120 do not. Of the 60 trial users, 36 save their own plan and 24 do not. These groups raise different questions: whether the sample makes the app worth trying, and whether the trial helps someone finish planning a week's dinners.
+
+A rate expresses the size of one group relative to the people eligible to reach it:
 
 | Transition | Calculation | Rate |
 | --- | --- | --- |
-| Landing visit → sample completion | `180 / 600` | 30% |
-| Sample completion → trial start | `60 / 180` | About 33.3% |
+| Landing visit → sample menu opened | `180 / 600` | 30% |
+| Sample menu opened → trial start | `60 / 180` | About 33.3% |
 | Trial start → first payment | `18 / 60` | 30% |
 
-Across the whole acquisition path, `18 / 600 = 3%` of landing visitors become buyers. That answers a different question from the 30% trial-to-buyer rate: changing the denominator changes which part of the journey you are examining.
+Across the whole path, `18 / 600 = 3%` of landing visitors become buyers. Among trial users, `18 / 60 = 30%` become buyers. Both describe the same 18 payments, but answer different questions: how often a visit leads to payment, and how often a trial leads to payment.
 
-Now look inside the trial. Of the 60 trial users, 36 complete a useful export during that same acquisition window. All 18 buyers activate before paying. Trial activation is therefore `36 / 60 = 60%`, while payment among activated trial users is `18 / 36 = 50%`. The other 24 trial users have not reached a useful result. That gives a more specific problem to investigate than the visitor-to-buyer rate alone.
+Looking inside the trial adds another distinction. Activation is `36 / 60 = 60%`, while payment among activated trial users is `18 / 36 = 50%`. The 24 people without a saved menu have not yet reached the result that could give them a reason to pay. Their experience is one possible place to investigate; the counts alone do not explain what stopped them.
 
-### Follow buyers long enough to observe repeat use
+## Check whether buyers return and bring others
 
-For this example, repeat use means another useful export during days 30–44 after each buyer's first payment. All 18 buyers have reached the end of that window, and 12 return. The repeat-use rate is `12 / 18`, or about 66.7%.
+The first payment tells us someone chose to subscribe. It leaves two questions unanswered: does the app keep helping them plan dinners, and do they recommend it to other parents? Repeat use helps investigate the first question; referral helps investigate the second. These matter when deciding how to support existing customers and how new customers might discover the app.
 
-The window matters. A buyer who paid yesterday has not had the same opportunity to return as someone who paid six weeks ago. Include only buyers whose full follow-up window has elapsed when calculating this rate. Also check whether the window fits the task: a freelancer who imports files quarterly may get value from the app without using it each month. For a subscription, renewal and repeat useful use are separate measurements.
+For this example, 12 of the 18 buyers save another weekly menu with its grocery list during days 30–44 after their own first payment. All 18 have reached the end of that window, so each has had the same opportunity to qualify.
 
-### Count referrals and their recipients separately
+After returning, four of those 12 buyers bring a new visitor through a referral link by day 60 after payment. All 12 have completed that follow-up window too. A **qualified referral** here means that a new recipient actually visits; clicking a share button alone does not qualify.
 
-After returning, four of the 12 buyers bring a new visitor through a referral link by day 60 after their own payment. All 12 have completed that follow-up window. A **qualified referral** here means that a new recipient actually visits; clicking a share button alone does not qualify. The proportion of returning buyers who refer is `4 / 12`, or about 33.3%.
+![Sankey diagram of 18 buyers: 12 save another weekly menu and grocery list during days 30–44, and four of those returning buyers make a qualified referral by day 60. Six do not save another plan in the window, and eight return without a qualified referral.](assets/retention-referral-sankey.svg)
 
-Those four people bring 12 new visitors in total. Five of the new visitors activate and two pay within 14 days of each recipient's own landing visit. All 12 recipients have completed that window. For this separate referred cohort, activation is `5 / 12`, about 41.7%, and visitor-to-buyer conversion is `2 / 12`, about 16.7%.
+Repeat use is `12 / 18`, about 66.7%, and referral among returning buyers is `4 / 12`, about 33.3%. The second denominator is the 12 returners because this worksheet follows referral after repeat use. Customers who recommend the app before returning would need a separate path.
 
-The 12 recipients are new people entering the product's journey, rather than a further subset of the original 600. Referral can feed back into awareness this way. A customer can also refer before returning; record that path separately from this worksheet's returning-buyer path. These counts alone do not show that referrals cause purchases, sustain growth, or make an incentive worthwhile.
+The six buyers who did not save another menu during days 30–44 may have reused earlier recipes, been away from home, or found planning with the app too much work. Those possibilities suggest different responses. If choosing a new menu is tedious, saved preferences might help; if an earlier menu still meets their needs, a reminder to make another one may accomplish little. Choose a window that fits how people plan meals and compare groups whose full follow-up windows have elapsed. Subscription renewal and saving another useful plan are separate measurements.
 
-## Check what the measurement includes
+The four referrals raise a different question: can a customer help someone else find a useful solution? Sharing the sample menu might give a friend a clearer idea of the app than sending its name alone. The value of that recommendation depends on what the friend does next, so we follow the new visitors as well as the customers who brought them.
 
-Before using a rate to choose work, write down the entry period, identity rule, required actions, sequence, and follow-up windows. Count distinct people for this worksheet. Repeated page views, exports, and payments are different quantities; a team subscription may also have several users but one payer.
+### Check whether referrals lead to useful results
 
-An **open funnel** allows entry at a later step. In [Google Analytics funnel exploration](https://support.google.com/analytics/answer/9327974), both open and closed funnels still count subsequent steps according to the configured sequence. A person who visits the landing page, skips a required sample, and pays can be absent from the payment step of that exploration. A missing step in the report therefore needs investigation before being treated as an abandoned purchase. Check whether intervening actions are allowed and whether a step has a time limit.
+A recommendation brings someone to the app, but they still need to find meals that suit their household. Following referred visitors tells us whether this route leads to saved plans and subscriptions. If people arrive but cannot get a result, increasing the number of invitations could bring more people to the same difficulty.
 
-A spreadsheet with consistent counts can be enough to start. If using analytics, verify the recorded actions on a test account and reconcile payments with the payment system. [GA4 key events](https://support.google.com/analytics/answer/9267568) identify actions important to a business, but marking an event does not establish that it represents useful product use. Count unique people separately from event totals.
+The four referrers bring 12 new visitors in total. These recipients begin their own journeys; they are not a further subset of the original 600. Give each recipient a new 14-day window starting at their own landing visit. All 12 have completed that window, during which five activate and two pay.
 
-Keep channel impressions and clicks alongside the funnel rather than adding them to the user cohort: one person can generate many impressions. Record how you assign visitors to channels and where consent, anonymous visits, or cross-device use leave gaps. Collect only the event data needed for the question, without including uploaded CSV contents.
+![Two Sankey views of the same 12 referral visitors: five activate and seven do not; separately, two pay and ten do not. The overlap between activation and payment is not specified.](assets/referred-cohort-sankey.svg)
 
-## Choose a change that addresses the reason people stop
+Among these 12 visitors, activation is `5 / 12`, about 41.7%, and visitor-to-buyer conversion is `2 / 12`, about 16.7%. The worksheet does not say which activated recipients paid, so it cannot establish a payment rate among activated recipients.
 
-The largest loss in the worksheet is between landing visits and sample completion: 420 people do not complete the sample. That count does not explain why they stop or whether they need the product. Improving a smaller step can be more useful if there is a clear, fixable problem there.
+These visitors arrived through a different route from the original cohort. Their payment rate can prompt questions about who was referred and what they already knew, but two payments are too little evidence to treat that route as reliably better. The counts also do not show that a recommendation caused a purchase or that a referral incentive would pay for itself.
 
-For example, investigate the 24 trial users who did not activate by inspecting export failures and asking willing users where they got stuck. Suppose this investigation finds that the app rejects ambiguous dates without helping people choose the date order. A concrete change is to replace “Invalid date” with “Choose the date order used in your file: day/month/year or month/day/year,” then show a preview such as `07/10/2026 → 2026-10-07` for the day/month/year choice.
+## Choose where to investigate
 
-This gives someone a way to resolve the error and inspect the result. If their file format is unsupported, that diagnosis instead points to a clearer compatibility explanation or a decision about adding support.
+We now have several possible investigations: what prevents visitors from opening the sample menu, what stops trial users from getting a result, whether buyers need the app again, and what happens to people they refer. Connecting these questions to the six stages in the [opening stage table](#follow-one-person-from-a-problem-to-a-useful-result) helps choose where to focus:
 
-The same reasoning applies elsewhere in the journey:
+![Overview Sankey mapping the meal-planning app story to all six stages: awareness with 600 visitors, interest with 180 sample-menu viewers, consideration with 60 trial users, conversion with 18 buyers, retention with 12 returning buyers, and referral with four referrers. A dotted connector leads to a separate group of 12 new referral visitors.](assets/customer-story-sankey.svg)
 
-| Where people stop | What to investigate | A change matched to that finding |
+The sample menu gives a visitor a way to judge whether the app is worth exploring. The trial lets them choose meals for their household, and saving a plan gives them something to shop from. Conversion, retention, and referral then ask successive questions about paying for more plans, planning another week, and recommending the app to someone else. Each stage points to a different part of the experience to investigate.
+
+Of the 600 visitors, 420 did not open the sample menu. It is the largest loss in the example, but its size says little about the cause. Some visitors may want a single recipe rather than a weekly plan; others may not see how to begin. Further along, 24 trial users do not save a menu. They have already started a trial, which narrows the question to what happens while they choose meals and put together their plan.
+
+Referral connects useful product use with someone else's discovery: four customers bring 12 new visitors, who begin their own journeys at awareness. These counts show how customers can bring others to the product, but do not establish a self-sustaining growth loop.
+
+The 24 trial users without a saved menu give us a concrete question to investigate: what prevented them from finishing their plan? First, check whether the count matches their experience. A missing record could mean that the menu was never saved, or that it was saved without the action being recorded. Those explanations lead to different work.
+
+## Check whether the apparent drop-off is real
+
+An analytics report follows the actions it records and the sequence configured for them. Suppose someone who already knows the app visits the landing page, skips the sample menu, starts a trial, and pays. If the report requires opening the sample, that person can disappear from later steps despite making a payment. The apparent drop-off would partly reflect the chosen path rather than a failed purchase.
+
+[Google Analytics funnel exploration](https://support.google.com/analytics/answer/9327974) allows **open funnels**, where people can enter at a later step, as well as closed funnels. Both still require subsequent steps in the configured order. Check the required actions, whether other actions may occur between them, and any step time limits when reconciling a report with what customers did.
+
+The unit being counted matters too. One person saving five menus contributes five save events but only one activated user. A household account may have several users and one payer. The worksheet counts distinct people, so its rates require a consistent way to recognize the same person across steps.
+
+For a small product, a spreadsheet with consistently defined counts may be enough to start. If using analytics, follow a test account through the actions and check that the records appear as expected. Reconcile payments with the payment system. [GA4 key events](https://support.google.com/analytics/answer/9267568) identify actions important to a business; the underlying action still needs to represent the useful result being investigated.
+
+The same care applies to discovery. Impressions and clicks can help inspect an acquisition channel, but one person may generate many of them. Keep them separate from the visitor cohort, record how visitors are assigned to channels, and note gaps caused by consent, anonymous visits, or cross-device use. Collect the event data needed for the question without including private household notes.
+
+## Choose a change from the cause
+
+Once the count reflects 24 trials without a saved plan, check for errors when saving and ask willing users where they got stuck. The aim is to find a problem that a change can address. Someone who likes most of the meals but cannot replace one dinner needs different help from someone who finds none of the recipes appealing.
+
+Suppose the investigation finds that parents abandon a suggested menu when it includes a dinner their family dislikes. They can replace it, but the option is hidden in a settings screen. Put a “Replace this dinner” button beside each meal and show alternatives there. A parent who dislikes Tuesday's curry could choose fried rice instead, keep the rest of the week, and save the updated menu and grocery list. The proposed change addresses the difficulty found in the investigation.
+
+A finding at another stage would suggest different work:
+
+| Where people stop | Possible finding | A change matched to that finding |
 | --- | --- | --- |
-| Discovery | The message reaches people without the relevant import problem. | Answer a specific import question where that audience looks for help. |
-| Sample | The page hides the result behind signup or explains it vaguely. | Show a small before-and-after example with a clear next action. |
-| Trial | Format support, data handling, or setup is unclear. | Explain the limits and shorten the path to the first useful export. |
+| Discovery | Visitors want a single recipe rather than a weekly plan. | Explain the app's purpose where people look for help planning a week. |
+| Sample | The sample menu is hidden behind signup. | Show the meals and grocery list before asking someone to start a trial. |
+| Trial | People cannot find how to replace a dinner they dislike. | Put the replacement action beside each meal. |
 | Payment | Checkout fails or the recurring price is unclear. | Fix verified errors and explain the total price. |
-| Repeat use | Exports are unreliable or people must redo setup. | Fix failures, save reusable settings, and offer relevant help. |
-| Referral | Sharing risks private data or gives the recipient little value. | Offer a safe sample or reusable template with an optional invitation. |
+| Repeat use | People must enter the same household preferences every week. | Save those preferences and let people adjust them. |
+| Referral | A shared link gives the friend little idea of what the app offers. | Link to a sample weekly menu they can view without an account. |
 
-For the date-order change, compare later cohorts using the same definitions. Set a review date and a criterion for keeping the change before looking at the results. Track activation alongside paid conversion, refunds, support time, and repeat use so that a gain in one step does not hide a problem elsewhere. With small groups, report the raw counts as well as rates; a before-and-after difference alone does not establish that the change caused it.
+For the dinner-replacement change, compare later cohorts using the same actions, identity rules, and observation windows. Set a review date and a criterion for keeping the change before examining the results. Track activation alongside paid conversion, refunds, support time, and repeat use so that an improvement in one step does not hide a problem elsewhere. With small groups, report raw counts as well as rates; a before-and-after difference alone does not establish that the change caused it.
 
-If acquiring visitors costs money, compare that cost with what customers actually contribute after relevant costs and refunds. An assumed lifetime value is a forecast, so keep it distinct from measured customer revenue and costs when deciding how much to spend.
+The funnel helps decide where to investigate and whether a proposed change merits further testing. If acquiring visitors costs money, also compare that cost with what customers contribute after relevant costs and refunds. Keep an assumed lifetime value distinct from measured customer revenue and costs when deciding how much to spend.
 
 [Back to Indie Hacking](../README.md)
 
@@ -96,4 +132,4 @@ If acquiring visitors costs money, compare that cost with what customers actuall
 
 - [HubSpot: Stages of the marketing funnel](https://blog.hubspot.com/marketing/i-took-a-deep-dive-into-the-marketing-funnel-heres-what-i-learned) — the stage framework and nonlinear customer journeys.
 - [Google Analytics: Funnel exploration](https://support.google.com/analytics/answer/9327974) — entry, sequence, and timing rules for measured funnels.
-- [Google Analytics: About key events](https://support.google.com/analytics/answer/9267568) — how important measured actions are identified. The CSV product and worksheet are original illustrative applications.
+- [Google Analytics: About key events](https://support.google.com/analytics/answer/9267568) — how important measured actions are identified. The meal-planning product and worksheet are original illustrative applications.
