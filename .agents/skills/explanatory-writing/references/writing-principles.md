@@ -26,7 +26,11 @@ Establish what the document helps the reader understand or do. State assumed kno
 
 Arrange ideas by dependency. Start with the smallest example that exposes the central mechanism, interpret it, then extend to the larger case. Introduce taxonomies and presentation variants after the reader understands the underlying idea, unless distinguishing those variants is the document's actual question.
 
+Choose examples whose actor, problem, action, and useful result the intended reader can readily picture. Include enough context to understand why the action is needed. If explaining an example's background becomes a second lesson that distracts from the subject, choose a more familiar situation. Technical examples remain useful when their mechanism is part of the lesson or the audience already knows the setting.
+
 Explain unfamiliar terms beside their first meaningful use, then use the technical names consistently. A labeled table cell should not require a beginner to infer the label's meaning from context alone.
+
+When introducing a measurement, procedure, or new part of a mechanism, establish what question it answers and why the answer matters before developing the details. Make that purpose clear through the explanation or a concrete situation; it does not require a separate "Why this matters" heading. Connect results to what they help the reader understand, investigate, or decide.
 
 A section can introduce an idea, demonstrate it, interpret the result, and connect it to the next idea. Vary section shapes when they explain different ideas; use consistent headings or fields when readers compare or skim multiple cases. Match the depth to the question; secondary procedures and edge cases can be placed later or in separate material when they interrupt the main explanation.
 

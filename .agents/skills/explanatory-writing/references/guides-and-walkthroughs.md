@@ -10,6 +10,10 @@ When teaching a process, include a worked illustrative input, choice, or result 
 
 Define an example's conditions once, then follow its reasoning. Keep a complete model or comparison available when useful, while introducing a representative case before a dense table. Retain relevant source distinctions and limits without repeating them at every transition.
 
+Let transitions carry the reasoning forward. A result can raise a question, expose a limit, or make a next step useful. Explain that connection rather than merely announcing the next topic. For example, a count of unfinished plans can lead to checking the records, then investigating the difficulty, then choosing a change. Use the connection that fits the subject; this sequence is not a required outline.
+
+A synthesis should reveal a relationship, implication, or choice that was harder to see in the separate parts. Explain what becomes clearer when the parts are considered together. Shorten or omit a recap that only repeats labels, counts, or definitions without helping the reader use them.
+
 ## Walkthrough of real source code
 
 Select small excerpts that expose the behavior being taught. Identify their source and version when reproducibility matters. Mark omitted lines and label simplified examples so the reader can distinguish them from source excerpts.
