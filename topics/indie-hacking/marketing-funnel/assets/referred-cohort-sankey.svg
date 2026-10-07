@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="725" viewBox="0 0 1200 725" role="img" aria-labelledby="title description">
+<title id="title">New referral visitors: two separate questions</title>
+<desc id="description">Two independent breakdowns of the same 12 referred visitors. In the activation view, 5 save a weekly menu with its grocery list and 7 do not. In the payment view, 2 pay and 10 do not. All 12 recipients have completed their 14-day observation window. These views do not specify which of the activated visitors paid; they must not be read as consecutive stages.</desc>
+<rect x="1" y="1" width="1198" height="723" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="36" y="46" font-size="28" font-weight="700" fill="#17233a">New referral visitors: two separate questions</text>
+<text x="36" y="77" font-size="17" fill="#526176">Illustrative referred cohort · 12 new people · within 14 days of each recipient’s landing visit</text>
+<line x1="620" y1="106" x2="620" y2="665" stroke="#e2e8f0" stroke-width="2"/>
+<path data-source="activation-visitors" data-target="activated" data-value="5" d="M 114 210 C 275.28 210, 288.72 210, 450 210 L 450 310 C 288.72 310, 275.28 310, 114 310 Z" fill="#0f766e" fill-opacity="0.30"/>
+<path data-source="activation-visitors" data-target="not-activated" data-value="7" d="M 114 310 C 275.28 310, 288.72 410, 450 410 L 450 550 C 288.72 550, 275.28 450, 114 450 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<path data-source="payment-visitors" data-target="buyers" data-value="2" d="M 734 210 C 895.28 210, 908.72 210, 1070 210 L 1070 250 C 908.72 250, 895.28 250, 734 250 Z" fill="#7c3aed" fill-opacity="0.30"/>
+<path data-source="payment-visitors" data-target="not-buyers" data-value="10" d="M 734 250 C 895.28 250, 908.72 410, 1070 410 L 1070 610 C 908.72 610, 895.28 450, 734 450 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<rect id="activation-visitors" data-value="12" x="90" y="210" width="24" height="240" fill="#2563eb"/>
+<rect id="activated" data-value="5" x="450" y="210" width="24" height="100" fill="#0f766e"/>
+<rect id="not-activated" data-value="7" x="450" y="410" width="24" height="140" fill="#94a3b8"/>
+<rect id="payment-visitors" data-value="12" x="710" y="210" width="24" height="240" fill="#2563eb"/>
+<rect id="buyers" data-value="2" x="1070" y="210" width="24" height="40" fill="#7c3aed"/>
+<rect id="not-buyers" data-value="10" x="1070" y="410" width="24" height="200" fill="#94a3b8"/>
+<text x="280" y="118" font-size="21" font-weight="600" fill="#17233a" text-anchor="middle">Who saved a weekly plan?</text>
+<text x="900" y="118" font-size="21" font-weight="600" fill="#17233a" text-anchor="middle">Who paid?</text>
+<text x="102" y="157" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Referral visitors</text>
+<text x="102" y="185" font-size="25" font-weight="700" fill="#2563eb" text-anchor="middle">12</text>
+<text x="462" y="157" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Menu and list saved</text>
+<text x="462" y="185" font-size="25" font-weight="700" fill="#0f766e" text-anchor="middle">5</text>
+<text x="722" y="157" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Same visitors</text>
+<text x="722" y="185" font-size="25" font-weight="700" fill="#2563eb" text-anchor="middle">12</text>
+<text x="1082" y="157" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">First payment</text>
+<text x="1082" y="185" font-size="25" font-weight="700" fill="#7c3aed" text-anchor="middle">2</text>
+<text x="462" y="350" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">No saved plan</text>
+<text x="462" y="378" font-size="25" font-weight="700" fill="#526176" text-anchor="middle">7</text>
+<text x="1082" y="350" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">No payment</text>
+<text x="1082" y="378" font-size="25" font-weight="700" fill="#526176" text-anchor="middle">10</text>
+<text x="280" y="656" font-size="20" font-weight="600" fill="#0f766e" text-anchor="middle">5 / 12 = 41.7% activate</text>
+<text x="900" y="656" font-size="20" font-weight="600" fill="#7c3aed" text-anchor="middle">2 / 12 = 16.7% pay</text>
+<text x="36" y="699" font-size="17" font-weight="400" fill="#526176" text-anchor="start">Both views use the same 12 people. The overlap between activation and payment is not specified.</text>
+</g>
+</svg>
