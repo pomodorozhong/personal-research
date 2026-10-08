@@ -49,9 +49,9 @@ A chosen communication budget can bound the work. For this example, one weekly h
 
 An update can receive visits while teaching little about demand. To judge distribution, follow people into a trial, a first useful result, and later use, while also recording the time spent communicating. For the packing app, a useful result is creating a list that another household member can open and use.
 
-In the example comparison, a developer thread brings 1,000 distinct visits, ten trials, and two repeat users. A customer-community post brings 25 visits, ten trials, and two repeat users. Trial starts are measured within seven days of each person's visit, and repeat use means completing another packing-list session during days 8–14. Everyone has completed the relevant windows, and each channel uses the same definitions.
+In the example comparison, a developer thread brings 1,000 distinct visitors, ten trial users, and two repeat users. A customer-community post brings 25 visitors, ten trial users, and two repeat users. Assign each person once to their first recorded route, so the two groups do not overlap. Trial starts are measured within seven days of each person's visit, and repeat use means completing another packing-list session during days 8–14. Everyone has completed the relevant windows, and each channel uses the same definitions.
 
-| Route | Visits | Trials | Visit-to-trial rate | Repeat users |
+| Route | Visitors | Trial users | Visitor-to-trial rate | Repeat users |
 | --- | ---: | ---: | ---: | ---: |
 | Developer thread | 1,000 | 10 | `10 / 1000 = 1%` | 2 |
 | Customer community | 25 | 10 | `10 / 25 = 40%` | 2 |
