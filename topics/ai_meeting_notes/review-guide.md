@@ -1,34 +1,33 @@
 # Reviewing the meeting-notes investigation
 
-[Topic overview](README.md) · [Investigation plan](investigation-plan.md) · [Feature catalogue](feature-catalogue.md) · [Pipeline impact map](investigation-plan.md#pipeline-steps-and-feature-impact)
+[Topic overview](README.md) · [Investigation plan](investigation-plan.md) · [Feature catalogue](feature-catalogue.md)
 
-Each review uses a concrete document or runnable result. Technical checks remain with the implementer. A review is finished when material feedback has been addressed.
+The next decision is whether a local model produces a usable transcript with reliable speaker labels from a meeting recording. This guide describes what to inspect in the model review and trial result. The implementer handles technical checks and records the setup and outputs; the review focuses on whether those outputs meet the intended need.
 
 ## 1. Feature scope is confirmed
 
-The [Feature catalogue](feature-catalogue.md), `MN-01` through `MN-22`, is sufficient and accepted. Phase 1 is complete. The next work explains how pipeline steps affect the features we can obtain and the compromises involved. Further paid-product comparison and vendor-gap resolution are outside the scope.
+The [Feature catalogue](feature-catalogue.md), `MN-01` through `MN-22`, is accepted. It defines the expected behavior for local work. Further paid-product comparisons and unresolved vendor details do not need to be settled before the recording trial.
 
-Use the catalogue's input/output definitions and failure cases as the reference throughout the investigation. Keep every ID visible even when a feature needs additional application work, depends on an external service, or cannot be supported by the selected pipeline. Any later change to expected behavior should name the affected ID and explain why it changes the investigation.
+The immediate trial checks transcription (**MN-04**) and speaker separation (**MN-06**). Naming people (**MN-07**) also requires confirmed identity information. Other features remain in the catalogue so the report can explain downstream effects and additional work without claiming that the trial covers them.
 
 ## 2. Review pipeline effects and experiment choices
 
-**Initial source overview:** [open-source-pipelines.md](open-source-pipelines.md). The complete Phase 2 review will use the expanded report, with source revisions, stage/artifact diagrams, a stage-to-feature map, and a dependency chain for every feature ID. Allow roughly **15–20 minutes**.
+Start with [Local pipeline sources](open-source-pipelines.md). Its initial observations describe the project paths; the next update should identify the exact models, versions, software, and settings used for transcription, speaker processing, and summaries.
 
-1. Follow a real meeting through capture, segmentation, transcription, attribution, assembly, summarization, storage, retrieval, and delivery. Check which artifacts each step produces and which features depend on them.
-2. Inspect the choices that change feature availability or reliability: language support, chunk boundaries, speaker identity, context limits, evidence links, correction propagation, and local/cloud processing.
-3. Check how upstream failures reach downstream features. For example, does a wrong transcript or speaker label explain an incorrect action owner, or does the extraction step introduce the error?
-4. Review missing application work and external dependencies for history, calendars, sharing, integrations, and follow-ups. Select experiments whose results would change the adopt/customize/build decision.
+Check whether the proposed setup can handle the recording's languages, supports speaker separation, runs on the target Mac, and keeps processing local as intended. Also check whether labels appear during the call or only afterward. That difference matters if the intended use needs live attribution, but does not prevent using final labels for a saved recording.
 
-Send feedback as `stage / affected feature IDs / expected behavior / failure or tradeoff / measurement priority`. For example: `speaker identity / MN-07, MN-10 / name three speakers in a Chinese-English call / anonymous labels leave owners unresolved / measure identity accuracy and manual correction effort`.
+The review should leave a concrete option to try. It does not require a complete feature matrix or a broad benchmark campaign before that trial. If a detail affects the choice, name the model or step and explain the consequence—for example, “This option transcribes the recording but has no speaker-separation step.”
 
-The implementer resolves missing dependency mappings and updates the experiment selection. **Phase 3 waits for the pipeline findings and experiment review.** Independent source corrections can continue.
+## 3. Review the recording result
 
-## 3. Inspect feature outputs and resource demands
+Read the generated transcript alongside the recording, including passages where speakers change, words are unclear, or technical terms appear. Check whether the words preserve the meaning and whether each voice keeps a consistent label. Name assignment should use known identities rather than guesses from a participant list.
 
-**Prepared after Phase 3:** `local-measurements.md`, reference and generated outputs, intermediate artifacts, resource results, and a representative combined workflow. Allow roughly **20–30 minutes**.
+For a problem, give the recording time, the expected words or speaker, the actual output, and why the difference matters. For example, a transcript that drops “not” from a launch decision changes the meaning; a speaker label that swaps two people can attach a commitment to the wrong person.
 
-Inspect one Chinese-English excerpt and one long meeting. Check speakers, decisions, owners, deadlines, omitted facts, invented claims, and source links against the supplied references and catalogue definitions. Compare intermediate artifacts to locate the stage responsible for an error. Inspect how a changed model, chunk size, or processing schedule affects both feature outcomes and resource use.
+If a model reliably distinguishes speakers and produces a good transcript on the target Mac, stop testing. If none does, use the observed failures to plan further experiments with other models or pipelines. The [investigation plan](investigation-plan.md#measurement-rules-for-follow-up-experiments) lists measurements that may help distinguish causes; select only those needed for the failure being investigated.
 
-Try the selected workflow alongside your usual meeting app, including a headset change, and notice call quality, responsiveness, and correction effort. Check the coverage matrix for features that still require manual work, application development, or an external service.
+## Keep the conclusion within the evidence
 
-Use `stage / feature ID / expected result / actual result / impact / acceptable or needs work`. The implementer reruns affected measurements and updates the recommendation when feedback exposes a material problem. Decide whether to adopt, customize, or build, and whether the evidence is sufficient to resolve [#167](https://github.com/pomodorozhong/rabbit-holes/issues/167).
+Record the model, settings, recording, result, and decision together. A successful trial of transcription and speaker separation does not demonstrate summary quality, sharing behavior, or other untested catalogue features. Those remain separate questions when deciding what further work is needed for [#167](https://github.com/pomodorozhong/rabbit-holes/issues/167).
+
+The model review and recording trial are pending. This guide describes the review process, not a completed test.

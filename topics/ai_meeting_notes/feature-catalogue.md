@@ -2,9 +2,11 @@
 
 [Topic overview](README.md) · [Investigation plan](investigation-plan.md) · [Review guide](review-guide.md)
 
-These **authored evaluation definitions** are the accepted feature scope for the pipeline investigation and local measurements. Evaluate each feature against its observable behavior and failure cases. Unknown deadlines, names, or decisions must remain unknown in reference outputs instead of being filled by guesswork.
+The catalogue defines 22 meeting-notes features by the input they need, the output they should produce, and the failures to check. These are the accepted goals for the investigation, assembled from the [paid-product research](paid-baseline.md). A feature definition describes the intended behavior; it does not report a measured capability of any product or model.
 
-Keep IDs unchanged. Speaker **separation** means distinguishing voice turns; **identity** means attaching the correct person's name. Keyword search finds matching text; semantic questions require finding relevant evidence and composing an answer.
+Consider a fictional commitment: “I'll update the checklist,” spoken by Lin. For **MN-10**, the expected result is a checklist task owned by Lin, with no deadline because none was stated. Getting that result requires the words to survive transcription, the speaker context to remain correct, and the extraction step to leave missing information unknown.
+
+Two distinctions recur in the table. **Speaker separation** assigns consistent labels to voices; **speaker identity** attaches confirmed names. **Keyword search** finds matching text; answering a question with evidence also requires finding relevant passages and supporting the answer with them.
 
 | ID | Feature | Observable input → output | Boundary or failure to check |
 | --- | --- | --- | --- |
@@ -33,12 +35,12 @@ Keep IDs unchanged. Speaker **separation** means distinguishing voice turns; **i
 
 ## How to use the catalogue
 
-For every ID, trace the pipeline stages and application work it depends on. Record what each stage enables, which failures can damage the feature, and which quality, latency, or memory tradeoffs need measurement. A feature may depend on several stages; one stage may affect several features. Keep unsupported features visible and state the missing work.
+Use the IDs to connect a feature to the steps that support it. MN-10, for example, can fail because audio is missing, transcription changes a commitment, a speaker label is wrong, or the extraction step invents an owner. Recording the failing step explains what needs to change more clearly than marking the whole feature as poor.
 
-For example, MN-10 depends on capturing a commitment, preserving its wording during transcription, resolving who owns it, and extracting only the stated task and deadline. The pipeline report should distinguish missing audio, transcription errors, identity mistakes, and extraction errors rather than treating them as one action-item failure.
+The [pipeline impact map](investigation-plan.md#pipeline-steps-and-feature-impact) provides the starting relationships. The immediate recording test focuses on transcription (**MN-04**) and speaker separation (**MN-06**); naming people (**MN-07**) also needs confirmed identity information. The other rows remain useful when checking what an app provides or explaining how an error affects later notes. They do not require a separate experiment for every feature before the recording trial.
 
-The [pipeline impact map](investigation-plan.md#pipeline-steps-and-feature-impact) gives the starting questions. The definitions above are the acceptance criteria; implementation choices and practical coverage remain to be investigated.
+Keep IDs unchanged when adding findings. If a feature needs manual work, extra application code, or an external service, record that dependency. Add a new ID for a new behavior rather than renumbering the existing catalogue.
 
 ## Sources
 
-The catalogue was assembled during the [dated background research](paid-baseline.md#sources). Its input/output definitions and failure cases are authored criteria, not measured product capabilities. The paid comparison is retained as background; later work uses these criteria directly.
+The [background source inventory](paid-baseline.md#sources) lists the material used to assemble the catalogue, inspected on **2026-10-06**. The feature definitions and failure cases are authored evaluation criteria. The [product comparison](product-coverage.md) records what each paid app documents; the local investigation uses the criteria above directly.

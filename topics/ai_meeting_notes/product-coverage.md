@@ -1,10 +1,16 @@
 # Product coverage
 
-[Paid baseline](paid-baseline.md) · [Feature catalogue](feature-catalogue.md) · [Topic and roadmap](README.md)
+[Paid baseline](paid-baseline.md) · [Feature catalogue](feature-catalogue.md) · [Topic overview](README.md)
 
-Research date: **2026-10-06**, Asia/Taipei. Compare Notion AI meeting notes, Amie, and Spellar AI against the 22 stable feature IDs defined in the [Feature catalogue](feature-catalogue.md). Product output quality has not been tested. This comparison is retained as background; subsequent work uses the Feature catalogue directly and does not require paid-product parity or resolving vendor gaps.
+This comparison records what Notion AI meeting notes, Amie, and Spellar AI document for the catalogue's 22 features. The sources were inspected on **2026-10-06**, Asia/Taipei. It supplies the background for the feature goals; later work examines local implementations and uses a meeting recording to test transcription and speaker separation.
 
-**D** = behavior described in official operational documentation or release notes. **A** = advertised or displayed in a public demo. **U** = not established by the inspected evidence. These describe evidence strength, not quality ratings. A “U” is not proof that the feature is absent. Product-specific restrictions in the [language and processing table](paid-baseline.md#language-platform-and-processing-boundaries) still apply to the rows below.
+For example, **MN-07** asks whether a speaker's turns can be attached to the correct name. Notion documents calendar-assisted naming for one-to-one meetings with setup restrictions; Amie documents renaming and one-to-one name inference; Spellar describes calendar context for naming. Those descriptions identify different routes to a name. They do not show how reliably the apps name speakers in a bilingual group call. [Notion help][N1], [Amie changelog][A3], [Spellar privacy policy][S4]
+
+## Reading the comparison
+
+**D** means official operational documentation or release notes describe the behavior. **A** means a product page advertises it or a public demo displays it. **U** means the inspected material does not establish it. These labels describe the evidence available, not measured quality; an unknown entry does not prove a feature is absent.
+
+The tables use **diarization** for separating voices into speaker-labelled turns and **ASR** for automatic speech recognition, which turns audio into text. The [language and processing table](paid-baseline.md#language-platform-and-processing-boundaries) explains product-specific restrictions that also apply here.
 
 ## Capture and content
 
@@ -38,11 +44,11 @@ Research date: **2026-10-06**, Asia/Taipei. Compare Notion AI meeting notes, Ami
 | MN-21 | A: Agent follow-up; credits may apply. [N2], [N5] | D: action → todo; A: scheduling/drafts. [A2], [A1] | D: chat follow-up drafts; sending U. [S5] |
 | MN-22 | D: general AI generation; dedicated digest U. [N3] | U: dedicated periodic meeting digest. | A: weekly/monthly recaps. [S1] |
 
-Guaranteed deadline extraction, export fidelity, and permission-aware retrieval are unverified across the products.
+The inspected material does not establish reliable deadline extraction, whether exports preserve all the relevant content, or whether answers respect access permissions. Those gaps limit conclusions about the paid apps; resolving them is not a prerequisite for the local recording test.
 
 ## Sources
 
-The [baseline source inventory](paid-baseline.md#sources) lists the primary sources and their labels. The labels in these tables link directly to those sources. See the [research method and limitations](paid-baseline.md#method-and-limitations) for the evidence boundaries.
+Each source label links to the primary page used for that entry. The [baseline source inventory](paid-baseline.md#sources) gives their subjects, and the [research method](paid-baseline.md#method-and-limitations) explains how the comparison was assembled. The apps were not tested with a shared recording, so the tables support descriptions of documented behavior rather than a quality ranking.
 
 [N1]: https://www.notion.com/help/ai-meeting-notes
 [N2]: https://www.notion.com/product/ai-meeting-notes

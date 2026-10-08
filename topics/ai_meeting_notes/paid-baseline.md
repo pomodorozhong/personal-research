@@ -1,19 +1,19 @@
 # Paid meeting-notes baseline
 
+Notion AI meeting notes, Amie, and Spellar AI combine transcription and summaries with calendars, saved meeting history, editing, sharing, and follow-up work. This background note records their documented features, prices, and processing boundaries as inspected on **2026-10-06**. It explains where the [Feature catalogue](feature-catalogue.md) came from; the next work concerns local models and a meeting-recording trial.
+
 | Field | Value |
 | --- | --- |
 | Research date | **2026-10-06**, Asia/Taipei |
 | Question | What features, prices, and processing boundaries do the reviewed meeting assistants document? |
 | Products | Notion AI meeting notes, Amie, Spellar AI |
 | Evidence | Official documentation, pricing controls, release notes, policies, and public product examples |
-| Status | **Background research**; the feature catalogue is accepted; no paid-product trial or local benchmark |
+| Status | Background research. The feature catalogue is accepted; paid-product quality has not been tested. |
 | Next step | [Feature catalogue](feature-catalogue.md), then [pipeline investigation](investigation-plan.md#three-phase-roadmap) |
-
-The subscriptions bundle transcription and summaries with the surrounding workflow: finding past meetings, connecting calendar context, editing notes, sharing results, and delivering follow-ups. The separate [feature catalogue](feature-catalogue.md) defines the behaviors to investigate. The remaining work uses those definitions as its reference; paid-product matching and subscription selection are outside the active scope.
 
 ## Prices and what the subscription buys
 
-**USD per user/seat, before tax**, observed on public website pricing controls in both billing modes. “Annual equivalent” is the annual charge divided by 12; it is not a month-to-month offer. The twelve-month monthly total assumes the same listed price for twelve renewals. Regional, App Store, legacy, and negotiated prices can differ.
+The table shows **USD per user or seat, before tax**, from the public monthly and annual pricing controls inspected on October 6. “Annual equivalent” divides the annual charge by 12. For example, Notion Business was $24 with monthly billing, or $240 for a year: the annual equivalent is $20 per month, but payment is billed annually. Twelve monthly payments at $24 total $288. Regional, App Store, legacy, and negotiated prices can differ.
 
 | Product / plan | Monthly billing | Twelve monthly payments | Annual equivalent | Annual billed total | Scope at this tier |
 | --- | ---: | ---: | ---: | ---: | --- |
@@ -24,7 +24,7 @@ The subscriptions bundle transcription and summaries with the surrounding workfl
 
 ### Incremental cost with an existing subscription
 
-These are **calculated scenarios**, not assumptions about the reader's accounts. Compare matching billing cycles; actual upgrades can involve prorating and all paid workspace members.
+An existing subscription changes the added cost of meeting notes. The scenarios below use the same billing cycle on both sides of an upgrade; actual charges can also depend on prorating and the number of paid workspace members. They do not assume the reader holds any particular subscription.
 
 | Existing subscription | Added cost for the relevant baseline |
 | --- | --- |
@@ -34,29 +34,31 @@ These are **calculated scenarios**, not assumptions about the reader's accounts.
 | Amie Personal or legacy plan | Current upgrade price and credits require account-specific verification; do not assume today's Pro entitlement. |
 | Spellar Pro | $0 extra for its included features. An existing Setapp subscription has a separate AI-credit route whose incremental cost is not established here. |
 
-The Notion calculations use its [current price controls](https://www.notion.com/pricing); Amie's use [Pro and Business pricing](https://amie.so/pricing). Spellar's [AI policy](https://www.spellar.ai/ai-usage-policy) distinguishes Setapp processing from its direct subscription.
+The Notion calculations use the [price controls inspected on October 6](https://www.notion.com/pricing); Amie's use [Pro and Business pricing](https://amie.so/pricing). Spellar's [AI policy](https://www.spellar.ai/ai-usage-policy) distinguishes Setapp processing from its direct subscription.
 
 ### Limits, trials, and possible extra charges
 
 - **Notion:** Meeting Notes has a **10-hour daily cap**, separate from the six-hour/monthly allowance for Agent chat. Premium models and additional Agent usage can spend credits. Custom Agents also require credits, so automated follow-ups are a separate cost consideration. [Usage allowance](https://www.notion.com/help/manage-your-usage-allowance-for-notion-ai)
-- **Amie:** Current pricing advertises unlimited meeting notes and AI chat and a **7-day trial**. Its billing documentation describes 25 one-time free note credits; feature documentation still refers to “Legacy Pro” and “Pro+.” Use the current price page for new subscriptions and verify legacy entitlements in the account. No numerical duration, import-size, or fair-use ceiling was established. [Pricing](https://amie.so/pricing), [billing](https://amie.so/documentation/account/billing), [notes documentation](https://amie.so/documentation/features/ai-notes)
+- **Amie:** The inspected pricing page advertises unlimited meeting notes and AI chat and a **7-day trial**. Its billing documentation describes 25 one-time free note credits; feature documentation still refers to “Legacy Pro” and “Pro+.” The page names do not settle what an older account includes; that requires account-specific confirmation. No numerical duration, import-size, or fair-use ceiling was established. [Pricing](https://amie.so/pricing), [billing](https://amie.so/documentation/account/billing), [notes documentation](https://amie.so/documentation/features/ai-notes)
 - **Spellar:** Pricing advertises unlimited recordings, transcription, summaries, and chat, included premium models, and a **14-day money-back guarantee**. The download page also describes a 7-day Pro trial; availability depends on the purchase route. Numeric usage ceilings were not established. Bringing an API key can add charges from that provider; “included models” does not establish that provider-funded calls are free. [Pricing](https://www.spellar.ai/pricing), [download](https://www.spellar.ai/download), [subscription terms](https://www.spellar.ai/terms-of-subscription)
 
 ## Language, platform, and processing boundaries
+
+Capturing audio on a Mac does not determine where transcription or summary generation runs. **ASR** means automatic speech recognition: the step that turns audio into text. Check that step, the summary step, and saved data separately when deciding whether a workflow stays local.
 
 | Product | English / Chinese / mixed language | Target-Mac requirements | Local capture, processing, and storage |
 | --- | --- | --- | --- |
 | Notion | English and Chinese listed; speaker labels **English-only**. Chinese-English switching quality unspecified. | Desktop app ≥4.7.0; macOS ≥13. Browser/mobile capture microphone only. | Desktop mic + system audio; cloud transcription; offline meeting notes unsupported. [Meeting-notes help](https://www.notion.com/help/ai-meeting-notes) |
 | Amie | English and Chinese in the named language set; multilingual meetings documented, quality untested. | Installation guide: macOS ≥10.15, Intel/Apple Silicon; desktop required for bot-free system-audio recording. | Audio captured locally, uploaded after the meeting; cloud ASR and summaries; notes stored server-side. [Languages](https://amie.so/changelog/embed), [installation](https://amie.so/documentation/getting-started/installation), [processing](https://amie.so/documentation/features/ai-notes) |
-| Spellar | Advertises **50+ transcription languages**. Exact Chinese coverage by engine and Chinese-English switching remain unresolved. App Store UI languages are not an ASR language list. | Current download page: macOS ≥15, Intel/Apple Silicon; native iPhone/iPad and browser recorder also advertised. | On-device transcription available; server transcription opt-in. AI summaries/chat send input to external providers. [Pricing](https://www.spellar.ai/pricing), [download](https://www.spellar.ai/download), [AI policy](https://www.spellar.ai/ai-usage-policy), [App Store](https://apps.apple.com/us/app/spellar-ai-meeting-note-taker/id6473629578) |
+| Spellar | Advertises **50+ transcription languages**. Exact Chinese coverage by engine and Chinese-English switching remain unresolved. App Store UI languages are not an ASR language list. | Download page inspected on October 6: macOS ≥15, Intel/Apple Silicon; native iPhone/iPad and browser recorder also advertised. | On-device transcription available; server transcription opt-in. AI summaries/chat send input to external providers. [Pricing](https://www.spellar.ai/pricing), [download](https://www.spellar.ai/download), [AI policy](https://www.spellar.ai/ai-usage-policy), [App Store](https://apps.apple.com/us/app/spellar-ai-meeting-note-taker/id6473629578) |
 
-**Interpretation:** Local audio capture, local transcription, and fully local summarization are separate capabilities. Spellar's bring-your-own-key option still uses a provider API. Its current policy explicitly describes third-party processing; this is stronger evidence for that boundary than a general privacy slogan. None of the reviewed evidence establishes a completely offline paid workflow with all catalogue features. [Spellar AI policy](https://www.spellar.ai/ai-usage-policy)
+Spellar illustrates this distinction: it offers on-device transcription, but its AI policy describes sending summary and chat inputs to third-party providers. Bringing an API key changes who supplies access to that provider; it does not move the provider's model onto the Mac. The inspected evidence does not establish a completely offline paid workflow covering all catalogue features. [Spellar AI policy](https://www.spellar.ai/ai-usage-policy)
 
 For saved data, Notion offers optional local retention of the recorder's ten most recent audio files; this does not make transcription local. Amie stores notes in encrypted cloud storage. Spellar's policy describes configurable audio retention and keeping transcripts, summaries, and speaker names until the recording is deleted; it also identifies cloud storage. Treat device-only audio retention separately from cloud text storage and inference. [Notion help](https://www.notion.com/help/ai-meeting-notes), [Amie pages](https://amie.so/documentation/features/pages), [Spellar privacy](https://www.spellar.ai/privacy)
 
 ## Feature catalogue
 
-The accepted feature scope now lives in the standalone [Feature catalogue](feature-catalogue.md). Subsequent work follows its definitions and examines pipeline dependencies, failures, and resource tradeoffs. This paid-product research is background material.
+The [Feature catalogue](feature-catalogue.md) turns these workflows into separate input/output definitions. Speaker separation, naming people, extracting a task, and delivering that task to another app have different dependencies. Keeping them separate helps explain what a local pipeline can supply and what application work remains.
 
 ## Public examples and their limits
 
@@ -66,11 +68,11 @@ The accepted feature scope now lives in the standalone [Feature catalogue](featu
 
 ## Limits of the background comparison
 
-These unresolved details limit what the paid comparison establishes. They are retained for context and do not gate the pipeline investigation or local measurements.
+The table below identifies where the inspected descriptions leave a practical question unanswered. For example, advertised action items do not establish whether a model will keep an unstated deadline empty. These questions limit the paid comparison; the local investigation can proceed using the catalogue definitions without further vendor research.
 
 | Unresolved detail | Affected IDs | Limit on the background evidence |
 | --- | --- | --- |
-| Chinese-English speech and speaker naming | MN-04, MN-06, MN-07 | Notion documents language/setup limits; Amie claims mixed support; Spellar's engine-specific Chinese support is unestablished. Shared-fixture quality was not tested. |
+| Chinese-English speech and speaker naming | MN-04, MN-06, MN-07 | Notion documents language/setup limits; Amie claims mixed support; Spellar's engine-specific Chinese support is unestablished. Quality on the same test recording was not tested. |
 | Transcript navigation/export detail | MN-05, MN-12, MN-16 | Audio retention, timestamp granularity, edit propagation, and preservation of labels/citations in exports are not established across the products. |
 | Exact action ownership and deadlines | MN-09, MN-10, MN-21 | The examples do not establish reliable separation of proposals, decisions, owners, and stated deadlines. |
 | Live and long meetings | MN-01, MN-04, MN-08 | Amie's August 2026 changelog calls live transcription experimental. Release availability, backlog, reliability, and per-session limits remain untested. |
@@ -80,7 +82,7 @@ These unresolved details limit what the paid comparison establishes. They are re
 
 ### Scope decision
 
-The Feature catalogue is sufficient and accepted as the reference for the remaining work. Phase 2 examines how pipeline choices affect those features; Phase 3 measures their quality and resource demands on the target Mac. No further paid-product comparison or parity assessment is required. See the [current roadmap](investigation-plan.md#three-phase-roadmap).
+The catalogue is the accepted reference for local work. The next steps are to check the models used by the open-source projects and try a meeting recording on the M2 Pro / 16 GB Mac. If a model produces a good transcript and reliably distinguishes speakers, stop testing. Further model or pipeline experiments are needed only if that trial falls short. The [investigation plan](investigation-plan.md#three-phase-roadmap) records this sequence.
 
 ## Sources
 
@@ -114,6 +116,6 @@ All sources below are primary vendor pages or the developer's App Store listing,
 
 ## Method and limitations
 
-Read official pages and release notes, inspected monthly/yearly browser controls, and switched the public Spellar demo between its summary, transcript, and action views. Arithmetic is shown as calculated cost scenarios. Documentation and curated examples establish intended interfaces and advertised behavior; they do not establish product quality or latency.
+The research used official pages, release notes, monthly and yearly pricing controls, and the summary, transcript, and action views in the public Spellar demo. The cost scenarios are arithmetic based on the inspected prices. These materials show the documented workflow and advertised behavior, but cannot establish accuracy or processing time on a real meeting.
 
-No subscription was bought, no account settings were changed, and no meeting audio was submitted. No apps/models were installed or benchmarked on the target Mac. Unpublished limits, plan discrepancies, code-switching accuracy, permission behavior, export fidelity, deadline extraction, and paid-product output quality remain unverified. These limits belong to this background comparison; the [pipeline investigation and measurement plan](investigation-plan.md#three-phase-roadmap) uses the accepted catalogue as its reference.
+The research did not include buying subscriptions, changing account settings, or submitting meeting audio. The uncertainties above therefore remain unresolved, including mixed-language quality, export contents, access permissions, and deadline extraction. The prices and product descriptions reflect the October 6 inspection. The [local investigation](investigation-plan.md#three-phase-roadmap) uses the catalogue as its reference and has not yet produced recording-test results.
