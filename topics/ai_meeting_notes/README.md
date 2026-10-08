@@ -8,7 +8,7 @@ We extracted the [Feature catalogue](feature-catalogue.md) from the documented w
 
 The [open-source local solutions](open-source-pipelines.md) **Meetily, HushScribe, VOA, and Tacet** provide implementations to inspect. Their documented pipelines capture audio, split it into speech segments, turn speech into text, and produce notes. Speaker processing adds labels to the text where supported. Saving these outputs makes them available for history, search, export, and follow-up features.
 
-The apps schedule that work differently. HushScribe describes separating speakers after the call and generating summaries on request; Tacet describes speaker processing alongside transcription and analysis during the call. This changes when labelled text and notes become available, and which models must run together. The [source overview](open-source-pipelines.md#observed-pipeline-patterns) records the documentation and selected source files inspected on **2026-10-06**. The full source review still needs to confirm the models, settings, and supported features.
+The apps schedule that work differently. HushScribe describes separating speakers after the call and generating summaries on request; Tacet describes speaker processing alongside transcription and analysis during the call. This changes when labelled text and notes become available, and which models must run together. The [source overview](open-source-pipelines.md#observed-pipeline-patterns) records the documentation and selected source files inspected on **2026-10-06**. The [configuration review](open-source-pipelines.md#confirmed-models-runtimes-and-settings), inspected on **2026-10-08**, confirms the main model paths and requirements; wider feature coverage remains outside this phase.
 
 Consider this fictional exchange in a two-person meeting:
 
@@ -53,15 +53,15 @@ The [source observations](open-source-pipelines.md#what-these-patterns-tell-us) 
 
 The next steps establish what the projects use, then check whether one of those options meets the immediate need:
 
-1. **Check the open-source projects.** For A, B, and C, record the exact model, model version, download size, software used to run it, and relevant settings. Check the required macOS version, language support, model license, whether processing stays local, and whether the step runs during or after the call. Download size is not the same as memory needed while running. Use the [initial source overview](open-source-pipelines.md) as the starting point and confirm the details in code and configuration files.
-2. **Test a meeting recording.** Use a meeting recording on the M2 Pro / 16 GB Mac to check whether a model can reliably distinguish speakers and produce a good transcript. If a model does both well enough for our needs, stop testing. If none does, use the problems in its output to plan further experiments with other models and pipelines.
+1. **Use the completed model review.** The [configuration review](open-source-pipelines.md) records the models, downloads, runtimes, settings, languages, macOS requirements, licenses, and local/cloud boundaries. It selects a HushScribe source build with Whisper Large v3, language detection enabled, and FluidAudio’s offline Community-1 diarizer, for the user-confirmed macOS 26.6.2 (25G83) and Chinese + English recording. Download size is not runtime memory use.
+2. **The user tests a meeting recording.** Follow the [recording-trial plan](investigation-plan.md#user-run-recording-trial), using the confirmed Chinese + English setup. After the planned source build is prepared, the user installs and runs the selected setup, then returns transcript and speaker-label examples. If both outputs meet the need, stop testing; otherwise, use the observed failures to plan a focused follow-up.
 
 ## Work in progress
 
-This note is still being developed. The model review and meeting-recording test are pending. Their results, and any further experiments they call for, will be added here.
+The model/source review is complete as of **2026-10-08**. No model was installed or run for this research. The user-run recording trial is pending; its results and any focused follow-up will be added after the user returns evidence.
 
 ## Sources
 
-The catalogue comes from the [dated paid-product research](paid-baseline.md#sources). Pipeline observations come from the primary project documentation and selected source files listed in [Local pipeline sources](open-source-pipelines.md#sources), inspected on **2026-10-06**. The combined diagram, feature dependencies, and choice of first experiments are our analysis of those sources.
+The catalogue comes from the [dated paid-product research](paid-baseline.md#sources). Pipeline observations come from the primary project documentation and selected source files listed in [Local pipeline sources](open-source-pipelines.md#sources), initially inspected on **2026-10-06**, with configuration and artifact checks on **2026-10-08**. The combined diagram, feature dependencies, and choice of first experiments are our analysis of those sources.
 
 [Back to all topics](../../README.md)
