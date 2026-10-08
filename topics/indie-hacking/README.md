@@ -14,3 +14,7 @@ I use **indie hacking** as a loose umbrella for solo development, solo founding,
   - Does a subscription rejection require a paywall redesign, a metadata correction, or a purchase-flow fix?
   - What do real paywall examples show about benefits, billing terms, and trial selection?
   - What should be tested and explained before submission, resubmission, or appeal?
+- [Building in public](build-in-public/README.md)
+  - What can a useful public update help an intended audience decide?
+  - How should audience, privacy, and feedback needs shape the post and channel?
+  - When do attention and communication time lead to useful learning or repeat use?
