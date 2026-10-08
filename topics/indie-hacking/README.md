@@ -14,3 +14,7 @@ I use **indie hacking** as a loose umbrella for solo development, solo founding,
   - Does a subscription rejection require a paywall redesign, a metadata correction, or a purchase-flow fix?
   - What do real paywall examples show about benefits, billing terms, and trial selection?
   - What should be tested and explained before submission, resubmission, or appeal?
+- [SEO for an indie product](seo/README.md)
+  - How can one search question lead to a useful answer and a relevant product action?
+  - What makes that page understandable, accessible, and discoverable?
+  - How do search visibility, distinct visitors, and useful customer outcomes differ?
