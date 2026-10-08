@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" role="img" aria-labelledby="title description">
+<title id="title">The six funnel stages in the meal-planning app story</title>
+<desc id="description">Awareness: 600 people find weekday dinner ideas and visit the product page. Interest: 180 open the sample menu. Consideration: 60 start a trial, and 36 reach activation by saving a weekly menu with its grocery list. Conversion: 18 activated trial users pay. Retention: 12 buyers save another weekly menu with its grocery list during days 30 through 44 after payment. Referral: 4 returning buyers bring a new visitor by day 60 after payment. Gray branches show 420 without opening the sample menu, 120 without a trial, 42 without payment, 6 without repeat use, and 8 returning buyers without a qualified referral in the relevant windows. A dotted connector, not a proportional flow, leads to a separate group of 12 new referral visitors; 5 activate and 2 pay, with their overlap unspecified. All counts are illustrative.</desc>
+<defs><marker id="new-people-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M 0 0 L 9 4.5 L 0 9 Z" fill="#2563eb"/></marker></defs>
+<rect x="1" y="1" width="1198" height="848" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="36" y="46" font-size="28" font-weight="700" fill="#17233a">Where each stage appears in the meal-planning app story</text>
+<text x="36" y="77" font-size="17" fill="#526176">The opening table mapped to the worked example · original 600 visitors · illustrative counts</text>
+<path data-source="awareness" data-target="interest" data-value="180" d="M 104 225.0 C 188.48 225.0, 195.52 225, 280 225 L 280 315.0 C 195.52 315.0, 188.48 315.0, 104 315.0 Z" fill="#2563eb" fill-opacity="0.30"/>
+<path data-source="awareness" data-target="no-sample" data-value="420" d="M 104 315.0 C 188.48 315.0, 195.52 440, 280 440 L 280 650.0 C 195.52 650.0, 188.48 525.0, 104 525.0 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<path data-source="interest" data-target="consideration" data-value="60" d="M 304 225.0 C 388.48 225.0, 395.52 225, 480 225 L 480 255.0 C 395.52 255.0, 388.48 255.0, 304 255.0 Z" fill="#2563eb" fill-opacity="0.30"/>
+<path data-source="interest" data-target="no-trial" data-value="120" d="M 304 255.0 C 388.48 255.0, 395.52 440, 480 440 L 480 500.0 C 395.52 500.0, 388.48 315.0, 304 315.0 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<path data-source="consideration" data-target="conversion" data-value="18" d="M 504 225.0 C 588.48 225.0, 595.52 225, 680 225 L 680 234.0 C 595.52 234.0, 588.48 234.0, 504 234.0 Z" fill="#7c3aed" fill-opacity="0.30"/>
+<path data-source="consideration" data-target="no-payment" data-value="42" d="M 504 234.0 C 588.48 234.0, 595.52 440, 680 440 L 680 461.0 C 595.52 461.0, 588.48 255.0, 504 255.0 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<path data-source="conversion" data-target="retention" data-value="12" d="M 704 225.0 C 788.48 225.0, 795.52 225, 880 225 L 880 231.0 C 795.52 231.0, 788.48 231.0, 704 231.0 Z" fill="#0f766e" fill-opacity="0.30"/>
+<path data-source="conversion" data-target="no-repeat" data-value="6" d="M 704 231.0 C 788.48 231.0, 795.52 440, 880 440 L 880 443.0 C 795.52 443.0, 788.48 234.0, 704 234.0 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<path data-source="retention" data-target="referral" data-value="4" d="M 904 225.0 C 988.48 225.0, 995.52 225, 1080 225 L 1080 227.0 C 995.52 227.0, 988.48 227.0, 904 227.0 Z" fill="#c2410c" fill-opacity="0.30"/>
+<path data-source="retention" data-target="no-referral" data-value="8" d="M 904 227.0 C 988.48 227.0, 995.52 440, 1080 440 L 1080 444.0 C 995.52 444.0, 988.48 231.0, 904 231.0 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<rect id="awareness" data-value="600" x="80" y="225" width="24" height="300.0" fill="#2563eb"/>
+<rect id="interest" data-value="180" x="280" y="225" width="24" height="90.0" fill="#2563eb"/>
+<rect id="consideration" data-value="60" x="480" y="225" width="24" height="30.0" fill="#2563eb"/>
+<rect id="conversion" data-value="18" x="680" y="225" width="24" height="9.0" fill="#7c3aed"/>
+<rect id="retention" data-value="12" x="880" y="225" width="24" height="6.0" fill="#0f766e"/>
+<rect id="referral" data-value="4" x="1080" y="225" width="24" height="2.0" fill="#c2410c"/>
+<rect id="no-sample" data-value="420" x="280" y="440" width="24" height="210.0" fill="#94a3b8"/>
+<rect id="no-trial" data-value="120" x="480" y="440" width="24" height="60.0" fill="#94a3b8"/>
+<rect id="no-payment" data-value="42" x="680" y="440" width="24" height="21.0" fill="#94a3b8"/>
+<rect id="no-repeat" data-value="6" x="880" y="440" width="24" height="3.0" fill="#94a3b8"/>
+<rect id="no-referral" data-value="8" x="1080" y="440" width="24" height="4.0" fill="#94a3b8"/>
+<rect x="36" y="700" width="1128" height="88" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+<path d="M 1104 226 C 1139 226, 1176 226, 1176 266 L 1176 660 Q 1176 690, 1136 690 L 1120 690 L 1120 701" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#new-people-arrow)"/>
+<text x="92" y="117" font-size="20" font-weight="700" fill="#2563eb" text-anchor="middle">Awareness</text>
+<text x="92" y="146" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Find dinner ideas</text>
+<text x="92" y="167" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Visit the product page</text>
+<text x="92" y="204" font-size="22" font-weight="700" fill="#2563eb" text-anchor="middle">600 visitors</text>
+<text x="292" y="117" font-size="20" font-weight="700" fill="#2563eb" text-anchor="middle">Interest</text>
+<text x="292" y="146" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Open sample menu</text>
+<text x="292" y="167" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">See a week’s dinners</text>
+<text x="292" y="204" font-size="22" font-weight="700" fill="#2563eb" text-anchor="middle">180 people</text>
+<text x="492" y="117" font-size="20" font-weight="700" fill="#2563eb" text-anchor="middle">Consideration</text>
+<text x="492" y="146" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Check fit and price</text>
+<text x="492" y="167" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Start a trial</text>
+<text x="492" y="204" font-size="22" font-weight="700" fill="#2563eb" text-anchor="middle">60 trial users</text>
+<text x="692" y="117" font-size="20" font-weight="700" fill="#7c3aed" text-anchor="middle">Conversion</text>
+<text x="692" y="146" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Subscribe for more menus</text>
+<text x="692" y="167" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Complete payment</text>
+<text x="692" y="204" font-size="22" font-weight="700" fill="#7c3aed" text-anchor="middle">18 buyers</text>
+<text x="892" y="117" font-size="20" font-weight="700" fill="#0f766e" text-anchor="middle">Retention</text>
+<text x="892" y="146" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Plan another week</text>
+<text x="892" y="167" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Save menu and list</text>
+<text x="892" y="204" font-size="22" font-weight="700" fill="#0f766e" text-anchor="middle">12 returners</text>
+<text x="1092" y="117" font-size="20" font-weight="700" fill="#c2410c" text-anchor="middle">Referral</text>
+<text x="1092" y="146" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Recommend the app</text>
+<text x="1092" y="167" font-size="16" font-weight="400" fill="#17233a" text-anchor="middle">Bring a new visitor</text>
+<text x="1092" y="204" font-size="22" font-weight="700" fill="#c2410c" text-anchor="middle">4 referrers</text>
+<text x="492" y="221" font-size="14" font-weight="500" fill="#0f766e" text-anchor="middle">36 reach activation</text>
+<text x="292" y="380" font-size="17" font-weight="500" fill="#17233a" text-anchor="middle">Sample not opened</text>
+<text x="292" y="410" font-size="23" font-weight="700" fill="#526176" text-anchor="middle">420</text>
+<text x="492" y="380" font-size="17" font-weight="500" fill="#17233a" text-anchor="middle">No trial</text>
+<text x="492" y="410" font-size="23" font-weight="700" fill="#526176" text-anchor="middle">120</text>
+<text x="692" y="380" font-size="17" font-weight="500" fill="#17233a" text-anchor="middle">No payment</text>
+<text x="692" y="410" font-size="23" font-weight="700" fill="#526176" text-anchor="middle">42</text>
+<text x="892" y="380" font-size="17" font-weight="500" fill="#17233a" text-anchor="middle">No new menu saved</text>
+<text x="892" y="410" font-size="23" font-weight="700" fill="#526176" text-anchor="middle">6</text>
+<text x="1092" y="380" font-size="17" font-weight="500" fill="#17233a" text-anchor="middle">No qualified referral</text>
+<text x="1092" y="410" font-size="23" font-weight="700" fill="#526176" text-anchor="middle">8</text>
+<text x="36" y="677" font-size="16" font-weight="400" fill="#526176" text-anchor="start">Acquisition: 14 days after landing.    Repeat use: days 30–44 after payment.    Referral: by day 60 after payment.</text>
+<text x="60" y="731" font-size="21" font-weight="700" fill="#2563eb" text-anchor="start">Back to awareness: 12 new referral visitors</text>
+<text x="60" y="760" font-size="17" font-weight="400" fill="#17233a" text-anchor="start">These recipients start a separate journey. Five activate and two pay within their own 14-day windows.</text>
+<text x="36" y="820" font-size="16" font-weight="400" fill="#526176" text-anchor="start">Band width represents people. The dotted connector introduces new people; it is not a proportional band.</text>
+</g>
+</svg>
