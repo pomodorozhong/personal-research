@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="665" viewBox="0 0 1200 665" role="img" aria-labelledby="title description">
+<title id="title">Where the 600 visitors go</title>
+<desc id="description">Of 600 landing visitors, 180 open the sample menu and 420 do not. Of the 180, 60 start a trial and 120 do not. Of 60 trial users, 36 save a weekly menu with its grocery list and 24 do not. Of 36 activated trial users, 18 pay and 18 do not. All 18 buyers activate before paying. Gray branches show required actions not completed within the observation window.</desc>
+<rect x="1" y="1" width="1198" height="663" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="36" y="46" font-size="28" font-weight="700" fill="#17233a">Where the 600 visitors go</text>
+<text x="36" y="77" font-size="17" fill="#526176">Illustrative closed cohort · within 14 days of each landing visit · band width represents people</text>
+
+<path data-source="visitors" data-target="sample" data-value="180" d="M 104 170.0 C 207.68 170.0, 216.32 170.0, 320 170.0 L 320 260.0 C 216.32 260.0, 207.68 260.0, 104 260.0 Z" fill="#2563eb" fill-opacity="0.30"/>
+<path data-source="visitors" data-target="no-sample" data-value="420" d="M 104 260.0 C 207.68 260.0, 216.32 365.0, 320 365.0 L 320 575.0 C 216.32 575.0, 207.68 470.0, 104 470.0 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<path data-source="sample" data-target="trial" data-value="60" d="M 344 170.0 C 447.68 170.0, 456.32 170.0, 560 170.0 L 560 200.0 C 456.32 200.0, 447.68 200.0, 344 200.0 Z" fill="#2563eb" fill-opacity="0.30"/>
+<path data-source="sample" data-target="no-trial" data-value="120" d="M 344 200.0 C 447.68 200.0, 456.32 365.0, 560 365.0 L 560 425.0 C 456.32 425.0, 447.68 260.0, 344 260.0 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<path data-source="trial" data-target="activated" data-value="36" d="M 584 170.0 C 687.68 170.0, 696.32 170.0, 800 170.0 L 800 188.0 C 696.32 188.0, 687.68 188.0, 584 188.0 Z" fill="#0f766e" fill-opacity="0.30"/>
+<path data-source="trial" data-target="no-plan" data-value="24" d="M 584 188.0 C 687.68 188.0, 696.32 365.0, 800 365.0 L 800 377.0 C 696.32 377.0, 687.68 200.0, 584 200.0 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<path data-source="activated" data-target="buyers" data-value="18" d="M 824 170.0 C 927.68 170.0, 936.32 170.0, 1040 170.0 L 1040 179.0 C 936.32 179.0, 927.68 179.0, 824 179.0 Z" fill="#7c3aed" fill-opacity="0.30"/>
+<path data-source="activated" data-target="no-payment" data-value="18" d="M 824 179.0 C 927.68 179.0, 936.32 365.0, 1040 365.0 L 1040 374.0 C 936.32 374.0, 927.68 188.0, 824 188.0 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<rect id="visitors" data-value="600" x="80" y="170" width="24" height="300.0" fill="#2563eb"/>
+<rect id="sample" data-value="180" x="320" y="170" width="24" height="90.0" fill="#2563eb"/>
+<rect id="trial" data-value="60" x="560" y="170" width="24" height="30.0" fill="#2563eb"/>
+<rect id="activated" data-value="36" x="800" y="170" width="24" height="18.0" fill="#0f766e"/>
+<rect id="buyers" data-value="18" x="1040" y="170" width="24" height="9.0" fill="#7c3aed"/>
+<rect id="no-sample" data-value="420" x="320" y="365" width="24" height="210.0" fill="#94a3b8"/>
+<rect id="no-trial" data-value="120" x="560" y="365" width="24" height="60.0" fill="#94a3b8"/>
+<rect id="no-plan" data-value="24" x="800" y="365" width="24" height="12.0" fill="#94a3b8"/>
+<rect id="no-payment" data-value="18" x="1040" y="365" width="24" height="9.0" fill="#94a3b8"/>
+<text x="92" y="118" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Landing visitors</text>
+<text x="92" y="146" font-size="25" font-weight="700" fill="#2563eb" text-anchor="middle">600</text>
+<text x="332" y="118" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Sample menu opened</text>
+<text x="332" y="146" font-size="25" font-weight="700" fill="#2563eb" text-anchor="middle">180</text>
+<text x="572" y="118" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Trial started</text>
+<text x="572" y="146" font-size="25" font-weight="700" fill="#2563eb" text-anchor="middle">60</text>
+<text x="812" y="118" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Menu and list saved</text>
+<text x="812" y="146" font-size="25" font-weight="700" fill="#0f766e" text-anchor="middle">36</text>
+<text x="1052" y="118" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">First payment</text>
+<text x="1052" y="146" font-size="25" font-weight="700" fill="#7c3aed" text-anchor="middle">18</text>
+<text x="332" y="315" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Sample not opened</text>
+<text x="332" y="343" font-size="25" font-weight="700" fill="#526176" text-anchor="middle">420</text>
+<text x="572" y="315" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">No trial start</text>
+<text x="572" y="343" font-size="25" font-weight="700" fill="#526176" text-anchor="middle">120</text>
+<text x="812" y="315" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">No saved plan</text>
+<text x="812" y="343" font-size="25" font-weight="700" fill="#526176" text-anchor="middle">24</text>
+<text x="1052" y="315" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Activated, no payment</text>
+<text x="1052" y="343" font-size="25" font-weight="700" fill="#526176" text-anchor="middle">18</text>
+<text x="36" y="625" font-size="18" font-weight="400" fill="#17233a" text-anchor="start">18 / 600 = 3% of landing visitors pay.    18 / 60 = 30% of trial users pay.</text>
+</g>
+</svg>
