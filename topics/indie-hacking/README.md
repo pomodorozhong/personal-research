@@ -14,3 +14,7 @@ I use **indie hacking** as a loose umbrella for solo development, solo founding,
   - Does a subscription rejection require a paywall redesign, a metadata correction, or a purchase-flow fix?
   - What do real paywall examples show about benefits, billing terms, and trial selection?
   - What should be tested and explained before submission, resubmission, or appeal?
+- [Word-of-mouth marketing](word-of-mouth/README.md)
+  - What makes a recommendation useful to a particular recipient?
+  - How do sharing, signup, first useful use, payment, and repeat use differ?
+  - What can a small sharing test and the IKEA/Skyrim case teach about outcomes beyond attention?

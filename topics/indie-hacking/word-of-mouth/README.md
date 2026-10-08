@@ -1,76 +1,82 @@
 # Word-of-mouth marketing for indie products
 
-Word of mouth happens when someone tells another person about a product or experience. It includes private conversations, recommendations in communities, shared results, and negative warnings. A referral program is one designed mechanism; an unsolicited recommendation does not need a tracked link.
+A useful recommendation connects someone's experience with another person's problem. Word of mouth includes those recommendations, private conversations, community discussion, and negative warnings. A referral program is one designed route; an unsolicited recommendation does not require a tracked link.
 
-The useful question for a small product is: what can a satisfied user confidently tell a specific person, and what useful result can that person obtain afterward? The operating suggestions below are my application of source research and examples, not a promise of viral growth.
+For a small product, the important path is what happens after someone passes its name along. This guide follows a recipient into a useful result, then separates sharing, signup, use, payment, and continued usefulness.
 
-## What makes something worth passing on?
+## Follow a recommendation to its recipient's result
 
-[Berger and Milkman's research](https://jonahberger.com/wp-content/uploads/2013/02/ViralityB.pdf) examines sharing of *New York Times* articles and experimental emotional responses. Practical usefulness, interest, and surprise are associated with greater sharing; the emotional findings depend on arousal as well as positive or negative tone. This is evidence about content transmission, not a measured conversion model for indie software.
+Consider a fictional shared grocery-list app. Mina and her housemate keep buying duplicate items because their separate lists do not reflect what the other person bought. With the app, both see the same list and can mark an item bought. Mina tells a friend in another household: “This helped us stop buying milk twice. Here is a sample list you can try with your housemate.” The product, sample, counts, and proposed tests throughout the example are illustrative.
 
-My product interpretation is to make the recommendation useful to its recipient. The sender should be able to explain the problem, the outcome, and why this person would care:
+The friend opens a sample containing milk, apples, and coffee, then creates a list for their own household. Their housemate marks milk bought, and they see the update before shopping. That shared usable list is **activation** here: the first useful product result. Reading the message or creating an account alone would leave the coordination problem unresolved.
 
-| Reason to recommend | Indie-product illustration | What has to remain credible |
+The recommendation is useful because Mina identifies a familiar problem, explains the outcome, and gives this particular person a way to try it. A plain reliable utility can earn this kind of recommendation without a spectacular launch.
+
+[Berger and Milkman's research](https://jonahberger.com/wp-content/uploads/2013/02/ViralityB.pdf) examines *New York Times* article sharing and experimental emotional responses. Practical usefulness, interest, and surprise are associated with sharing; the emotional findings depend on arousal as well as tone. It supports questions about why a story travels, not a measured conversion model for indie software. The product still has to deliver what the recipient expects.
+
+| Reason to recommend | Example | What must remain credible |
 | --- | --- | --- |
-| Help someone solve a problem | “This utility fixed the date column I could not import.” | The recipient can reproduce that result on supported inputs. |
-| Share a pleasing result | A designer shares an exported comparison image. | The result is useful even if nobody clicks the attribution. |
-| Tell an entertaining story | An unexpected feature or crossover has a compact premise. | The real experience does not contradict the story. |
-| Improve a shared workflow | A collaborator receives a useful review link. | The recipient can participate without unnecessary setup. |
+| Solve a recognizable problem | A friend avoids duplicate grocery purchases. | Their household can reproduce the useful result. |
+| Share a pleasing result | A designer shares a useful comparison image. | The output helps even without clicking attribution. |
+| Tell an entertaining story | An unexpected crossover has a compact premise. | The experience does not contradict it. |
+| Improve a shared workflow | A household member receives a list invitation. | Joining does not require unnecessary setup. |
 
-A plain reliable tool may earn recommendations without a spectacular launch video. Conversely, something can be widely discussed without earning satisfied customers. [Berger's “Viral 2.0”](https://jonahberger.com/viral-2-0/) emphasizes the connection between sharing and business value rather than treating views as sufficient success. Its historic numeric claims are not reused here as current platform statistics.
+These are different reasons to share, but attention is not the final business outcome. [Berger's “Viral 2.0”](https://jonahberger.com/viral-2-0/) connects sharing with business value rather than treating views as sufficient success. A widely discussed product can still have few satisfied users.
 
-## Encourage sharing after delivering value
+## Make sharing optional after value is delivered
 
-My default is to offer an optional, contextual action after a successful result. For example, a user who has exported a useful report might see “Copy a link to this sample workflow.” The link should explain the product without exposing the user's private data.
+After Mina's household successfully uses a list, an optional “Share a sample with a friend” action can help explain the workflow without exposing their real groceries or household notes. Let Mina choose the recipient and inspect the message. Declining should be easy, and the request should not block an unfinished task or require importing contacts.
 
-Keep declining easy. Let the user choose recipients and inspect what will be sent. A request to recommend the tool should not interrupt an unfinished task, require importing contacts, or make access depend on promoting it. If using rewards, explain both sides' benefit, eligibility, and when the reward is earned.
+Rewards need their own explanation: who qualifies, what each person receives, and when it is earned. [Dropbox's referral documentation](https://help.dropbox.com/storage-space/earn-space-referring-friends) illustrates a product-related reward, storage, with qualification steps and status tracking. Its limits can change; the useful relationship is between the benefit and product use, rather than a reason to copy current amounts or assume similar outcomes.
 
-[Dropbox's referral documentation](https://help.dropbox.com/storage-space/earn-space-referring-friends) illustrates a reward tied to the product: eligible users can earn storage by referring a new user. It also describes qualification steps and status tracking, rather than rewarding a link click alone. The exact plan limits can change; the lesson here is aligning the benefit with product use, not copying Dropbox's current amounts or assuming its outcomes transfer to another product.
+Ask for an honest recommendation rather than a prescribed positive review. Distinguish rewarded sharing from independent feedback, and monitor duplicate/self-referrals, cancellations, reward costs, and support work before expanding an incentive. More messages can be an expensive route to the same unresolved recipient problem.
 
-Ask for an honest recommendation, not a prescribed positive review. Keep rewards separate from claims that feedback is independent. Monitor duplicate or self-referrals, cancellation patterns, reward costs, and support effort before expanding a program.
+## Measure sharing, trying, and continued usefulness separately
 
-## Case: IKEA × Skyrim
+The first measurement asks whether satisfied customers pass the product along. For the grocery-app worksheet, 200 paying customers have used a shared list and indicated that it helped. They are offered the optional sample-sharing action and each gets a seven-day sharing window. Sixty send qualifying invitations to 120 distinct new recipients, averaging two per sender. Existing users, self-referrals, and duplicate recipients are excluded; each qualifying invitation is assigned to one sender.
 
-[Mother's firsthand campaign post](https://www.linkedin.com/posts/mother_introducing-kallax-storageborn-ikeas-solution-activity-7503785908534706176-iK7U) describes KALLAX Storageborn as a free *Skyrim* Creation: a shelf becomes a storage companion, voiced by Matt Berry. The [supplied r/gaming thread](https://www.reddit.com/r/gaming/comments/1wbq721/ikea_launches_official_the_elder_scrolls_v_skyrim/) contains reactions to that premise and voice casting.
+The next question concerns recipients. Thirty of the 120 invited people create an account: `30 / 120 = 25%`. This says how often a delivered invitation leads to signup. It leaves usefulness unresolved, so follow those people into a list they can use with their household.
 
-**My interpretation:** three elements make the story easy to repeat. The familiar game supplies a recognizable inventory frustration; the furniture brand supplies an apt storage solution; the talking shelf makes the combination surprising. The playable artifact gives the story something concrete to point to. Someone can enjoy retelling the premise without installing the mod.
+Give each recipient 14 days from their invitation for signup, activation, and payment, counted in that order. Eighteen of the 30 signed-up people activate, and nine of those 18 pay. Later, six of the nine buyers use a shared list again during days 30–44 after their own payment. Every sender and recipient has completed their relevant windows, including all nine buyers' repeat-use window.
 
-That does not establish the ratio of people exposed to the campaign versus actual players, or an effect on furniture sales. Selected enthusiastic comments are not a representative audience sample, and celebrity casting or brand scale may make the campaign difficult for an indie developer to reproduce. I did not install the mod or evaluate its quality. The transferable hypothesis is to connect a memorable story to a real useful experience, not to buy a celebrity or guarantee virality.
-
-The package-first development question is covered separately in [issue #136](https://github.com/pomodorozhong/rabbit-holes/issues/136). The public campaign does not prove the team's internal design chronology.
-
-## Measure the whole recommendation path
-
-My suggested measurement separates each stage and uses the same eligible cohort and time window. **Original hypothetical example:**
-
-| Stage | Count | Rate and denominator |
+| Measurement | Count | Calculation |
 | --- | ---: | --- |
-| Satisfied customers offered an optional referral | 200 | Eligible cohort. |
-| Customers who send at least one invitation | 60 | `60 / 200 = 30%`. |
-| Unique delivered invitations | 120 | `120 / 60 = 2` per sender. |
-| New users accepting an invitation | 30 | `30 / 120 = 25%`. |
-| Accepted users reaching the first useful result | 18 | `18 / 30 = 60%`. |
-| Activated users paying | 9 | `9 / 18 = 50%`. |
-| Those buyers retained at the defined follow-up | 6 | `6 / 9 ≈ 66.7%`. |
+| Eligible satisfied customers | 200 | Defined customer group, not all visitors. |
+| Customers sending a qualifying invitation | 60 | `60 / 200 = 30%`. |
+| Distinct delivered invitations | 120 | `120 / 60 = 2` per sender. |
+| New recipients signing up | 30 | `30 / 120 = 25%`. |
+| Signed-up recipients reaching a useful shared list | 18 | `18 / 30 = 60%`. |
+| Activated recipients paying | 9 | `9 / 18 = 50%`. |
+| Those buyers repeating useful use | 6 | `6 / 9 ≈ 66.7%`. |
 
-The signup multiplier is `0.30 × 2 × 0.25 = 0.15` new signups per eligible customer. The retained-buyer yield is `6 / 200 = 0.03`, a different quantity. Neither number establishes a self-sustaining growth loop. Repeat referral opportunities, customer departures, generation timing, and how often recipients are genuinely new all matter.
+Customers and invitations are different units: one customer can send two invitations, so invitation counts need not shrink like a people-only funnel. The **signup multiplier** here means new signups per eligible customer: `0.30 × 2 × 0.25 = 0.15`, equivalent to `30 / 200`. The retained-buyer yield is `6 / 200 = 0.03`. The first describes account acquisition; the second follows payment into repeat usefulness. Neither establishes self-sustaining growth, since departures, repeat opportunities, generation timing, and genuinely new recipients also matter.
 
-Track contribution after discounts, rewards, refunds, and service costs. A referral channel that brings cheap signups but few useful results is not necessarily efficient. Compare referral cohorts with other acquisition cohorts cautiously: people invited by friends may already be more interested, so observational differences are not proof of a reward's causal effect.
+Track contribution after discounts, rewards, refunds, and service costs. Compare acquisition routes carefully: invited people may already have the problem and trust the sender, so an observational difference does not prove an incentive caused it. Optional “How did you hear about this?” feedback can complement disclosed link tracking; private conversations and cross-device paths leave gaps that should remain unknown.
 
-Use an optional “How did you hear about this?” question alongside disclosed link tracking. Private messages, offline conversations, and cross-device paths are incompletely observed. Missing attribution should stay unknown, not be silently assigned to the last visible channel.
+## Examine a story someone can share without trying it
 
-## A small first experiment
+IKEA's KALLAX Storageborn provides another sharing mechanism. *Skyrim* is a fantasy game with equipment and other items to carry. A **mod**, or add-on, extends the playable game. In this campaign, a KALLAX shelf becomes a storage companion voiced by Matt Berry. [Mother's firsthand post](https://www.linkedin.com/posts/mother_introducing-kallax-storageborn-ikeas-solution-activity-7503785908534706176-iK7U) describes the free Creation and the storage premise.
 
-My proposed first test is to choose one successful product moment, ask a few existing users who they would naturally recommend it to and why, and provide an optional share artifact. Observe the recipient's first task before adding incentives. Record declined sharing and expectation mismatches as useful findings.
+The story is compact: a furniture brand supplies a talking shelf to help with a game's inventory problem. The apt storage connection and unexpected character make it easy to retell. The playable add-on gives that premise something concrete to point to, while a person can still enjoy the story without installing it.
 
-If recipients cannot obtain the promised result, fix that experience first. Word of mouth can amplify a disappointment as readily as a useful tool; the product and support must carry the story after the recommendation.
+The [r/gaming discussion of IKEA's Skyrim add-on](https://www.reddit.com/r/gaming/comments/1wbq721/ikea_launches_official_the_elder_scrolls_v_skyrim/) includes reactions to the premise and voice casting. Those selected comments are not a representative audience sample. They do not establish installation rates, furniture sales, or the ratio of exposure to use. Gameplay quality was not tested here, and celebrity casting and brand scale may make the campaign difficult for an indie developer to reproduce.
+
+The useful hypothesis is to connect a memorable story with a real experience the recipient can obtain. The package/implementation relationship is explored separately in [issue #136](https://github.com/pomodorozhong/rabbit-holes/issues/136); this public campaign does not reveal the team's internal design chronology.
+
+## Test the recipient's task before increasing invitations
+
+For the grocery app, a concrete first share artifact could be a public sample headed “One list for your household,” containing milk, six apples, and coffee. It should explain that it is a sample, contain no personal customer data, and offer a path to making a private household list.
+
+Ask a few existing users who might find it useful, then invite willing recipients to create a disposable list, add bread, and have a housemate mark milk bought. Observe whether both see the change. If recipients read the sample but cannot find how to invite a housemate, the next test should clarify that step rather than offer a larger referral reward. If they complete the task but do not need shared shopping, investigate recipient fit. These are proposed findings and decisions, not measured growth.
+
+Sharing, recipient use, and repeat value therefore constrain each other. An appealing invitation brings attention to a workflow; an unfinished workflow leaves the recommendation unfulfilled. Improving that result gives both the next recipient and the original sender a better reason to keep recommending the product.
 
 [Back to Indie Hacking](../README.md)
 
 ## Sources
 
-- [Berger & Milkman: What Makes Online Content Viral?](https://jonahberger.com/wp-content/uploads/2013/02/ViralityB.pdf) — research on content sharing; journal publication 2012, author-hosted manuscript.
-- [Jonah Berger: Viral 2.0](https://jonahberger.com/viral-2-0/) — sharing connected to brand/business value.
-- [Dropbox: How to refer friends](https://help.dropbox.com/storage-space/earn-space-referring-friends) — product-aligned reward and qualification example; checked 2026-10-07.
+- [Berger & Milkman: What Makes Online Content Viral?](https://jonahberger.com/wp-content/uploads/2013/02/ViralityB.pdf) — content-sharing research, journal publication 2012, author-hosted manuscript.
+- [Jonah Berger: Viral 2.0](https://jonahberger.com/viral-2-0/) — sharing connected to business value.
+- [Dropbox: How to refer friends](https://help.dropbox.com/storage-space/earn-space-referring-friends) — product-related reward and qualification, checked 2026-10-07.
 - [Mother: Introducing KALLAX Storageborn](https://www.linkedin.com/posts/mother_introducing-kallax-storageborn-ikeas-solution-activity-7503785908534706176-iK7U) — firsthand campaign premise.
-- [r/gaming: IKEA × Skyrim discussion](https://www.reddit.com/r/gaming/comments/1wbq721/ikea_launches_official_the_elder_scrolls_v_skyrim/) — selected reactions from the issue's reference. All numerical examples and operating suggestions are original illustrations, not observed campaign results.
+- [r/gaming: IKEA × Skyrim discussion](https://www.reddit.com/r/gaming/comments/1wbq721/ikea_launches_official_the_elder_scrolls_v_skyrim/) — selected audience reactions. The grocery-app worksheet and test are original illustrations, not campaign outcomes.
