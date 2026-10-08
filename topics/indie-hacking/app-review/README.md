@@ -44,7 +44,7 @@ For example, a fictional offer could say “Premium reading tools,” “$59.99/
 
 Our practical assessment of common elements:
 
-The annotated image marks all seven elements on two illustrations from Apple's subscription guidance. The numbers match the rows below; each row links to a fuller explanation and a practical check in the [element companion](elements.md).
+The annotated image marks all seven elements on two illustrations from Apple's subscription guidance. The numbers match the rows below; the [checklist](checklist.md#actual-purchase-and-entitlement-behavior) covers testing the purchase and restoration behavior behind these controls.
 
 [![Seven numbered paywall elements on Apple's Forest Explorer billing illustration and Ocean Journal trial illustration: price hierarchy, trial wording, purchase button, plan selection, exit, restore, and legal links.](images/paywall-elements-annotated.png)](images/paywall-elements-annotated.png)
 
@@ -52,13 +52,15 @@ Apple's teaching artwork illustrates presentation, without establishing an app a
 
 | Element | What to inspect | Reasoning |
 | --- | --- | --- |
-| [1. Price hierarchy](elements.md#price-hierarchy) | Total billed amount, period, currency, contrast, and placement | A large “$5/month” can conceal an annual commitment even if “$60/year” appears elsewhere. |
-| [2. Trial wording](elements.md#trial-wording) | Duration, later charge, selected product, actual system sheet | Correct-looking copy can promise an offer that the transaction will not deliver. |
-| [3. Purchase button](elements.md#purchase-button) | Meaning and agreement with the selected plan | “Continue” alone tells little; nearby terms and the system sheet still matter. A particular button title is not a universal approval rule. |
-| [4. Plan selection](elements.md#plan-selection) | Whether a control also changes duration or price | A trial switch that silently moves annual to weekly combines separate decisions. |
-| [5. Exit](elements.md#exit) | Visible return route for free content, restoration, and existing subscribers | Make the promised free experience reachable. Closing a paywall does not cancel a subscription. |
-| [6. Restore](elements.md#restore) | Actual entitlement recovery, not just a label | A visible button with a broken restoration path solves nothing. |
-| [7. Legal links](elements.md#legal-links) | Functional links, correct destination, all relevant metadata/localizations | A paywall footer and the App Store description are different review surfaces. |
+| 1. Price hierarchy | Total billed amount, period, currency, contrast, and placement | A large “$5/month” can conceal an annual commitment even if “$60/year” appears elsewhere. |
+| 2. Trial wording | Duration, later charge, selected product, actual system sheet | Correct-looking copy can promise an offer that the transaction will not deliver. |
+| 3. Purchase button | Meaning and agreement with the selected plan | “Continue” alone tells little; nearby terms and the system sheet still matter. A particular button title is not a universal approval rule. |
+| 4. Plan selection | Recognizable choice, matching purchase action, changes to duration or price | A trial switch that silently moves annual to weekly combines separate decisions. |
+| 5. Exit | Visible return route for free content, restoration, and existing subscribers | Make the promised free experience reachable. Closing a paywall does not cancel a subscription. |
+| 6. Restore | Actual entitlement recovery, not just a label | A visible button with a broken restoration path solves nothing. |
+| 7. Legal links | Functional links, correct destination, all relevant metadata/localizations | A paywall footer and the App Store description are different review surfaces. |
+
+Forest Explorer uses a separate purchase button for each billing period; it does not show a selected-plan state. If your screen instead uses a picker and one purchase button, keep the selection recognizable and update the price, trial wording, and purchase action together.
 
 **Dismissibility needs context.** The HIG recommends limited free access; it does not establish that every iOS subscription app must offer a permanent free tier. Its explicit Close/Cancel advice in the watchOS section concerns returning to free content on that platform. For a freemium iOS app, our recommendation is an obvious dismissal route. For a fully paid service, explain the business model and give reviewers access; do not promise free features behind an unavoidable purchase screen. [Apple HIG][hig], [App Review preparation][review].
 

@@ -1,6 +1,6 @@
 # Image provenance
 
-[Annotated gallery](../gallery.md). The original six assets were retrieved **2026-10-06**; fourteen assets for ten additional cases were retrieved **2026-10-06–07** (Taipei). Two Apple teaching illustrations for the element companion were retrieved **2026-10-08**. Original asset bytes are preserved as supplied, including source annotations. A separate annotated composite of the Apple illustrations adds our seven numbered callouts. Sources include app captures, source-composed comparisons/product artwork, proposed app layouts, a video poster, and a developer-shared reviewer message. The source authors retain ownership of their material; no independent reuse license is claimed.
+[Annotated gallery](../gallery.md). The original six assets were retrieved **2026-10-06**; fourteen assets for ten additional cases were retrieved **2026-10-06–07** (Taipei). Two Apple teaching illustrations for the annotated overview were retrieved **2026-10-08**. Original asset bytes are preserved as supplied, including source annotations. A separate annotated composite of the Apple illustrations adds our seven numbered callouts. Sources include app captures, source-composed comparisons/product artwork, proposed app layouts, a video poster, and a developer-shared reviewer message. The source authors retain ownership of their material; no independent reuse license is claimed.
 
 | Local asset | App / author | Publication and capture | Version / storefront | Evidence |
 | --- | --- | --- | --- | --- |
@@ -77,7 +77,7 @@
 
 ## Element explanation illustrations
 
-**Apple:** [subscription purchase guidance](https://developer.apple.com/app-store/subscriptions/#clear-description). Its billing and trial sections use Forest Explorer and Ocean Journal teaching illustrations. The [element companion](../elements.md) explains their visible decisions and the behavior to verify in an app.
+**Apple:** [subscription purchase guidance](https://developer.apple.com/app-store/subscriptions/#clear-description). Its billing and trial sections use Forest Explorer and Ocean Journal teaching illustrations. The [guide's element table](../README.md#what-a-paywall-should-let-someone-understand) explains the numbered callouts in the annotated overview.
 
 - [Original billing image](https://developer.apple.com/app-store/subscriptions/images/screen-purchase-flow-1-large_2x.jpg)
 - [Original trial image](https://developer.apple.com/app-store/subscriptions/images/screen-purchase-flow-2-large_2x.jpg)
