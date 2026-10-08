@@ -14,3 +14,7 @@ I use **indie hacking** as a loose umbrella for solo development, solo founding,
   - Does a subscription rejection require a paywall redesign, a metadata correction, or a purchase-flow fix?
   - What do real paywall examples show about benefits, billing terms, and trial selection?
   - What should be tested and explained before submission, resubmission, or appeal?
+- [Ramen profitability](ramen-profitability/README.md)
+  - How do a maker's monthly needs and each customer's contribution set a survival threshold?
+  - What happens when costs rise, customers cancel, or payments arrive annually?
+  - How can a monthly review turn that threshold into a decision about working time?
