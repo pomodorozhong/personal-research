@@ -14,3 +14,7 @@ I use **indie hacking** as a loose umbrella for solo development, solo founding,
   - Does a subscription rejection require a paywall redesign, a metadata correction, or a purchase-flow fix?
   - What do real paywall examples show about benefits, billing terms, and trial selection?
   - What should be tested and explained before submission, resubmission, or appeal?
+- [Package-driven product development](package-driven-development/README.md)
+  - How can a customer-facing promise determine the behavior and checks needed before release?
+  - How does this approach overlap with documentation-first development and Working Backwards?
+  - What does the IKEA/Skyrim case reveal about attention, artifact use, and business effect?
