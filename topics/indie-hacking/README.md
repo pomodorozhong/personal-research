@@ -14,3 +14,7 @@ I use **indie hacking** as a loose umbrella for solo development, solo founding,
   - Does a subscription rejection require a paywall redesign, a metadata correction, or a purchase-flow fix?
   - What do real paywall examples show about benefits, billing terms, and trial selection?
   - What should be tested and explained before submission, resubmission, or appeal?
+- [Lean Canvas](lean-canvas/README.md)
+  - How do a customer's problem, a proposed solution, and useful evidence connect in a canvas?
+  - Which assumption should be tested before more is built?
+  - How can a test change the product, offer, and next version of the model?

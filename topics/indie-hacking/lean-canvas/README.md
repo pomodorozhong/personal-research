@@ -1,67 +1,74 @@
 # Lean Canvas: an idea made testable
 
-A Lean Canvas is a short model of what must be true for a business to work. Ash Maurya [created it as an adaptation of the Business Model Canvas](https://ashmaurya.com/blog/what-is-lean-canvas), replacing four company-oriented boxes with Problem, Solution, Key Metrics, and Unfair Advantage. Its purpose is to expose assumptions, not make an uncertain business look settled.
+Consider a fictional freelance designer who agrees to build a five-page website. Later, the client asks for online booking and believes it was included. The designer remembers a narrower agreement, but the brief has changed across documents and email. “BriefBridge” is a proposed tool for creating a brief, getting the client's approval, and finding that approved version when a new request arrives. The situation, canvas, tests, and possible revisions in this guide are illustrative, not findings from interviews or sales.
 
-Maurya recommends sketching an initial version quickly, accepting unknowns, and keeping it to one page. He does not require one universal fill order. The hard part comes afterward: [identifying risk, running tests, and updating the model](https://ashmaurya.com/blog/why-simple-isnt-easy).
+A Lean Canvas helps turn that product idea into claims that can be investigated. Ash Maurya [adapted it from the Business Model Canvas](https://ashmaurya.com/blog/what-is-lean-canvas), replacing four boxes with Problem, Solution, Key Metrics, and Unfair Advantage. Sketching a model exposes what must be true before investing heavily in the tool.
 
-The linked [LEANSpark page](https://leanspark.ai/leancanvas), checked 2026-10-07, describes twelve blocks. The familiar nine-box presentation groups Existing Alternatives under Problem, Early Adopters under Customer Segments, and High-Level Concept under Unique Value Proposition. The example below makes all twelve prompts visible while keeping the nine main boxes. An AI-filled canvas is still a set of claims; it is not customer evidence.
+## Connect a problem to a result worth testing
 
-## A complete indie-product example
+The designer needs to retrieve a record of what the client approved. That suggests a **Problem**: agreement history is hard to recover. It suggests a **Solution**: save the reviewed brief and its approval record so later edits do not change the approved version. The corresponding **Key Metric** should indicate whether a designer can retrieve the right approval, rather than simply count how many drafts were created.
 
-**Original, fictional example — version 0.1, 2026-10-07.** “BriefBridge” is a proposed tool for freelance web designers who need a client-approved project brief. No interviews, trials, or sales described here have been conducted.
+That result depends on another person. A designer can write a brief alone, but cannot obtain the promised approval record if the client finds the review link confusing and never finishes. The solution therefore needs a usable client review path, and the test must include both people. A convenient editor is only one part of the product's central claim.
+
+The canvas makes this relationship visible alongside other questions: who pays, how often the problem occurs, and what it costs to serve them. Maurya recommends a quick first sketch with unknowns visible, without one mandatory fill order. The continuing work is [testing risky assumptions and updating the model](https://ashmaurya.com/blog/why-simple-isnt-easy).
+
+## Read the complete canvas as a set of assumptions
+
+The nine main boxes below capture the first version of BriefBridge. The [LEANSpark presentation](https://leanspark.ai/leancanvas), checked 2026-10-07, uses twelve prompts. Here, Existing Alternatives sits under Problem, Early Adopters under Customer Segments, and High-Level Concept under Unique Value Proposition, making those prompts visible within the nine-box layout. A completed or AI-generated box is still a claim rather than customer evidence.
 
 | Main box | Initial assumption |
 | --- | --- |
-| Customer Segments | Freelance web designers working on several small client projects. **Early Adopters:** designers who already maintain a brief template and recently had a revision dispute. The designer pays; their client reviews the brief without an account. |
-| Problem | Requirements arrive across email and calls; scope changes are hard to distinguish from the agreed brief; approvals are difficult to retrieve. **Existing Alternatives:** a shared document, email confirmation, or the designer's current project-management tool. |
-| Unique Value Proposition | Turn scattered requirements into one client-approved brief that makes later scope changes visible. **High-Level Concept:** a versioned project brief with a simple approval record, rather than a full project-management suite. |
-| Solution | Guided brief fields; a read-only client review link; a saved approval snapshot and explicit change history. No automatic contract generation or invoicing in the first version. |
-| Channels | Interviews through existing designer contacts; a useful sample brief in communities that allow it; search pages about handling brief revisions. Availability and conversion of each channel are unproven. |
-| Revenue Streams | Hypothesis: $12 per active designer per month after a clearly described trial. Test repeat-project demand before committing to a subscription. Client reviewers are free. |
-| Cost Structure | Fixed hosting and administration; variable storage and email; acquisition time; support; development and maintenance time. Start with measured estimates rather than calling the founder's labor free. |
-| Key Metrics | Interviewees with a recent documented scope problem; designers producing a brief; clients approving it; designers using it for another project; paid conversion and contribution per account. |
-| Unfair Advantage | **None established.** Access to a few designers is a recruitment convenience, not a durable barrier to competitors. Do not rename enthusiasm or ordinary features a moat. |
+| Customer Segments | Freelance web designers with several small client projects. **Early Adopters:** designers with a brief template and a recent revision dispute. The designer pays; the client reviews without an account. |
+| Problem | Requirements arrive across calls and email; scope changes are hard to distinguish from the agreed brief; approvals are hard to retrieve. **Existing Alternatives:** a shared document, email confirmation, or the designer's project-management tool. |
+| Unique Value Proposition | One client-approved brief whose later scope changes remain visible. **High-Level Concept:** a versioned brief with an approval record, rather than a full project-management suite. |
+| Solution | Guided brief fields; a client review link; a saved approval snapshot and change history. No automatic contract generation or invoicing in the first version. |
+| Channels | Existing designer contacts, a useful sample brief in communities that permit it, and search pages about brief revisions. Recruitment and conversion are unproven. |
+| Revenue Streams | A $12-per-designer monthly subscription after a clearly described trial. Client reviewers are free. Repeat-project demand must justify the subscription. |
+| Cost Structure | Fixed hosting/administration, variable storage/email, acquisition, support, development, and maintenance time. Founder labor is not assumed free. |
+| Key Metrics | Recent scope problems; brief creation; completed client approvals; retrieved approval records; another project; payment and contribution per account. |
+| Unfair Advantage | None established. Access to a few designers helps recruitment but does not itself prevent competition. |
 
-There is a dependency hiding in this canvas: the designer cannot get value from “approval” unless the client can review the document easily. Testing only the designer's editor misses a core risk.
+For example, Revenue Streams assumes recurring use. If disputes occur rarely, a subscription may not fit even if approval history is valuable. A weak assumption can change both what gets built and how it is offered, so choosing which one to test matters more than polishing every box equally.
 
-## Rank the assumptions before building
+## Choose the assumption that could change the product
 
-My proposed risk ranking for this fictional product is:
+Start with failures that would undermine the promised result or make it commercially unnecessary. For BriefBridge, these are useful candidates:
 
-| Risk | Why failure matters | Cheapest useful evidence |
+| Assumption | What failure would change | Evidence to seek |
 | --- | --- | --- |
-| Designers experience this problem often enough | Infrequent pain weakens repeat use and willingness to pay. | Recent examples of actual projects and workarounds. |
-| Clients will use the review link | The core outcome depends on another person. | Observe a designer-client pair completing the review. |
-| Designers prefer a paid tool to their document template | A usable solution can still be commercially unnecessary. | A transparent paid pilot offer after delivering a useful result. |
-| Brief history is feasible and reliable | An approval record that changes silently defeats the promise. | A small end-to-end prototype with immutable snapshots. |
+| Designers have this problem often enough | Reconsider recurring use and the paid offer. | Recent disputes and the workarounds used. |
+| Clients can finish reviewing a brief | Simplify or replace the approval path. | A designer-client pair completing it. |
+| Designers prefer the paid tool to current documents | Change the value proposition or stop the offer. | A clear paid pilot after a useful result. |
+| Approval history stays intact | Revise the implementation before promising reliable history. | A prototype retrieving unchanged approved snapshots after edits. |
 
-These priorities are this guide's application, not a prescribed order from Maurya. Test the assumption that would invalidate the others, rather than the feature that is most enjoyable to implement.
+This is a suggested ranking for the example, not an order prescribed by Maurya. If designers already write good briefs and only lose track of approvals, building extensive writing assistance would address the wrong part of the problem. That possibility gives a concrete purpose to the first interviews.
 
-## Turn the canvas into a learning loop
+## Follow one assumption through a test and revision
 
-**Proposed tests, with example decision thresholds chosen before observing results:**
+For the problem assumption, interview eight designers matching the early-adopter definition. Ask about the last disputed project, which version they relied on, and how they recovered the agreement. One chosen threshold is that at least five describe a recent problem and an existing workaround before proceeding. A compliment about BriefBridge does not count as such evidence.
 
-1. Interview eight designers matching the early-adopter definition. Ask about their last project, what changed, and how they resolved it. Proceed only if at least five can describe a recent problem and an existing workaround. Compliments about the proposed app do not count.
-2. Observe five designer-client pairs using a disposable prototype and fictional project data. At least four pairs should create, review, and approve a brief without the founder taking over. Record where participants hesitate.
-3. Invite the successful pairs into a clearly labeled pilot at the stated price. Look for at least three concrete acceptances out of five offers; distinguish an actual paid commitment from “I might use this.” State delivery dates and cancellation/refund terms before taking money.
-4. Observe whether at least three of the five designers use the workflow for another qualifying project within the agreed follow-up period. If no new project occurs, mark repeat-use evidence unavailable rather than recording a product failure.
+Suppose those conversations reveal that the designers already have good templates but cannot reliably recover which version the client approved. The initial Problem bundled writing and history together. This possible finding would narrow Problem and Unique Value Proposition to approval history, remove guided writing from the first Solution, and prioritize “approvals retrieved without ambiguity” in Key Metrics.
 
-Small samples are useful for discovering problems, not establishing a population conversion rate. Record recruitment bias and inconclusive results. These thresholds are planning choices for this example, not validated benchmarks.
+The proposed next test would have a designer and client approve a brief for a disposable project, then change its draft to add online booking. Ask the designer to retrieve the originally approved five-page scope. If the saved record has changed or is difficult to find, the central promise has failed even if the editor is pleasant to use. The revision and result here are hypothetical branches of the learning process, not a reported experiment.
 
-## Revise it when evidence disagrees
+## Extend the tests to usability, payment, and repeat use
 
-**Hypothetical revision, not a reported experiment:** suppose interviews reveal that designers already have good templates, but struggle to prove which version a client approved. Change Problem and Unique Value Proposition to focus on approval history. Remove guided writing from the initial Solution. Change Key Metrics from “briefs created” to “approvals retrieved without ambiguity.”
+Once the problem is worth investigating, other assumptions need their own evidence. Example choices for the next tests are:
 
-If designers need the tool only once a quarter, compare a per-project offer with the subscription hypothesis. Keep the former price in the version history rather than silently rewriting it. If clients refuse another login, that supports the no-account review constraint; it does not prove the whole business works.
+1. Observe five designer-client pairs creating, reviewing, and approving a brief with disposable project data. Choose four of five finishing unaided as an initial usability gate, and record the points of hesitation.
+2. Make five clearly described $12 pilot offers to designers who have obtained a useful approval record. If an earlier participant could not complete the task, correct that problem or recruit another qualifying participant before counting five offers. Look for three concrete acceptances, separating paid commitments from “I might use this.” Explain delivery, cancellation, and refund terms before payment.
+3. Follow five designers into another qualifying project. Choose three using the workflow again within the agreed follow-up period as a prompt to continue investigating repeat use. If no new project occurs, record that evidence as unavailable rather than a product failure.
 
-For every revision, save the date, changed box, evidence link or observation, interpretation, and next test. Keep a canvas state such as **assumed**, **supported in this sample**, **contradicted**, or **unknown**. A filled box and a tested box are different things.
+These small samples can expose difficulties, but do not establish a population conversion rate. Record recruitment bias, incomplete follow-up, and inconclusive results. The thresholds are project choices, not validated benchmarks.
 
-The next artifact should be an experiment and its recorded result. Polishing the canvas repeatedly can postpone learning just as easily as polishing code.
+If the task happens only once a quarter, compare a per-project offer with the monthly hypothesis. If clients avoid account creation, test the no-account review path. Keep the previous price and scope in version history so each revision can be traced to its reason.
+
+Save the date, changed box, observation, interpretation, and next test for every revision. Label assumptions as unknown, supported in this sample, or contradicted. The canvas then connects decisions: evidence about approval changes the solution, and evidence about frequency changes the offer. Repeatedly polishing its wording cannot supply those missing observations.
 
 [Back to Indie Hacking](../README.md)
 
 ## Sources
 
 - [Ash Maurya: What is a Lean Canvas?](https://ashmaurya.com/blog/what-is-lean-canvas) — origin, purpose, sketching guidance, and flexible fill order.
-- [LEANSpark: Lean Canvas](https://leanspark.ai/leancanvas) — current twelve-prompt presentation; checked 2026-10-07.
-- [Ash Maurya: Why Simple Isn't Easy](https://ashmaurya.com/blog/why-simple-isnt-easy), 2026-10-02 — explicit hypotheses, experiments, and ongoing decisions. BriefBridge and all test thresholds are original illustrations.
+- [LEANSpark: Lean Canvas](https://leanspark.ai/leancanvas) — twelve-prompt presentation, checked 2026-10-07.
+- [Ash Maurya: Why Simple Isn't Easy](https://ashmaurya.com/blog/why-simple-isnt-easy), 2026-10-02 — explicit hypotheses, experiments, and ongoing decisions. BriefBridge and the test thresholds are original illustrations.
