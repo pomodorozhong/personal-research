@@ -10,7 +10,7 @@ The useful first question is therefore where the reviewer encountered the proble
 
 Apple calls a purchase handled through its payment system an **in-app purchase (IAP)**. **StoreKit** is Apple's framework for displaying products and handling those purchases. A customer's **entitlement** is the access they already own; their trial eligibility determines whether a new offer applies to them. Those conditions matter because a reviewer with existing paid access may never see the purchase screen that a new customer sees.
 
-For visual examples, start with [Lenglio, Snapkin, and Metacast in the gallery](gallery.md#browse-by-design-question). Use the [case notes](cases.md) for review histories and the [submission checklist](checklist.md) when preparing a build or response.
+For visual examples, start with [Lenglio, Snapkin, and Metacast in the gallery](gallery.md#browse-by-design-question). Read the [review histories](review-histories.md) to follow successive objections and developer responses, and use the [submission checklist](checklist.md) when preparing a build or response.
 
 ## What the evidence can establish
 
@@ -80,7 +80,7 @@ The following table maps symptoms to questions worth investigating. Its hypothes
 | What does the subscription provide? | Generic marketing conceals the entitlement | Name concrete paid capabilities and distinguish free access. |
 | Missing Terms of Use / EULA, or a screenshot objection | The defect may be in App Store metadata | Inspect the rejected item and language version before changing the app build. EULA means end-user license agreement. |
 
-[Lenglio, RadTrack, the toggle reports, and Vunzo](cases.md) illustrate these different diagnoses. The [gallery](gallery.md) marks the exact visual evidence.
+[Lenglio, RadTrack, the toggle reports, and Vunzo](review-histories.md) illustrate these different diagnoses. The [gallery](gallery.md) marks the exact visual evidence.
 
 Record the build and product IDs, the account's access and trial eligibility, and any remotely selected paywall variation. These details let you compare the reviewer's experience with your reproduction instead of guessing from a guideline number alone.
 
@@ -107,7 +107,7 @@ Use [App Store Connect's reply workflow][reply] to ask a focused question and at
 
 A useful reply contains the cited guideline, observed failure, exact route, relevant account state, and the change made. Say what was changed in the build versus metadata; list product IDs and attachments. Avoid submitting an unchanged binary repeatedly without answering the objection. This is our recommendation for making the evidence assessable.
 
-If the issue is a documented behavior the reviewer misunderstood, clarify it. If the behavior or design actually contradicts the requirement, fix and resubmit. If you believe the decision is wrong after addressing information requests, [Apple's appeal guidance][review] calls for specific compliance reasons and one appeal per rejected submission. An App Review appointment is another documented channel. The [appeal case](cases.md#case-8-appeal-resolved-one-objection-other-problems-remained) shows an appeal reportedly reopening review, with other defects still needing work; it is not evidence of a paywall exemption.
+If the issue is a documented behavior the reviewer misunderstood, clarify it. If the behavior or design actually contradicts the requirement, fix and resubmit. If you believe the decision is wrong after addressing information requests, [Apple's appeal guidance][review] calls for specific compliance reasons and one appeal per rejected submission. An App Review appointment is another documented channel. The [appeal account](review-histories.md#appeal-account-reopening-review-left-purchase-defects-to-fix) shows an appeal reportedly reopening review, with other defects still needing work; it is not evidence of a paywall exemption.
 
 Apple's [unresolved-submission workflow][unresolved] distinguishes accepted and rejected items. Confirm the status of the app, subscription group, each product, and localization before release. An approved app version does not establish that all intended subscriptions are approved.
 
@@ -138,7 +138,7 @@ The January 2026 toggle reports and July 2025 Lenglio outcome precede the curren
 
 ## Sources and research limits
 
-Apple links below were inspected on 2026-10-06. The supporting element illustrations and their sources were inspected on 2026-10-08. The [case collection](cases.md) links to original developer accounts and observations, with dates and outcomes. [Image provenance](images/README.md) identifies the preserved assets, source artwork, fictional prices, and acquisition limits. The gallery selects examples with inspectable media; its coverage does not represent the frequency of review problems across apps.
+Apple links below were inspected on 2026-10-06. The supporting element illustrations and their sources were inspected on 2026-10-08. The [review histories](review-histories.md) link to original developer accounts, with dates and reported outcomes. [Image provenance](images/README.md) identifies the preserved assets, source artwork, fictional prices, and acquisition limits. The gallery selects examples with inspectable media; its coverage does not represent the frequency of review problems across apps.
 
 No App Store Connect account, app binary, transaction, or appeal was tested for this research. Versions/storefronts absent from the sources remain unknown. There is no independently authenticated Apple approval record for the accepted paywall screenshots. Missing intermediate or revised images are identified in the relevant cases. Acquisition methods and the search limitation for Threads are recorded in provenance.
 

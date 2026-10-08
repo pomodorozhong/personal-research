@@ -1,6 +1,6 @@
 # Real app paywalls: annotated evidence
 
-[Guide](README.md) · [Developer cases](cases.md) · [Checklist](checklist.md)
+[Guide](README.md) · [Review histories](review-histories.md) · [Checklist](checklist.md)
 
 Twenty original source images cover fourteen paywall cases and one reviewer message. Click an image to view it separately. We keep the source's highlights, collages, and redactions; [image provenance](images/README.md) records the details. Unless noted, sources do not identify the app version or App Store region. Prices reflect the time of the screenshots, and a dollar sign alone does not tell you the currency.
 
@@ -43,7 +43,7 @@ The [reviewer message](#reviewer-message-the-requested-change-can-be-specific) s
 
 **Lesson:** Tell customers what they get when they pay. Make it clear which plans renew and which require only one payment so people can compare the cost and benefits.
 
-**Outcome:** The developer says Apple approved the app on 2025-07-22 after changes to both the paywall and the App Store listing. They did not share every revision, and the in-app purchases needed separate approval. [Full case](cases.md#case-1-lenglio-made-the-paid-entitlement-explicit).
+**Outcome:** The developer says Apple approved the app on 2025-07-22 after changes to both the paywall and the App Store listing. They did not share every revision, and the in-app purchases needed separate approval. [Review history](review-histories.md#lenglio-benefits-metadata-and-access-to-the-paywall).
 
 **Source:** [Lenglio developer post](https://www.reddit.com/r/iOSProgramming/comments/1og8u7v/my_first_experience_with_apple_app_store_review/), 2025-10-26. Small linked previews limit text readability.
 
@@ -101,7 +101,7 @@ The [reviewer message](#reviewer-message-the-requested-change-can-be-specific) s
 
 **Lesson:** Check that the customer qualifies for the trial and that Apple's purchase screen matches the app's promise. Explain when charging starts and how much the subscription costs when it renews.
 
-**Outcome:** The developer later said Apple had approved the app but still rejected its subscriptions. They did not explain what caused the missing trial. [Full case](cases.md#case-5-radtracks-custom-screen-promised-a-trial-the-system-sheet-omitted).
+**Outcome:** The developer later said Apple had approved the app but still rejected its subscriptions. They did not explain what caused the missing trial. [Review history](review-histories.md#radtrack-a-promised-trial-was-absent-from-the-purchase).
 
 **Source:** [u/manison88's RadTrack post](https://www.reddit.com/r/appledevelopers/comments/1ti60zi/frustrating_subscription_rejection_reasonadvice/), 2026-05-20; two screens in one flow, not a redesign.
 
@@ -115,7 +115,7 @@ The [reviewer message](#reviewer-message-the-requested-change-can-be-specific) s
 
 **Lesson:** Let customers compare each plan's trial length, later charge, and billing period. Turning on a trial should not quietly change the subscription from annual to weekly.
 
-**Outcome:** The developer does not give a final decision in this post. We only have the rejected screen. [Full case and conflicting reports](cases.md#case-2-an-unnamed-homework-apps-trial-switch-changed-the-plan).
+**Outcome:** The developer does not give a final decision in this post. We only have the rejected screen. [Review history and conflicting reports](review-histories.md#homework-app-a-trial-switch-changed-the-billing-period).
 
 **Source:** [u/Usual-Ant305's developer post](https://www.reddit.com/r/AppStoreOptimization/comments/1qeavxq/anyone_else_having_apple_reject_their_app_because/), 2026-01-16; app unnamed.
 
@@ -129,7 +129,7 @@ The [reviewer message](#reviewer-message-the-requested-change-can-be-specific) s
 
 **Lesson:** Show customers how much they will pay and what they are signing up for. More fine print may not help if the offer still draws attention away from the charge or the switch still confuses the choice.
 
-**Outcome:** The post includes no revised screen or final result. This message records one reviewer's request; it does not establish a general rule banning trial switches. [Full case](cases.md#case-3-axel-le-pennec-shared-the-actual-toggle-objection).
+**Outcome:** The post includes no revised screen or final result. This message records one reviewer's request; it does not establish a general rule banning trial switches. [Review history](review-histories.md#axels-reviewer-message-the-requested-changes-were-explicit).
 
 **Source:** [Axel Le Pennec on X](https://x.com/alpennec/status/2012188049728520514), 2026-01-16; notice dated 2026-01-14, app unnamed.
 
@@ -175,7 +175,7 @@ The [reviewer message](#reviewer-message-the-requested-change-can-be-specific) s
 
 **Lesson:** Show the trial and later charge together for each plan. The new screen still gives the monthly equivalent more attention than the full annual charge, so check [billed-price prominence](https://developer.apple.com/app-store/subscriptions/) too.
 
-**Outcome:** The source does not show that Apple approved these screens. Flo is a separate example, not the revised version of Axel's unnamed rejected app. [Full case](cases.md#case-4-flos-replacement-is-a-design-observation-not-an-approval-record).
+**Outcome:** The source does not show that Apple approved these screens. Flo is a separate example, not the revised version of Axel's unnamed rejected app.
 
 **Source:** [Axel Le Pennec's Flo post](https://x.com/alpennec/status/2047218943333482976), 2026-04-23; old/new captures use different prices and £/$ currencies.
 

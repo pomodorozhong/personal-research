@@ -1,6 +1,6 @@
 # Paywall design and submission checklist
 
-[Guide](README.md) · [Real screenshots](gallery.md) · [Developer cases](cases.md)
+[Guide](README.md) · [Real screenshots](gallery.md) · [Review histories](review-histories.md)
 
 Use this checklist to check the offer people see, the purchase they receive, and the information supplied to review. Start with the [guide](README.md#start-with-the-place-where-the-problem-occurs) if you are still deciding which part of a rejection needs a fix.
 
@@ -11,7 +11,7 @@ Apple guidance checked 2026-10-06. **Required** means a cited Apple requirement;
 - [ ] **Required:** identify the paid content/capabilities, subscription duration, and full localized billing amount. Make the amount actually charged more prominent than an equivalent monthly/weekly breakdown. [Apple purchase guidance](https://developer.apple.com/app-store/subscriptions/).
 - [ ] **Required:** describe the trial duration and subsequent charge; explain automatic billing. [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/apple-in-app-purchase).
 - [ ] **Required:** show offers only to eligible customers. Confirm product, subscription group, storefront, and offer dates. [Introductory offers](https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-introductory-offers-for-auto-renewable-subscriptions/).
-- [ ] **Recommended:** exercise each package selection; confirm the action, price, duration, and trial text update together. Replace the trial-switch interaction shown in the [rejection cases](cases.md) with explicit packages.
+- [ ] **Recommended:** exercise each package selection; confirm the action, price, duration, and trial text update together. Replace the trial-switch interaction shown in the [rejection cases](review-histories.md) with explicit packages.
 - [ ] **Recommended:** avoid a trial-only action concealing its paid continuation; make optionality and the customer commitment readable before the tap.
 - [ ] **Recommended:** substantiate savings/urgency claims against the actual reference price and offer schedule; distinguish price savings from a free trial ([WatchFrame](gallery.md#watchframe-a-native-plan-picker-with-ambiguous-free-copy)). Recheck these claims in follow-up offers after dismissal ([Headway](gallery.md#headway-what-happens-after-declining-the-paywall)); never manufacture a countdown.
 - [ ] **Recommended:** for promised free content, provide an obvious route back. For paid-only services, explain access restrictions in metadata and review notes. Do not mistake paywall dismissal for cancellation.
@@ -46,7 +46,7 @@ Use [Apple's sandbox and StoreKit testing tools](https://developer.apple.com/hel
 - [ ] **Required:** complete each product's review metadata and review screenshot. [IAP information](https://developer.apple.com/help/app-store-connect/reference/in-app-purchases-and-subscriptions/in-app-purchase-information).
 - [ ] **Recommended:** provide product-level notes explaining benefits and testing, especially for a non-obvious route; include corresponding app-version notes.
 - [ ] **Required:** public marketing clearly identifies featured paid access and respects metadata restrictions, including price references in screenshots. [Guidelines 2.3.2 and 2.3.7](https://developer.apple.com/app-store/review/guidelines/#accurate-metadata).
-- [ ] **Recommended:** keep the actual priced purchase screen as review evidence; prepare suitable public feature screenshots separately. Verify every locale's description and legal-link destination. [Vunzo case](cases.md#case-6-vunzo-needed-submission-and-public-metadata-changes).
+- [ ] **Recommended:** keep the actual priced purchase screen as review evidence; prepare suitable public feature screenshots separately. Verify every locale's description and legal-link destination. [Vunzo history](review-histories.md#vunzo-products-and-public-metadata-needed-separate-fixes).
 - [ ] **Recommended:** document storefront/OS routing for external checkout and current regional obligations. Recheck [US rules](https://developer.apple.com/app-store/review/guidelines/#in-app-purchase), [EU terms](https://developer.apple.com/support/apps-in-the-eu/), or [Japan's program](https://developer.apple.com/support/payment-options-on-the-app-store-in-japan/) as applicable.
 
 ## Review access and rejection response
