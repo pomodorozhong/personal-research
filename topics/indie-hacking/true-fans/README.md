@@ -1,65 +1,74 @@
 # 1,000 True Fans for indie software
 
-Kevin Kelly's [1,000 True Fans](https://kk.org/thetechnium/1000-true-fans/) describes a creator earning a living through a relatively small group of committed supporters. A true fan buys the creator's work consistently, rather than merely following an account. In the updated essay, the illustrative calculation is 1,000 supporters contributing $100 of annual profit each, with a direct customer relationship. The number is adjustable, not a guaranteed outcome.
+A small group of people who keep buying useful work can sometimes support its maker. Kevin Kelly's [1,000 True Fans](https://kk.org/thetechnium/1000-true-fans/) illustrates that idea with committed supporters and a direct customer relationship. In the updated essay, 1,000 supporters contribute $100 of annual profit each. The number is adjustable, not a guaranteed outcome.
 
-The same page also preserves the 2008 version. That older version starts from $100 of spending per fan and subtracts expenses afterward; the updated version explicitly frames the $100 as profit. For software planning, the distinction matters: 1,000 people paying $100 is $100,000 of gross revenue, not automatically $100,000 available to the founder. [Source](https://kk.org/thetechnium/1000-true-fans/).
+The same page preserves the 2008 version, which starts with $100 of spending per fan and subtracts expenses afterward. The updated version explicitly uses profit. For software, 1,000 customers paying $100 generate $100,000 of gross revenue; the amount available to the maker depends on costs. This guide connects the idea to a recurring customer task, then works through the money and workload needed to sustain it.
 
-## Translate the idea into a software business
+## Start with a result someone needs again
 
-My interpretation is to look for a specific group whose recurring problem the product solves well enough to keep earning their business. A customer may renew because a tool is useful without becoming a fan of its maker. That can still support a good business; a useful retention measure is more actionable than assigning people a fandom label.
+Consider a fictional lesson-planning app for independent music teachers. A teacher has several students to prepare for each week. The app keeps exercise choices and lesson notes together, so the teacher can save the next lesson's plan and reuse relevant material later. The product, prices, counts, and proposed tests throughout this guide are illustrative.
 
-Separate these populations:
+A teacher first discovers a sample lesson plan, then tries creating one for a student. Saving a usable plan is **activation** in this example: the first useful result. Signing up without finishing a plan does not establish that the app has helped prepare a lesson. Paying for access answers another question, and returning to prepare a later lesson begins to show recurring usefulness.
 
-| Population | What it establishes | What remains unknown |
+A teacher may renew because the tool saves preparation time without becoming a fan of its maker. The software application of Kelly's idea is therefore to find a group whose repeated need earns continued purchases, rather than to treat a follower count as demand.
+
+| Population | What the action establishes | What to investigate next |
 | --- | --- | --- |
-| Followers or subscribers to free content | Some ongoing attention. | Willingness to pay and whether the product solves their problem. |
-| Trial users | Willingness to try the workflow. | Activation, payment, and continued usefulness. |
-| Paying customers | At least one purchase. | Renewal and the cost of serving them. |
-| Retained, satisfied customers | Continued use and purchases over observed periods. | Future retention and whether support scales. |
+| Followers or free-content subscribers | Ongoing attention. | Whether they teach and need this workflow. |
+| Trial users | Willingness to try planning a lesson. | Whether they save a useful plan. |
+| Paying customers | At least one purchase. | Continued use, renewal, and service costs. |
+| Retained, satisfied customers | Continued use and purchases over observed periods. | Whether that usefulness and workload can continue. |
 
-Do not assume that all followers are potential buyers, or that every buyer will purchase the next product. A narrow professional tool can be valuable even if its maker has a small public audience.
+The categories help interpret interest, but the maker still needs to know how much each paying teacher contributes. That determines whether a plausible customer group can support the business.
 
-## Work through the economics
+## Teach the economics through one customer-year
 
-**Original illustration:** a solo maker wants $60,000 per year available for personal needs, plus $12,000 for fixed business costs and reserves. The required annual contribution is $72,000. These are hypothetical USD figures, not actual product prices or a tax calculation.
+Suppose the maker needs $60,000 annually for personal needs and $12,000 for fixed business costs and reserves: a $72,000 contribution target. The example uses USD cash-planning assumptions, not a tax calculation.
+
+A teacher paying $120 for a full year generates $36 of variable service costs, leaving `$120 − $36 = $84` toward that target. A **customer-year** means twelve months of one customer's contribution under those assumptions. It is a unit of service and revenue over time, not a count of accounts present on the last day of the year.
+
+At $84 per full customer-year, the target requires:
 
 ```text
-Contribution per customer = annual collected revenue − variable service costs
-Required customer-years  = ceiling(72,000 / contribution per customer)
+Required customer-years = ceiling(72,000 / 84) = 858
+Contribution            = 858 × 84 = $72,072
+Margin above the target = $72,072 − $72,000 = $72
 ```
 
-| Annual collected revenue per customer | Annual variable cost | Annual contribution | Full-year customers needed |
+The maker would need the equivalent of 858 teachers contributing for a whole year. The $72 margin is too narrow to absorb much unexpected expense. If those teachers join gradually or leave early, an end-of-year count of 858 will not produce 858 customer-years in that same year. Calculate customer-months and cash timing for the actual pattern.
+
+Other price and cost assumptions change the required group size:
+
+| Annual collected revenue per customer | Annual variable cost | Annual contribution | Full-year customers needed for $72,000 |
 | ---: | ---: | ---: | ---: |
 | $48 | $12 | $36 | 2,000 |
 | $120 | $36 | $84 | 858 |
 | $240 | $96 | $144 | 500 |
 
-Variable costs here include assumed processing, platform, and usage-dependent service costs. Fixed costs are already in the $72,000 target, so do not subtract them a second time. Actual taxes, benefits, refunds, acquisition costs, and support expenses need their own treatment; include each once, in the appropriate part of your budget.
+Variable costs here cover assumed processing, platform, and usage-dependent service costs. Fixed costs are already in the $72,000 target; subtracting them again would double-count them. Actual taxes, benefits, refunds, acquisition, and support expenses need appropriate treatment exactly once. A higher price reduces the arithmetic target only if enough teachers keep buying at that price; higher-paying customers may also expect more service.
 
-The middle row yields `858 × $84 = $72,072`. That narrow margin does not cover a surprise expense. A higher price helps only if the product can retain enough customers at that price; it can also attract higher service expectations.
+## Check whether the customer base is sustainable
 
-“Full-year customers” means a year of contribution each. Acquiring 858 people on the last day of the year does not produce the same year's contribution as serving them for twelve months. For staggered signups or churn, calculate customer-months and cash timing instead of multiplying an end-of-year count by an annual price.
+Even a customer base large enough on paper can demand more acquisition and support than one maker can provide. At a round 1,000-customer scale for the same planning example, assume 80% annual customer retention: 800 remain and 200 leave during a year. Two hundred replacements are needed to end with the same count, while the timing of departures and replacements affects the year's contribution.
 
-## Retention and support can change the answer
+Support can consume the time the income was intended to fund. Fifteen minutes per customer per month means `1,000 × 15 / 60 = 250` hours. If only 20% need that support in a month, the workload is still `200 × 15 / 60 = 50` hours. The difference is consequential, so measure who needs help and with what task before extrapolating to a larger base. A recurring setup problem may call for clearer instructions or a product change; individually designing every teacher's lessons creates a different service business.
 
-**Additional hypothetical checks:**
+Customer count also hides concentration. If one teaching organization supplies half the income, losing it matters more than losing one ordinary account. Track contribution by customer alongside the total.
 
-- At 80% annual customer retention, a mature base of 1,000 loses 200 customers across a year. It needs 200 replacements to end at the same count. The timing of cancellations and replacements affects earned revenue.
-- Fifteen minutes of support per customer per month would mean 250 hours for 1,000 customers. If only 20% need that support each month, it becomes 50 hours. Neither workload is visible in a revenue-only calculation.
-- If one large buyer provides half the income, customer count disguises concentration risk. Track contribution by customer as well as the total.
+The calculations assume a continuing subscription. A one-time desktop purchase or lifetime license funds a different pattern of obligations. Model new sales, upgrades, and maintenance separately rather than borrowing renewal math for an offer without renewals.
 
-Software also differs from a creator releasing new works. A subscription involves continuing obligations; a one-time purchase may require maintenance long after payment. For a paid desktop utility, model new sales and paid upgrades separately from support of earlier versions. For hosted software, measure usage costs and renewals by cohort. Do not borrow subscription math for lifetime licenses.
+## Test the recurring task before enlarging the target
 
-## A practical way to use the idea
+A concrete first test is to recruit six independent teachers preparing weekly lessons. Ask each to use a disposable prototype to save the next lesson's exercises and notes, without the maker preparing the plan for them. Record completion, where help is needed, and whether the result is usable for their teaching. Then offer a clearly described paid pilot and observe another qualifying lesson within a 21-day follow-up window.
 
-My proposed experiment is to recruit a small group with the same problem, observe their first successful result, offer a clear price, and revisit their use after several weeks. Record why people stay and why they leave. If the product earns payment but requires substantial custom work for each buyer, improve the shared workflow before multiplying the customer target.
+Suppose five teachers finish the first plan but only two prepare another. That possible finding would shift the next investigation from signup to repeat usefulness: did the others have another lesson to plan, return to a familiar document, or find reuse difficult? If they want to carry exercises forward but cannot find that action, test a clearer reuse path before recruiting a larger group. If there was no next lesson, repeat-use evidence is unavailable for that teacher rather than proof of failure. The counts are a proposed decision example, not a reported experiment or population conversion rate.
 
-Maintain a direct, permission-based relationship through support and product updates. Listen for repeated problems rather than promising every requested feature. A small audience is easier to understand, but still requires deliberate acquisition and service; the arithmetic does not prove that this audience exists.
+Record actual payment separately from an encouraging comment about price. Keep a permission-based route for support and updates, and look for repeated problems rather than promising every custom request. That gives the maker evidence about value, continued demand, and workload together.
 
-Use 1,000 True Fans as a reminder to connect customer value with sustainable economics. Replace its headline number with a contribution target, a plausible acquisition path, and observed retention.
+The customer target and the task test constrain each other. The arithmetic says how much sustained contribution is needed; observing a recurring useful result says whether people might keep providing it. Neither the “1,000” headline nor the 858-customer worksheet establishes that this audience exists.
 
 [Back to Indie Hacking](../README.md)
 
 ## Sources
 
-- [Kevin Kelly: 1,000 True Fans](https://kk.org/thetechnium/1000-true-fans/) — the updated essay and preserved 2008 original, checked 2026-10-07. The software examples, tables, and proposed experiment are this guide's own analysis rather than Kelly's business projections.
+- [Kevin Kelly: 1,000 True Fans](https://kk.org/thetechnium/1000-true-fans/) — the updated essay and preserved 2008 original, checked 2026-10-07. The lesson-planning app, economics, workload examples, and proposed test are original applications rather than Kelly's business projections.

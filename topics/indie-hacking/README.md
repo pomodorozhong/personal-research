@@ -14,3 +14,7 @@ I use **indie hacking** as a loose umbrella for solo development, solo founding,
   - Does a subscription rejection require a paywall redesign, a metadata correction, or a purchase-flow fix?
   - What do real paywall examples show about benefits, billing terms, and trial selection?
   - What should be tested and explained before submission, resubmission, or appeal?
+- [1,000 True Fans for indie software](true-fans/README.md)
+  - How does recurring customer value differ from followers, trials, and a first purchase?
+  - How do contribution and customer-years change the number needed to support a maker?
+  - What can a small task test reveal about retention and support before scaling?
