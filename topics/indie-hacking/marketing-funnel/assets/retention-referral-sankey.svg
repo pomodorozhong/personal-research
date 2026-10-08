@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title description">
+<title id="title">From payment to returning and referring</title>
+<desc id="description">Of 18 buyers, 12 save another weekly menu with its grocery list during days 30 through 44 after their own first payment, and 6 do not. After returning, 4 of those 12 bring a new visitor through a referral link by day 60 after payment, and 8 do not. These counts describe the returning-buyer referral path, not every possible referral path or the number of recipients.</desc>
+<rect x="1" y="1" width="1198" height="698" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="36" y="46" font-size="28" font-weight="700" fill="#17233a">From payment to returning and referring</text>
+<text x="36" y="77" font-size="17" fill="#526176">Illustrative original buyer cohort · all 18 buyers have completed the relevant follow-up windows</text>
+
+<path data-source="buyers" data-target="returning" data-value="12" d="M 144 180 C 353.28 180, 370.72 180, 580 180 L 580 372 C 370.72 372, 353.28 372, 144 372 Z" fill="#0f766e" fill-opacity="0.30"/>
+<path data-source="buyers" data-target="no-repeat" data-value="6" d="M 144 372 C 353.28 372, 370.72 470, 580 470 L 580 566 C 370.72 566, 353.28 468, 144 468 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<path data-source="returning" data-target="referrers" data-value="4" d="M 604 180 C 813.28 180, 830.72 180, 1040 180 L 1040 244 C 830.72 244, 813.28 244, 604 244 Z" fill="#c2410c" fill-opacity="0.30"/>
+<path data-source="returning" data-target="no-referral" data-value="8" d="M 604 244 C 813.28 244, 830.72 470, 1040 470 L 1040 598 C 830.72 598, 813.28 372, 604 372 Z" fill="#94a3b8" fill-opacity="0.30"/>
+<rect id="buyers" data-value="18" x="120" y="180" width="24" height="288" fill="#7c3aed"/>
+<rect id="returning" data-value="12" x="580" y="180" width="24" height="192" fill="#0f766e"/>
+<rect id="referrers" data-value="4" x="1040" y="180" width="24" height="64" fill="#c2410c"/>
+<rect id="no-repeat" data-value="6" x="580" y="470" width="24" height="96" fill="#94a3b8"/>
+<rect id="no-referral" data-value="8" x="1040" y="470" width="24" height="128" fill="#94a3b8"/>
+<text x="132" y="112" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Buyers</text>
+<text x="132" y="140" font-size="25" font-weight="700" fill="#7c3aed" text-anchor="middle">18</text>
+<text x="132" y="160" font-size="15" font-weight="400" fill="#526176" text-anchor="middle">First payment</text>
+<text x="592" y="112" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Another menu saved</text>
+<text x="592" y="140" font-size="25" font-weight="700" fill="#0f766e" text-anchor="middle">12</text>
+<text x="592" y="160" font-size="15" font-weight="400" fill="#526176" text-anchor="middle">Days 30–44 after payment</text>
+<text x="1052" y="112" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">Qualified referrers</text>
+<text x="1052" y="140" font-size="25" font-weight="700" fill="#c2410c" text-anchor="middle">4</text>
+<text x="1052" y="160" font-size="15" font-weight="400" fill="#526176" text-anchor="middle">By day 60 after payment</text>
+<text x="592" y="405" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">No new menu saved</text>
+<text x="592" y="433" font-size="25" font-weight="700" fill="#526176" text-anchor="middle">6</text>
+<text x="592" y="453" font-size="15" font-weight="400" fill="#526176" text-anchor="middle">In the days 30–44 window</text>
+<text x="1052" y="405" font-size="18" font-weight="500" fill="#17233a" text-anchor="middle">No qualified referral</text>
+<text x="1052" y="433" font-size="25" font-weight="700" fill="#526176" text-anchor="middle">8</text>
+<text x="1052" y="453" font-size="15" font-weight="400" fill="#526176" text-anchor="middle">By day 60, among returners</text>
+<text x="36" y="646" font-size="18" font-weight="400" fill="#17233a" text-anchor="start">12 / 18 = 66.7% return.    4 / 12 = 33.3% of returning buyers refer.</text>
+<text x="36" y="675" font-size="17" font-weight="400" fill="#526176" text-anchor="start">The four referrers bring 12 new people; those recipients form a separate cohort.</text>
+</g>
+</svg>
