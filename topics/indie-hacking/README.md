@@ -14,3 +14,7 @@ I use **indie hacking** as a loose umbrella for solo development, solo founding,
   - Does a subscription rejection require a paywall redesign, a metadata correction, or a purchase-flow fix?
   - What do real paywall examples show about benefits, billing terms, and trial selection?
   - What should be tested and explained before submission, resubmission, or appeal?
+- [Shipping a side project in 2-2-2](shipping-2-2-2/README.md)
+  - What should two hours, two days, and two weeks each establish?
+  - How does one working export lead to a usable workflow and a deliverable release?
+  - Which finding should determine whether to continue, narrow the scope, or stop?

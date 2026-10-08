@@ -1,66 +1,75 @@
 # Shipping a side project in 2-2-2
 
-Jordi Bruin's method uses three successive constraints: two hours to test whether an idea is possible, two days to make it usable by friends, and two weeks to make it launchable. He explains the progression around [2:56–3:47 in his iOS Conf SG talk](https://www.youtube.com/watch?v=Nz4R517_bVk&t=176s). The limit is meant to force a smaller idea and fewer features, rather than justify extending every experiment into a large project.
+A side project can keep accumulating features before anyone else gets a useful result. Jordi Bruin's 2-2-2 method limits the next investment: two hours to test feasibility, two days to make the idea usable by friends, and two weeks to make it launchable. He explains the progression around [2:56–3:47 in his iOS Conf SG talk](https://www.youtube.com/watch?v=Nz4R517_bVk&t=176s).
 
-I read this as a set of decisions about how much to invest next. A prototype answers feasibility; sharing it tests usability; launching tests whether people outside the friendly test group find it useful. Passing the first stage does not answer the questions in the next two.
+The useful distinction is what each investment establishes. Making one operation work leaves the user's whole task untested. Helping a friend finish that task still leaves delivery to a stranger untested. This guide follows those decisions through a small resizing utility; the example gates are an adaptation, not a checklist dictated by Bruin.
 
-## Give each stage a question and an exit
+## Start with one input and a useful output
 
-**The gates below are my practical adaptation of the method, not a checklist dictated by Bruin.** Choose the smallest workflow that demonstrates the promise and write down what would make you stop.
+Consider a fictional local tool for a designer preparing screenshots in three export sizes. A 1600 × 900 PNG needs an 800 × 450 copy for a smaller page placement, with the original proportions and source file intact. The tool's initial promise is to produce named PNG copies locally, without uploading or editing their content. The utility, test outcomes, and project decisions throughout the example are illustrative; no app or user test is being reported.
 
-| Stage | Question | Useful artifact | Exit decision |
-| --- | --- | --- | --- |
-| Two hours | Can the hardest part of the idea work? | A spike that takes one representative input through the risky operation. | Continue, shrink the idea, or save the finding and stop. |
-| Two days | Can someone else get a useful result? | A shareable version with a complete core workflow and basic instructions. | Continue if users can finish; otherwise simplify or stop. |
-| Two weeks | Can a stranger understand, obtain, and use it? | A small release with an honest promise, delivery path, and feedback channel. | Launch the agreed scope and examine actual use. |
+The two-hour question is whether that resize can work. The two-day question is whether another person can select the image, choose the size, and find the copy. The two-week question is whether someone outside the test group can obtain and use a release with an accurate description. Each question adds a different kind of work, so the first successful image should not be treated as a finished product.
 
-Decide whether the two-day and two-week budgets mean elapsed time or available working time for your situation. Reserve time for packaging and delivery inside the final budget. An external review queue may outlast it; a release candidate submitted on time and an app actually available to users are different outcomes.
+## Use two hours to test the risky operation
 
-## An example: a screenshot-resizing utility
+Build the smallest operation that takes the representative PNG, scales it by one half, and writes a new file. The expected illustrative transformation is:
 
-**Original fictional project:** a local utility that turns a designer's PNG screenshot into three named export sizes. It handles ordinary PNG images in the initial release, does not upload them, and does not edit the screenshot content. These are example constraints, not claims about an implemented app.
+```text
+Input:   screenshot.png         1600 × 900
+Choice:  width 800; keep proportions
+Output:  screenshot-800.png       800 × 450
+Source:  screenshot.png remains 1600 × 900
+```
 
-### First two hours: test one export
+The output dimensions show that the proportions are preserved; opening the output checks whether it is a readable PNG. Also inspect image quality and processing time, since a mathematically correct size alone cannot show whether the output is useful. Use disposable inputs and never overwrite the only source copy.
 
-The technical risk is whether the chosen image library can resize a representative large input while preserving aspect ratio and producing a usable PNG. Build one operation, save to a new file, and inspect the result. Use disposable inputs; never overwrite the only copy.
+If this operation works on the representative input, the next uncertainty is how someone else reaches that result. If it fails or produces unacceptable quality, try a narrower promise or record the limitation and stop. Authentication, payment, themes, and multiple formats do not answer this feasibility question.
 
-The exit artifact is a resized image and a short note on elapsed processing time, quality, and any limitation. Authentication, payment, preferences, custom themes, and multiple image formats contribute nothing to this question. If the library cannot handle the representative input, try a smaller promise or stop instead of building a polished shell around a failing operation.
+## Use two days to let another person finish the task
 
-### Next two days: let friends complete the workflow
+Add image selection, presets for widths 400, 800, and 1200 with proportional heights, a destination chooser, progress, and an unsupported-file error. For the same 1600 × 900 input, the copies would be 400 × 225, 800 × 450, and 1200 × 675. A sample image and short instructions give a tester the whole workflow rather than an isolated library function.
 
-Add image selection, the three presets, a destination chooser, progress, and a clear error when an input is unsupported. Include a sample image and instructions. Keep the source intact and explain where output files appear.
+Ask three people who actually prepare screenshots to choose the 800-wide preset and locate the exported copy without coaching. Include both a valid PNG and an unsupported input. The result to observe is whether they can finish and recognize an error, rather than whether they like the interface.
 
-Ask three testers who actually export screenshots to perform the same task without coaching. Observe whether they can identify the inputs, choose a preset, locate the export, and recognize an error. Have them try both a valid PNG and an unsupported file. “Looks nice” is less useful than seeing where they get stuck.
+An example gate is two of three finishing unaided, with no observed damage to an original. Suppose two finish but the third cannot find the destination folder. That possible finding suggests showing the saved path or an “Open folder” action before adding more presets. It gives a concrete revision for the next attempt; two successful testers do not establish broad demand or reliability on every file.
 
-My example gate is that at least two of three finish unaided and no observed failure damages an original. That is a chosen project decision, not evidence of broad demand or a statistically meaningful success rate. A tester who does not need screenshots can find UI bugs, but cannot establish demand from the target audience.
+Once other people can complete the agreed task, the next investment can address obtaining the tool. Friends who already have a build and the maker's contact details have not yet tested that path.
 
-### Next two weeks: make the promise deliverable
+## Use two weeks to make the promise deliverable
 
-Write a short landing page showing the actual workflow. Package a build for one supported platform, give it a version, and document installation, supported files, and known limits. Provide a way to report a problem. If charging, state the price, delivery, and support terms clearly before purchase; a free release can still test usefulness.
+A stranger arriving at a release page needs to see what the utility does, which platform it supports, how to install it, and where to ask for help. Package one version for one supported platform and show a real workflow before claiming it is available. If charging, explain price, delivery, and support terms before purchase; a free release also needs a working delivery path.
 
-Spend the remaining time on the core workflow's reliability and delivery blockers. Batch processing, accounts, cloud sync, and integrations stay outside this release. A permission failure deserves attention because it prevents the promised export; an extra color theme can wait.
+For the example, a useful delivery check would start from the release page on a clean supported computer: obtain the build, follow installation instructions, select the sample PNG, export the 800 × 450 copy, and locate it. If a file permission prevents saving, delivery is not complete even though the two-hour resize worked. Fix that blocker within the release scope; cloud sync, accounts, batch processing, and another theme do not resolve it.
 
-Launch to one audience likely to need the utility. Afterward, record downloads, first successful exports, repeat use where observable, failures, and support effort. Use opt-in feedback or appropriately disclosed telemetry; do not silently upload screenshots to measure demand. A local-only promise must remain true through measurement too.
+Reserve packaging and delivery time inside the budget. Decide in advance whether the two-day and two-week constraints mean elapsed time or available working time for the project. External review may outlast either: submitting a release candidate and making an app available to users are separate outcomes.
 
-## What to do when the deadline arrives
+Launch to an audience likely to need screenshot exports. Follow first useful exports, repeat use where observable, errors, and support effort alongside downloads. Use voluntary feedback or appropriately disclosed telemetry without uploading screenshots silently; the local-processing promise applies to measurement too.
 
-My default is to remove optional features before adding time. If the core operation is unreliable, do not hide that problem by calling a demo a finished release. Record what works, what blocks delivery, and whether a narrower safe release is possible.
+## Let each result determine the next investment
 
-Some ideas require hardware, approvals, or substantial research. The two-hour constraint can still identify a risk, but a quick prototype does not prove the remaining work is small. In the talk, Bruin describes a subtitling prototype that took roughly eighteen hours rather than two [around 19:30](https://www.youtube.com/watch?v=Nz4R517_bVk&t=1170s). Treat the method as a scope discipline, not a universal effort estimate.
+The three budgets separate questions that can otherwise become mixed together:
 
-## Keep the learning after launch
+| Finding to establish | Evidence in this example | Decision it informs |
+| --- | --- | --- |
+| The operation is feasible. | A readable, proportionally resized copy with its source preserved. | Whether to invest in a complete user workflow. |
+| Another person can finish. | A tester chooses a preset, finds the output, and understands failures. | Whether to invest in delivery beyond the test group. |
+| A stranger can obtain and use the release. | Installation and export succeed from the public delivery path. | Whether to launch the agreed scope and follow real use. |
 
-Use a brief decision log: initial promise, riskiest assumption, evidence from each stage, cut features, release date/status, and next decision. An experiment that is stopped with a clear finding can be more useful than another unfinished app.
+A working resize with a confusing output location calls for workflow work. A usable test build with a broken installation path calls for delivery work. That distinction helps cut features while keeping the reason for the next stage clear.
 
-The two weeks should create contact with real users. Decide whether to maintain, improve, or retire the product from their results and the cost of keeping it reliable, rather than from the effort already spent.
+At a deadline, remove optional scope before extending time, but do not disguise an unreliable operation as a finished release. Record what works, what blocks the promise, and whether a narrower release can fulfill it safely.
 
-## Method and source limits
+Some ideas need hardware, approvals, or substantial research. A short prototype can reveal a risk without proving the remaining work is small. Bruin describes a subtitling prototype taking roughly eighteen hours rather than two [around 19:30](https://www.youtube.com/watch?v=Nz4R517_bVk&t=1170s). The method encourages scope decisions; it is not a universal estimate of effort.
 
-The iOS Conf SG video's title, description, and English automatic captions were retrieved on 2026-10-07. The method passage and longer-prototype example were checked against those captions; automatic transcription may contain errors. The second linked recording's caption request returned HTTP 429, so it is retained as an alternate viewing reference, not independent transcript evidence. No fictional utility was built or user test conducted for this guide.
+After release, keep a short record of the promise, evidence, cut features, delivery status, and next decision. Maintain, improve, or retire the project according to usefulness and the cost of keeping it reliable. A stopped experiment with a clear finding can resolve a question that another unfinished feature would leave open.
+
+## Source limits
+
+The method passage and longer-prototype example were checked against the iOS Conf SG recording's English automatic captions on 2026-10-07. Automatic transcription may contain errors. The alternate recording is a viewing reference and does not provide independent transcript confirmation here.
 
 [Back to Indie Hacking](../README.md)
 
 ## Sources
 
 - [Jordi Bruin: Shipping Side Projects in 2-2-2 Easy Steps — iOS Conf SG 2023](https://www.youtube.com/watch?v=Nz4R517_bVk), published 2023-02-08 — method at 2:56 and longer-prototype example around 19:30.
-- [Shipping side projects in 2-2-2 Easy Steps — Jordi Bruin](https://www.youtube.com/watch?v=lDsIaAZF--U) — alternate recording supplied in the issue; captions unavailable in this research session.
+- [Shipping side projects in 2-2-2 Easy Steps — Jordi Bruin](https://www.youtube.com/watch?v=lDsIaAZF--U) — alternate conference recording. Project gates and resizing results are original illustrations.
