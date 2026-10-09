@@ -6,24 +6,42 @@ Git refuses to delete a branch when any worktree has it checked out:
 error: cannot delete branch 'my-branch' used by worktree at '/path/to/worktree'
 ```
 
-The branch is still serving a checkout. `git branch -D` does not bypass that restriction. Find the checkout before deciding what to remove. See the [branch documentation](https://git-scm.com/docs/git-branch).
+That worktree still uses `my-branch`. Even `git branch -D` refuses to delete it. To release the branch, first inspect and save your work, then either remove the checkout or detach it from the branch. Finally, delete the branch from a checkout you keep. See the [branch documentation](https://git-scm.com/docs/git-branch).
 
-## Find and inspect the checkout
+The four steps below follow this decision:
 
-Start by locating the checkout named in the error:
+```mermaid
+flowchart TD
+    locate["1. Find the checkout"] --> preserve["2. Inspect and save wanted work"]
+    preserve --> choose{"3. Keep the directory?"}
+    choose -->|No: unused linked worktree| remove["3A. Remove the worktree"]
+    choose -->|Yes| detach["3B. Detach the checkout"]
+    remove --> delete["4. Try branch deletion with -d<br/>from the checkout you keep"]
+    detach --> delete
+```
+
+Removal deletes the checkout's directory; detachment keeps its files. Git cannot remove the main worktree, so detach it if it uses the branch you want to delete. Both alternatives release the branch, but Git still checks its merge status when you use `-d`. Step 4 explains how to handle a refusal.
+
+## 1. Find the checkout that uses the branch
+
+Run this command in any checkout of the repository:
 
 ```bash
 git worktree list
 ```
 
-**Illustrative output:** the paths and commit IDs below are examples, not output from this repository.
+**Illustrative output:** replace these paths and branch names in the commands below with your own values. The commit IDs are examples.
 
 ```text
 /path/to/repository  a1b2c3d [main]
 /path/to/worktree    e4f5a6b [my-branch]
 ```
 
-The first column gives the directory; the bracketed name tells you which branch it has checked out. The second line connects `my-branch` to `/path/to/worktree`, matching the error. Inspect that directory before releasing the branch:
+Find the line ending in `[my-branch]`. Its first column identifies the checkout to inspect: `/path/to/worktree` in this example. Git lists the main worktree first; here, `/path/to/repository` stays on `main` and provides the checkout from which we will delete the branch.
+
+## 2. Inspect and save wanted files and commits
+
+Check what you would lose if you removed the directory:
 
 ```bash
 git -C /path/to/worktree status --short
@@ -31,43 +49,74 @@ git -C /path/to/worktree status --short --ignored
 git -C /path/to/worktree log --oneline --decorate -5
 ```
 
-`-C` runs the command in the selected checkout. The status checks reveal modified, untracked, and ignored files that may need saving. For example, `?? notes.txt` means the file is untracked; deleting the directory would remove it even though no commit contains it. The recent log shows what commits the checkout currently points to. It helps identify work to preserve, but does not establish that all its commits are merged elsewhere.
+`-C` tells Git which checkout to use. The first status command shows changes to tracked files and untracked files; the second also shows ignored files. For example, `?? notes.txt` identifies an untracked file, while `!! .env` identifies an ignored file. Git has no committed copy of an untracked file. Ordinary status omits ignored files, so empty output alone does not tell you whether you can discard the directory.
 
-Save wanted work before proceeding, including files Git ignores. A clean ordinary status does not show whether an ignored local configuration or generated file is disposable.
+Commit changes you want Git to retain, or copy wanted files outside the checkout you might remove. Include ignored files such as local configuration. The recent log helps you recognize commits to keep, but its last five entries do not prove that another branch contains all your work. Keep `my-branch` until you review its merge status in step 4.
 
-## Decide whether the checkout should remain
+## 3. Release the branch: remove or detach the checkout
 
-If the directory is no longer useful and everything wanted has been preserved, remove the linked worktree. If you still need its files or want to keep using the checkout, detach it from `my-branch` instead. Both choices release the checked-out branch; neither choice by itself proves its commits are safe to delete.
+Choose **one** of the following alternatives. Remove an unused linked worktree after saving wanted work. Detach the checkout if you need to keep the directory or if it is the main worktree, which Git cannot remove.
 
-## Remove an unused worktree, then delete the branch
+### 3A. Remove an unused linked worktree
 
-Run this from a checkout you intend to keep, using the inspected path:
+Run the removal command from the checkout you intend to keep:
 
 ```bash
-git worktree remove /path/to/worktree
-git branch -d my-branch
+git -C /path/to/repository worktree remove /path/to/worktree
 ```
 
-`remove` deletes the linked checkout's files and administrative entry. The branch is then no longer serving that checkout, so deletion can proceed to the separate merged-commit check. Removal refuses a dirty checkout unless forced and cannot remove the main worktree. If it refuses, revisit the files and worktree type rather than adding `--force` merely to make it succeed. See [worktree removal](https://git-scm.com/docs/git-worktree#Documentation/git-worktree.txt-remove).
+Git deletes the linked checkout's directory and its administrative entry, but keeps `my-branch`. Git refuses ordinary removal if the checkout contains changes to tracked files or untracked files; it can still remove ignored files. If removal fails, read the error and revisit step 2 or choose detachment. Do not add `--force` merely to bypass the refusal. See [worktree removal](https://git-scm.com/docs/git-worktree#Documentation/git-worktree.txt-remove).
 
-`-d` checks whether the branch is merged into its upstream, or into `HEAD` if there is no upstream. If it refuses, review the commits and preserve anything needed before explicitly choosing `git branch -D my-branch`. Force deletion removes the branch reference, so do not treat it as a backup strategy. See [deletion options](https://git-scm.com/docs/git-branch#Documentation/git-branch.txt--d).
+After Git removes the worktree, skip 3B and continue at step 4.
 
-## Keep the checkout instead
+### 3B. Detach the checkout to keep its directory
 
-If inspection shows that the checkout should remain, release the branch without removing the directory:
+Tell Git to keep the checkout at its current commit without attaching it to `my-branch`:
 
 ```bash
 git -C /path/to/worktree switch --detach
-git branch -d my-branch
 ```
 
-The directory now has a **detached HEAD**: it still points to its current commit but is no longer attached to `my-branch`. Its files remain in place. `git branch -d` can check whether the branch is merged, just as in the removal procedure. Preserve new commits on a named branch before removing the detached checkout later. If switching fails because of local changes, resolve that condition without discarding the changes. [Git's worktree examples](https://git-scm.com/docs/git-worktree#_examples) describe detached checkouts.
+Git leaves the files in place and detaches the checkout from `my-branch`, keeping it at its current commit. If switching fails, resolve the reported condition without discarding wanted changes, then retry. See [Git's detachment option](https://git-scm.com/docs/git-switch#Documentation/git-switch.txt---detach).
 
-If a checkout directory was deleted outside Git, inspect `git worktree prune --dry-run` before pruning stale administrative entries. Pruning is not a substitute for removing a live checkout.
+If you plan to make new commits in this directory, first attach it to another branch, for example with `git -C /path/to/worktree switch -c continued-work`. That gives Git a branch name to retain those commits. After detachment succeeds, continue at step 4.
+
+## 4. Delete the branch from the checkout you keep
+
+Run deletion from `/path/to/repository`, which remains on `main` in this example. If you detached your only checkout, first switch it to the existing branch whose history you intend to keep, then use that checkout's path here:
+
+```bash
+git -C /path/to/repository branch -d my-branch
+```
+
+Each checkout has a **HEAD**, a reference that identifies its current commit. Usually `HEAD` follows a branch; a detached checkout points directly to a commit. A branch can also have an **upstream**, the branch you configured it to track, such as `origin/my-branch`. Git allows `-d` when that upstream contains all the branch's commits. If the branch has no upstream, Git checks against the checkout's `HEAD` instead. See [deletion options](https://git-scm.com/docs/git-branch#Documentation/git-branch.txt--d).
+
+Run deletion from the checkout whose history you want to keep. If you run it from the newly detached checkout, its `HEAD` still points to the tip of `my-branch`, so the fallback check can pass even when `main` lacks those commits.
+
+If Git reports unmerged commits, review them before retrying. For this example, compare against `main`:
+
+```bash
+git -C /path/to/repository log --oneline main..my-branch
+```
+
+The output lists commits that `my-branch` contains and `main` does not. Empty output means `main` already contains all its commits. If `my-branch` has an upstream, also compare against that branch to understand Git's refusal. For example, if it tracks `origin/my-branch`, replace `main..my-branch` with `origin/my-branch..my-branch`.
+
+Choose how to handle any commits you want to keep:
+
+- **Merge the work into the branch Git checks.** After merging, retry `git -C /path/to/repository branch -d my-branch`.
+- **Keep the work on another named branch.** For example, run `git -C /path/to/repository branch saved-work my-branch`. This retains the commits, but does not make the merge check pass. Delete the original branch with `git -C /path/to/repository branch -D my-branch` only if you deliberately choose to bypass that check.
+
+If you decide to discard unmerged work, `-D` also deletes the branch reference without passing the merge check. Force deletion does not preserve a backup. If Git instead reports a checkout still using the branch, return to step 1.
+
+### If the checkout directory is already missing
+
+If someone deleted the directory outside Git, inspect `git worktree prune --dry-run` before running `git worktree prune` to clear stale entries. Do not prune a checkout just because its disk or network share is temporarily unavailable. Once Git clears the stale entry, follow step 4. Pruning does not remove a live checkout.
 
 ## A disposable reproduction
 
-The following demonstration creates a separate repository in new, unused directories. It recreates the original error with a branch at the same commit as `main`, so there are no unmerged branch commits to complicate the result. A configured Git author identity is required.
+Reproduce the error in a separate repository, then resolve it by removal or detachment. Use new, unused directories and configure a Git author identity before running the commit command. The demonstration starts `my-branch` at the same commit as `main`, so the final merge check can pass.
+
+### Create the checkout and reproduce the refusal
 
 ```bash
 git init --initial-branch=main worktree-demo
@@ -75,24 +124,51 @@ git -C worktree-demo commit --allow-empty -m "Initial commit"
 git -C worktree-demo worktree add -b my-branch ../worktree-demo-linked
 git -C worktree-demo branch -d my-branch
 # Expected: refuses because my-branch is checked out.
-git -C worktree-demo worktree list
-git -C worktree-demo-linked status --short
 ```
 
-The `worktree add` command makes `my-branch` serve the linked checkout. The deletion attempt is expected to fail because that checkout still uses it. The list and status commands locate the checkout and check its files, reproducing the inspection needed after the original error.
+Git creates the linked checkout on `my-branch`, then refuses to delete that branch while the checkout uses it.
 
-If that disposable checkout is clean and no longer needed, finish the demonstration:
+### Follow steps 1 and 2: locate and inspect the checkout
+
+```bash
+git -C worktree-demo worktree list
+git -C worktree-demo-linked status --short
+git -C worktree-demo-linked status --short --ignored
+git -C worktree-demo-linked log --oneline --decorate -5
+```
+
+The list identifies `worktree-demo-linked` as the checkout using `my-branch`. Both status commands should produce no output in this new checkout, and the log should show only the initial commit. If you added files or commits, save anything you want before continuing.
+
+### Follow step 3: choose removal or detachment
+
+Choose **one** alternative for this demonstration. If you no longer need the disposable checkout, remove it:
 
 ```bash
 git -C worktree-demo worktree remove ../worktree-demo-linked
+```
+
+If you want to keep the directory, detach it **instead of removing it**:
+
+```bash
+git -C worktree-demo-linked switch --detach
+```
+
+Either command releases `my-branch`. Removal deletes the linked directory; detachment leaves it at the initial commit. To test both alternatives, repeat the demonstration in fresh directories for the second path.
+
+### Follow step 4: delete the branch from the main checkout
+
+After your chosen command succeeds, run the same deletion command from `worktree-demo`, which still has `main` checked out:
+
+```bash
 git -C worktree-demo branch -d my-branch
 ```
 
-Removal releases the branch; deletion is then expected to succeed because the branch has no commits beyond `main`. If the demonstration has acquired files or commits you want, preserve them and reassess the choice before removing anything.
+Git deletes `my-branch` because `main` already contains its commit. If you chose detachment, the linked directory remains available at that commit.
 
-The paths, IDs, and output shown above are illustrative. A separate disposable test repository verified the checked-out restriction for both `-d` and `-D`, discovery with `worktree list`, refusal to remove an untracked file, detachment, refusal to delete an unmerged branch with `-d`, and successful removal followed by deletion after preserving and merging the work.
+The paths, IDs, and output shown above are illustrative. Disposable test repositories verified both deletion refusals while a branch has a checkout, discovery with `worktree list`, refusal to remove an untracked file, file preservation during detachment, removal of ignored files, the detached-`HEAD` merge-check behavior, and successful deletion after preserving and merging work.
 
 ## Sources
 
 - [Git worktree documentation](https://git-scm.com/docs/git-worktree) — listing, removal, detached checkouts, and pruning.
 - [Git branch documentation](https://git-scm.com/docs/git-branch) — checked-out restrictions and safe versus forced deletion.
+- [Git switch documentation](https://git-scm.com/docs/git-switch) — detachment and protection of local changes.
