@@ -2,7 +2,7 @@
 
 [Topic overview](README.md) · [Investigation plan](investigation-plan.md) · [Feature catalogue](feature-catalogue.md)
 
-The next decision is whether a local model produces a usable transcript with reliable speaker labels from a meeting recording. This guide describes what to inspect in the model review and trial result. The implementer handles technical checks and records the setup and outputs; the review focuses on whether those outputs meet the intended need.
+The next decision is whether a local model produces a usable transcript with reliable speaker labels from a meeting recording. This guide describes what to inspect in the model review and trial result. The source review gathers configuration evidence and prepares a plan. The user installs and tests the models, then returns the setup and outputs for review.
 
 ## 1. Feature scope is confirmed
 
@@ -12,9 +12,9 @@ The immediate trial checks transcription (**MN-04**) and speaker separation (**M
 
 ## 2. Review pipeline effects and experiment choices
 
-Start with [Local pipeline sources](open-source-pipelines.md). Its initial observations describe the project paths; the next update should identify the exact models, versions, software, and settings used for transcription, speaker processing, and summaries.
+Start with [Local pipeline sources](open-source-pipelines.md). Its completed configuration review identifies the main models, artifacts, runtimes, settings, licenses, and processing boundaries. A HushScribe source build with Whisper Large v3, language detection enabled, and offline Community-1 diarization is selected, for the confirmed macOS 26.6.2 (25G83), Chinese + English recording.
 
-Check whether the proposed setup can handle the recording's languages, supports speaker separation, runs on the target Mac, and keeps processing local as intended. Also check whether labels appear during the call or only afterward. That difference matters if the intended use needs live attribution, but does not prevent using final labels for a saved recording.
+The user’s confirmed macOS version meets the documented requirement; Chinese support selects Whisper rather than Parakeet. First prepare the documented source override; then ask the user to run the [recording trial](investigation-plan.md#user-run-recording-trial) and return the setup and transcript evidence. Speaker separation has a confirmed source path; successful execution and useful output on the target Mac remain to be established. Also check whether labels appear during the call or only afterward. That difference matters if the intended use needs live attribution, but does not prevent using final labels for a saved recording.
 
 The review should leave a concrete option to try. It does not require a complete feature matrix or a broad benchmark campaign before that trial. If a detail affects the choice, name the model or step and explain the consequence—for example, “This option transcribes the recording but has no speaker-separation step.”
 
@@ -30,4 +30,4 @@ If a model reliably distinguishes speakers and produces a good transcript on the
 
 Record the model, settings, recording, result, and decision together. A successful trial of transcription and speaker separation does not demonstrate summary quality, sharing behavior, or other untested catalogue features. Those remain separate questions when deciding what further work is needed for [#167](https://github.com/pomodorozhong/rabbit-holes/issues/167).
 
-The model review and recording trial are pending. This guide describes the review process, not a completed test.
+The model/source review is complete as of **2026-10-08**. The user-run recording trial is pending. This guide describes how to review that future evidence; no model test has been performed by the research agent.
