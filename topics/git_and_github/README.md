@@ -23,6 +23,7 @@ This very page is serve to be a table of contents. And [this Project Board](http
 
 ### Usage
 
+-   [Deleting a branch checked out in another worktree](worktree-branch-deletion.md) — locate the checkout, preserve work, and remove or detach it before deleting the branch.
 -   Multiple repo & Submodule
     -   [What's the best practice for putting multiple projects in a git repository? - Stack Overflow](https://stackoverflow.com/questions/14679614/whats-the-best-practice-for-putting-multiple-projects-in-a-git-repository)
     -   [github - How to link folder from a git repo to another repo? - Stack Overflow](https://stackoverflow.com/questions/36554810/how-to-link-folder-from-a-git-repo-to-another-repo/36554930#36554930)
